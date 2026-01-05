@@ -8,6 +8,12 @@ export default [
   ...tseslint.configs.recommended,
   {
     files: ["**/*.{js,jsx,ts,tsx}"],
+    languageOptions: {
+      parserOptions: {
+        project: "./tsconfig.json",
+        tsconfigRootDir: import.meta.dirname,
+      },
+    },
     plugins: {
       react: reactPlugin,
       "react-hooks": reactHooksPlugin,
