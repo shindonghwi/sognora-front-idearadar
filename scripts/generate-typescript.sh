@@ -22,19 +22,22 @@ show_usage() {
     echo ""
     echo "옵션:"
     echo "  -f, --file PATH      로컬 swagger.json 파일 경로 [필수]"
-    echo "  --exclude-admin      관리자 API 제외 (admin으로 시작하는 태그)"
+    echo "  --exclude-admin      관리자 API 제외 (유저용 API만 생성)"
+    echo "  --only-admin         관리자 API만 생성 (유저용 API 제외)"
     echo "  -h, --help           도움말 출력"
     echo ""
     echo "예시:"
-    echo "  $0 -f /path/to/swagger.json --exclude-admin"
-    echo "  make swagger         # 클라이언트 API만 (권장)"
-    echo "  make swagger-admin   # 모든 API 포함"
+    echo "  $0 -f /path/to/swagger.json --exclude-admin  # 유저용 API만"
+    echo "  $0 -f /path/to/swagger.json --only-admin     # 어드민 API만"
+    echo "  make swagger              # 유저용 API만 (기본값)"
+    echo "  make swagger TARGET=admin # 어드민 API만"
     exit 0
 }
 
 # 인자 파싱
 LOCAL_SWAGGER_FILE=""
 EXCLUDE_ADMIN=false
+ONLY_ADMIN=false
 while [[ $# -gt 0 ]]; do
     case $1 in
         -f|--file)
@@ -43,6 +46,10 @@ while [[ $# -gt 0 ]]; do
             ;;
         --exclude-admin)
             EXCLUDE_ADMIN=true
+            shift
+            ;;
+        --only-admin)
+            ONLY_ADMIN=true
             shift
             ;;
         -h|--help)
@@ -54,6 +61,12 @@ while [[ $# -gt 0 ]]; do
             ;;
     esac
 done
+
+# 상호 배타적 옵션 검증
+if [ "$EXCLUDE_ADMIN" = true ] && [ "$ONLY_ADMIN" = true ]; then
+    echo "❌ --exclude-admin과 --only-admin은 동시에 사용할 수 없습니다"
+    exit 1
+fi
 
 # 파일 경로 확인
 if [[ -z "$LOCAL_SWAGGER_FILE" ]]; then
@@ -228,6 +241,114 @@ if [ "$EXCLUDE_ADMIN" = true ]; then
     "
 
     echo "✅ 관리자 API 및 미사용 스키마 제외 완료"
+fi
+
+# Admin API만 유지 (--only-admin 옵션이 있을 경우)
+if [ "$ONLY_ADMIN" = true ]; then
+    echo "🎯 관리자 API만 유지 중..."
+
+    # Node.js를 사용하여 JSON 필터링
+    node -e "
+    const fs = require('fs');
+    const swagger = JSON.parse(fs.readFileSync('$SWAGGER_FILE', 'utf-8'));
+
+    // Admin 태그만 유지
+    if (swagger.tags) {
+        swagger.tags = swagger.tags.filter(tag => {
+            const tagName = tag.name.toLowerCase();
+            return tagName.startsWith('admin') || tagName.includes('admin');
+        });
+    }
+
+    // Admin 엔드포인트만 유지
+    if (swagger.paths) {
+        const filteredPaths = {};
+        for (const [path, methods] of Object.entries(swagger.paths)) {
+            // /admin으로 시작하는 경로만 유지
+            if (!path.toLowerCase().includes('/admin')) {
+                continue;
+            }
+
+            // 각 메서드의 태그 확인
+            const filteredMethods = {};
+            for (const [method, details] of Object.entries(methods)) {
+                if (details.tags) {
+                    const hasAdminTag = details.tags.some(tag =>
+                        tag.toLowerCase().startsWith('admin') || tag.toLowerCase().includes('admin')
+                    );
+                    if (hasAdminTag) {
+                        filteredMethods[method] = details;
+                    }
+                }
+            }
+
+            if (Object.keys(filteredMethods).length > 0) {
+                filteredPaths[path] = filteredMethods;
+            }
+        }
+        swagger.paths = filteredPaths;
+    }
+
+    // 사용되지 않는 스키마 제거
+    const usedSchemas = new Set();
+
+    function collectRefs(obj) {
+        if (!obj || typeof obj !== 'object') return;
+        if (Array.isArray(obj)) {
+            obj.forEach(collectRefs);
+            return;
+        }
+        for (const [key, value] of Object.entries(obj)) {
+            if (key === '\$ref' && typeof value === 'string') {
+                let match = value.match(/#\\/definitions\\/(.+)/);
+                if (!match) {
+                    match = value.match(/#\\/components\\/schemas\\/(.+)/);
+                }
+                if (match) {
+                    usedSchemas.add(match[1]);
+                }
+            } else {
+                collectRefs(value);
+            }
+        }
+    }
+
+    collectRefs(swagger.paths);
+
+    const schemas = swagger.definitions || (swagger.components && swagger.components.schemas) || {};
+    const totalSchemas = Object.keys(schemas).length;
+
+    let prevSize = 0;
+    while (prevSize !== usedSchemas.size) {
+        prevSize = usedSchemas.size;
+        for (const schemaName of [...usedSchemas]) {
+            const schema = schemas[schemaName];
+            if (schema) {
+                collectRefs(schema);
+            }
+        }
+    }
+
+    const filteredSchemas = {};
+    for (const [name, schema] of Object.entries(schemas)) {
+        if (usedSchemas.has(name)) {
+            filteredSchemas[name] = schema;
+        }
+    }
+
+    if (swagger.definitions) {
+        swagger.definitions = filteredSchemas;
+    } else if (swagger.components && swagger.components.schemas) {
+        swagger.components.schemas = filteredSchemas;
+    }
+
+    const removedCount = totalSchemas - Object.keys(filteredSchemas).length;
+    console.log('  📊 스키마 필터링: ' + Object.keys(filteredSchemas).length + '개 유지, ' + removedCount + '개 제거');
+
+    fs.writeFileSync('$SWAGGER_FILE', JSON.stringify(swagger, null, 2));
+    "
+
+    echo "✅ 유저 API 제외, 관리자 API만 유지 완료"
 fi
 
 # Swagger JSON 검증
