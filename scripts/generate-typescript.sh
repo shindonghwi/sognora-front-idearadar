@@ -449,10 +449,15 @@ if [ -d "$TEMP_DIR" ]; then
 
     # API 클라이언트 파일명에서 실제 도메인 목록 추출
     DOMAINS=()
+    # 타입 매칭용 베이스 도메인 (admin 접미사 제거)
+    BASE_DOMAINS=()
     if [ -d "$TEMP_DIR/api" ]; then
         while IFS= read -r api_file; do
             domain_name=$(basename "$api_file" -api.ts | sed 's/-$//')
             DOMAINS+=("$domain_name")
+            # -admin 접미사 제거한 베이스 도메인도 저장
+            base_domain=$(echo "$domain_name" | sed 's/-admin$//')
+            BASE_DOMAINS+=("$base_domain")
         done < <(find "$TEMP_DIR/api" -name "*-api.ts" -type f)
     fi
 
@@ -466,20 +471,24 @@ if [ -d "$TEMP_DIR" ]; then
     echo "  📁 도메인별 분류 중..."
 
     # 모든 타입 파일 처리 (index.ts 제외)
-    find "$TEMP_DIR/models" -type f -name "*.ts" ! -name "index.ts" | while read -r file; do
+    # NOTE: pipe 대신 process substitution 사용 - 배열 변수 접근을 위해 필수
+    while read -r file; do
             filename=$(basename "$file")
 
             # 파일명에서 도메인 찾기 (가장 긴 매칭 우선)
+            # 베이스 도메인으로 매칭하고, 실제 도메인 이름 사용
             domain="common"
             max_match_len=0
 
-            for d in "${DOMAINS[@]}"; do
-                # 도메인이 파일명 앞부분에 매칭되는지 확인 (접두사 상관없이)
-                # 예: csfaq-update-dto.ts, update-cs-dto.ts 등 모두 cs 도메인으로 매칭
-                if [[ "$filename" == "$d-"* ]] || [[ "$filename" == *"-$d-"* ]] || [[ "$filename" == "$d"* ]]; then
-                    match_len=${#d}
+            for i in "${!BASE_DOMAINS[@]}"; do
+                base_d="${BASE_DOMAINS[$i]}"
+                actual_d="${DOMAINS[$i]}"
+                # 베이스 도메인이 파일명에 매칭되는지 확인
+                # 예: profile-status.ts -> base_d=profile, actual_d=profile-admin
+                if [[ "$filename" == "$base_d-"* ]] || [[ "$filename" == *"-$base_d-"* ]] || [[ "$filename" == "$base_d"* ]]; then
+                    match_len=${#base_d}
                     if [ $match_len -gt $max_match_len ]; then
-                        domain="$d"
+                        domain="$actual_d"
                         max_match_len=$match_len
                     fi
                 fi
@@ -528,7 +537,7 @@ if [ -d "$TEMP_DIR" ]; then
                     exit 1
                 fi
             fi
-        done
+        done < <(find "$TEMP_DIR/models" -type f -name "*.ts" ! -name "index.ts")
 
         echo "  ✅ DTO 파일들 -> $API_DTO_DIR/{domain}"
         echo "  ✅ RO 파일들 -> $API_RO_DIR/{domain}"
