@@ -222,19 +222,14 @@ function generateMutationHook(domainName, clientName, method) {
 
   if (!hasParams) {
     // No parameters - simple case
-    return `import { useMutation, useQueryClient } from '@tanstack/react-query';
+    return `import { useMutation } from '@tanstack/react-query';
 import { ${factoryFunctionName} } from '@/core/api/manual/api-factory';
 ${typeImports}
 export function use${cleanMethodName.charAt(0).toUpperCase() + cleanMethodName.slice(1)}() {
-  const queryClient = useQueryClient();
-
   return useMutation({
     mutationFn: async () => {
       const response = await ${factoryFunctionName}().${method.name}();
       return response.data;
-    },
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['${domainName}'] });
     },
   });
 }
@@ -259,19 +254,14 @@ export function use${cleanMethodName.charAt(0).toUpperCase() + cleanMethodName.s
     // Single parameter - pass it directly
     const param = paramDeclarations[0];
 
-    return `import { useMutation, useQueryClient } from '@tanstack/react-query';
+    return `import { useMutation } from '@tanstack/react-query';
 import { ${factoryFunctionName} } from '@/core/api/manual/api-factory';
 ${typeImports}
 export function use${cleanMethodName.charAt(0).toUpperCase() + cleanMethodName.slice(1)}() {
-  const queryClient = useQueryClient();
-
   return useMutation({
     mutationFn: async (${param.name}: ${param.type}) => {
       const response = await ${factoryFunctionName}().${method.name}(${param.name});
       return response.data;
-    },
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['${domainName}'] });
     },
   });
 }
@@ -281,19 +271,14 @@ export function use${cleanMethodName.charAt(0).toUpperCase() + cleanMethodName.s
     const paramNames = paramDeclarations.map(p => p.name).join(', ');
     const paramTypes = paramDeclarations.map(p => `${p.name}${p.isOptional ? '?' : ''}: ${p.type}`).join('; ');
 
-    return `import { useMutation, useQueryClient } from '@tanstack/react-query';
+    return `import { useMutation } from '@tanstack/react-query';
 import { ${factoryFunctionName} } from '@/core/api/manual/api-factory';
 ${typeImports}
 export function use${cleanMethodName.charAt(0).toUpperCase() + cleanMethodName.slice(1)}() {
-  const queryClient = useQueryClient();
-
   return useMutation({
     mutationFn: async ({ ${paramNames} }: { ${paramTypes} }) => {
       const response = await ${factoryFunctionName}().${method.name}(${paramNames});
       return response.data;
-    },
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['${domainName}'] });
     },
   });
 }
