@@ -112,13 +112,16 @@ function generateQueryHook(domainName, clientName, method) {
   if (method.types && method.types.length > 0) {
     const isDtoType = (t) => t.endsWith('DTO') || t.endsWith('Request');
     const isRoType = (t) => t.endsWith('RO') || t.endsWith('Response');
-    // Enum/Status/Category types go to types folder
-    const isEnumType = (t) => t.includes('Status') || t.includes('Category') || t.includes('Type') || (!isDtoType(t) && !isRoType(t) && !t.includes('Api'));
+    // API-specific enums (e.g., ApiV1AdminNotificationsGetStatusEnum) are in clients folder
+    const isApiEnum = (t) => t.startsWith('ApiV1') && t.endsWith('Enum');
+    // Domain enums (e.g., ProfileStatus, UserRole) go to types folder
+    const isDomainEnumType = (t) => !isApiEnum(t) && (t.includes('Status') || t.includes('Category') || t.includes('Type') || (!isDtoType(t) && !isRoType(t) && !t.includes('Api')));
 
     const dtoTypes = method.types.filter(isDtoType);
     const roTypes = method.types.filter(isRoType);
-    const enumTypes = method.types.filter(t => !isDtoType(t) && !isRoType(t) && isEnumType(t));
-    const otherTypes = method.types.filter(t => !isDtoType(t) && !isRoType(t) && !isEnumType(t));
+    const apiEnumTypes = method.types.filter(t => !isDtoType(t) && !isRoType(t) && isApiEnum(t));
+    const domainEnumTypes = method.types.filter(t => !isDtoType(t) && !isRoType(t) && !isApiEnum(t) && isDomainEnumType(t));
+    const otherTypes = method.types.filter(t => !isDtoType(t) && !isRoType(t) && !isApiEnum(t) && !isDomainEnumType(t));
 
     if (dtoTypes.length > 0) {
       typeImports += `import type { ${dtoTypes.join(', ')} } from '@/core/api/generated/dto';\n`;
@@ -126,11 +129,12 @@ function generateQueryHook(domainName, clientName, method) {
     if (roTypes.length > 0) {
       typeImports += `import type { ${roTypes.join(', ')} } from '@/core/api/generated/ro';\n`;
     }
-    if (enumTypes.length > 0) {
-      typeImports += `import type { ${enumTypes.join(', ')} } from '@/core/api/generated/types';\n`;
+    if (domainEnumTypes.length > 0) {
+      typeImports += `import type { ${domainEnumTypes.join(', ')} } from '@/core/api/generated/types';\n`;
     }
-    if (otherTypes.length > 0) {
-      typeImports += `import type { ${otherTypes.join(', ')} } from '@/core/api/generated/clients';\n`;
+    if (apiEnumTypes.length > 0 || otherTypes.length > 0) {
+      const clientTypes = [...apiEnumTypes, ...otherTypes];
+      typeImports += `import type { ${clientTypes.join(', ')} } from '@/core/api/generated/clients';\n`;
     }
   }
 
@@ -190,13 +194,16 @@ function generateMutationHook(domainName, clientName, method) {
   if (method.types && method.types.length > 0) {
     const isDtoType = (t) => t.endsWith('DTO') || t.endsWith('Request');
     const isRoType = (t) => t.endsWith('RO') || t.endsWith('Response');
-    // Enum/Status/Category types go to types folder
-    const isEnumType = (t) => t.includes('Status') || t.includes('Category') || t.includes('Type') || (!isDtoType(t) && !isRoType(t) && !t.includes('Api'));
+    // API-specific enums (e.g., ApiV1AdminNotificationsGetStatusEnum) are in clients folder
+    const isApiEnum = (t) => t.startsWith('ApiV1') && t.endsWith('Enum');
+    // Domain enums (e.g., ProfileStatus, UserRole) go to types folder
+    const isDomainEnumType = (t) => !isApiEnum(t) && (t.includes('Status') || t.includes('Category') || t.includes('Type') || (!isDtoType(t) && !isRoType(t) && !t.includes('Api')));
 
     const dtoTypes = method.types.filter(isDtoType);
     const roTypes = method.types.filter(isRoType);
-    const enumTypes = method.types.filter(t => !isDtoType(t) && !isRoType(t) && isEnumType(t));
-    const otherTypes = method.types.filter(t => !isDtoType(t) && !isRoType(t) && !isEnumType(t));
+    const apiEnumTypes = method.types.filter(t => !isDtoType(t) && !isRoType(t) && isApiEnum(t));
+    const domainEnumTypes = method.types.filter(t => !isDtoType(t) && !isRoType(t) && !isApiEnum(t) && isDomainEnumType(t));
+    const otherTypes = method.types.filter(t => !isDtoType(t) && !isRoType(t) && !isApiEnum(t) && !isDomainEnumType(t));
 
     if (dtoTypes.length > 0) {
       typeImports += `import type { ${dtoTypes.join(', ')} } from '@/core/api/generated/dto';\n`;
@@ -204,11 +211,12 @@ function generateMutationHook(domainName, clientName, method) {
     if (roTypes.length > 0) {
       typeImports += `import type { ${roTypes.join(', ')} } from '@/core/api/generated/ro';\n`;
     }
-    if (enumTypes.length > 0) {
-      typeImports += `import type { ${enumTypes.join(', ')} } from '@/core/api/generated/types';\n`;
+    if (domainEnumTypes.length > 0) {
+      typeImports += `import type { ${domainEnumTypes.join(', ')} } from '@/core/api/generated/types';\n`;
     }
-    if (otherTypes.length > 0) {
-      typeImports += `import type { ${otherTypes.join(', ')} } from '@/core/api/generated/clients';\n`;
+    if (apiEnumTypes.length > 0 || otherTypes.length > 0) {
+      const clientTypes = [...apiEnumTypes, ...otherTypes];
+      typeImports += `import type { ${clientTypes.join(', ')} } from '@/core/api/generated/clients';\n`;
     }
   }
 
