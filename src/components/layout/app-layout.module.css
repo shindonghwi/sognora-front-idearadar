@@ -1,0 +1,48 @@
+.layout {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  max-height: 100vh;
+  background-color: var(--surface-base);
+  padding: var(--spacing-5);
+  gap: var(--spacing-5);
+  overflow: hidden;
+}
+
+.bodyArea {
+  display: flex;
+  flex: 1;
+  gap: var(--spacing-5);
+  min-height: 0;
+  overflow: hidden;
+}
+
+.mainArea {
+  flex: 1;
+  min-width: 0;
+  background-color: var(--surface-paper);
+  border-radius: var(--border-radius-lg);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.content {
+  flex: 1;
+  overflow-y: auto;
+  padding: var(--spacing-13);
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE/Edge */
+}
+
+.content::-webkit-scrollbar {
+  display: none; /* Chrome, Safari */
+}
+
+.noPadding .content {
+  padding: 0 !important;
+}
+
+.noPadding.mainArea .content {
+  padding: 0 !important;
+}

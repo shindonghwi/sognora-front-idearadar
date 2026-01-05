@@ -1,0 +1,243 @@
+.sidebar {
+  width: 280px;
+  min-width: 280px;
+  background-color: var(--surface-paper);
+  border-radius: var(--border-radius-lg);
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: var(--spacing-9) 0;
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE/Edge */
+}
+
+.sidebar::-webkit-scrollbar {
+  display: none; /* Chrome, Safari */
+}
+
+/* 메인 네비게이션 */
+.mainNav {
+  padding: 0 var(--spacing-9);
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-1);
+}
+
+.navItem {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-9);
+  padding: var(--spacing-7) var(--spacing-9);
+  color: var(--on-surface-muted);
+  text-decoration: none;
+  font-size: var(--font-size-6);
+  font-weight: 500;
+  border-radius: var(--border-radius-md);
+  transition: color 0.2s, background-color 0.2s;
+}
+
+.navItem:hover {
+  color: var(--on-surface-default);
+  background-color: var(--interactive-hover);
+}
+
+.navItem.active {
+  color: var(--on-surface-default);
+  background-color: var(--interactive-hover);
+  position: relative;
+}
+
+.navItem.active::before {
+  content: '';
+  position: absolute;
+  left: -8px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 3px;
+  height: var(--spacing-13);
+  background-color: var(--color-primary-500);
+  border-radius: 0 2px 2px 0;
+}
+
+/* 구분선 */
+.divider {
+  margin: var(--spacing-5) var(--spacing-9);
+  border-color: var(--border-muted) !important;
+}
+
+/* 서비스 섹션 */
+.serviceSection {
+  padding: var(--spacing-5) var(--spacing-9);
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-1);
+}
+
+.sectionTitle {
+  font-size: var(--font-size-4);
+  font-weight: 700;
+  color: var(--on-surface-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  padding: var(--spacing-5) var(--spacing-9) var(--spacing-1);
+  margin: 0;
+}
+
+.serviceNav {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-1);
+}
+
+.serviceItem {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-9);
+  padding: var(--spacing-7) var(--spacing-9);
+  color: var(--on-surface-muted);
+  text-decoration: none;
+  font-size: var(--font-size-6);
+  font-weight: 500;
+  border-radius: var(--border-radius-md);
+  transition: color 0.2s, background-color 0.2s;
+}
+
+.serviceItem:hover:not(.disabled) {
+  color: var(--on-surface-default);
+  background-color: var(--interactive-hover);
+}
+
+.serviceItem.active {
+  color: var(--on-surface-default);
+  background-color: var(--interactive-hover);
+  position: relative;
+}
+
+.serviceItem.active::before {
+  content: '';
+  position: absolute;
+  left: -4px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 3px;
+  height: var(--spacing-13);
+  background-color: var(--color-primary-500);
+  border-radius: 0 2px 2px 0;
+}
+
+.serviceItem.disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.serviceLabel {
+  flex: 1;
+}
+
+
+
+/* 스페이서 - 콘텐츠와 하단 사이 공간 채우기 */
+.spacer {
+  flex: 1;
+}
+
+/* 이벤트 박스 - 비로그인 시 */
+.eventBox {
+  margin: var(--spacing-9);
+  padding: var(--spacing-11);
+  aspect-ratio: 16 / 9;
+  background: linear-gradient(135deg, var(--surface-elevated) 0%, var(--surface-paper) 50%, var(--surface-elevated) 100%);
+  border: 1px solid var(--border-default);
+  border-radius: var(--border-radius-lg);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--spacing-5);
+  transition: border-color 0.2s;
+  position: relative;
+  overflow: hidden;
+}
+
+.eventBox::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 150px;
+  height: 150px;
+  background: radial-gradient(circle, color-mix(in srgb, var(--color-warning-500) 8%, transparent) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.eventBox:hover {
+  border-color: var(--border-strong);
+}
+
+.eventContent {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--spacing-1);
+  position: relative;
+  z-index: 1;
+  flex: 1;
+  justify-content: center;
+}
+
+.eventTitle {
+  font-size: var(--font-size-7);
+  font-weight: 500;
+  color: var(--on-surface-muted);
+  line-height: 1.4;
+}
+
+.eventTitle strong {
+  font-weight: 700;
+  color: var(--on-surface-default);
+}
+
+.eventCta {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-3);
+  width: 100%;
+  align-self: stretch;
+  position: relative;
+  z-index: 1;
+}
+
+/* 광고 영역 - 로그인 시 */
+.adBox {
+  margin: var(--spacing-9);
+  aspect-ratio: 16 / 9;
+  background: var(--surface-elevated);
+  border: 1px solid var(--border-default);
+  border-radius: var(--border-radius-lg);
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow: hidden;
+}
+
+.adLabel {
+  position: absolute;
+  top: var(--spacing-5);
+  left: var(--spacing-5);
+  font-size: var(--font-size-2);
+  font-weight: 600;
+  color: var(--on-surface-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.adPlaceholder {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--on-surface-muted);
+  font-size: var(--font-size-5);
+}
