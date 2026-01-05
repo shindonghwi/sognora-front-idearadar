@@ -334,6 +334,23 @@ function main() {
   const apiFiles = fs.readdirSync(clientsDir)
     .filter(f => f.endsWith('_api.ts') && f !== 'base.ts');
 
+  // 기존 domain 폴더 정리 (새로 생성될 도메인만 유지)
+  console.log('🗑️  기존 domain 폴더 정리 중...');
+  const newDomains = apiFiles.map(f => f.replace('_api.ts', ''));
+  if (fs.existsSync(domainDir)) {
+    const existingDomains = fs.readdirSync(domainDir, { withFileTypes: true })
+      .filter(d => d.isDirectory())
+      .map(d => d.name);
+
+    existingDomains.forEach(domain => {
+      if (!newDomains.includes(domain)) {
+        const domainPath = path.join(domainDir, domain);
+        fs.rmSync(domainPath, { recursive: true, force: true });
+        console.log(`  삭제: ${domain}/`);
+      }
+    });
+  }
+
   console.log(`Found ${apiFiles.length} API client files\n`);
 
   let totalHooksGenerated = 0;
