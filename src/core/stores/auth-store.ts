@@ -56,27 +56,38 @@ export const useAuthStore = create<AuthState>()(
         clearTokens();
         clearAccountStatus();
         set({ isAuthenticated: false, accountStatus: null, profile: null, attributes: [] });
+        // URL에서 returnUrl 파라미터 제거 후 홈으로 이동
+        if (typeof window !== 'undefined') {
+          window.location.href = '/';
+        }
       },
       setProfile: (profile) => set({ profile }),
       setAttributes: (attributes) => set({ attributes }),
       setAccountStatus: (status) => set({ accountStatus: status }),
 
       // 헬퍼
-      getAttribute: (key) => get().attributes.find((attr) => attr.key === key),
+      getAttribute: (key) => {
+        const attrs = get().attributes;
+        return Array.isArray(attrs) ? attrs.find((attr) => attr.key === key) : undefined;
+      },
       getDisplayName: () => {
+        const attrs = get().attributes;
+        if (!Array.isArray(attrs)) return 'User';
         // nickname 우선, 없으면 display_name, 둘 다 없으면 'User'
-        const nicknameAttr = get().attributes.find((attr) => attr.key === ProfileAttributeKey.ProfileKeyNickname);
+        const nicknameAttr = attrs.find((attr) => attr.key === ProfileAttributeKey.ProfileKeyNickname);
         if (nicknameAttr?.value) {
           return String(nicknameAttr.value);
         }
-        const displayNameAttr = get().attributes.find((attr) => attr.key === ProfileAttributeKey.ProfileKeyDisplayName);
+        const displayNameAttr = attrs.find((attr) => attr.key === ProfileAttributeKey.ProfileKeyDisplayName);
         if (displayNameAttr?.value) {
           return String(displayNameAttr.value);
         }
         return 'User';
       },
       getAvatarUrl: () => {
-        const avatarAttr = get().attributes.find((attr) => attr.key === ProfileAttributeKey.ProfileKeyAvatarURL);
+        const attrs = get().attributes;
+        if (!Array.isArray(attrs)) return null;
+        const avatarAttr = attrs.find((attr) => attr.key === ProfileAttributeKey.ProfileKeyAvatarURL);
         if (!avatarAttr?.value) return null;
         const path = String(avatarAttr.value);
         // 이미 full URL이면 그대로 반환

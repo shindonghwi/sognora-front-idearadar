@@ -93,9 +93,15 @@ interface AccountStatusErrorResponse {
   accountStatus?: ProfileStatus;
 }
 
-// Response Interceptor: 401 에러 시 로그인 모달 표시 (토큰 리프레시 시도 포함)
+// Response Interceptor: 응답 unwrap + 401 에러 처리
 apiClient.interceptors.response.use(
-  (response) => response,
+  (response) => {
+    // API 응답이 { statusCode, message, data: {...} } 형태이면 data만 추출
+    if (response.data && typeof response.data === 'object' && 'data' in response.data) {
+      response.data = response.data.data;
+    }
+    return response;
+  },
   async (error: AxiosError<AccountStatusErrorResponse>) => {
     const originalRequest = error.config as InternalAxiosRequestConfig & {
       _retry?: boolean;
