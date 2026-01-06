@@ -1,5 +1,5 @@
 // i18n 설정 - 여기만 수정하면 전체 프로젝트에 반영됨
-export const locales = ['en'] as const;
+export const locales = ['en', 'ko'] as const;
 export const defaultLocale = 'en' as const;
 
 export type Locale = (typeof locales)[number];
