@@ -9,10 +9,10 @@
   "landing": {
     "hero": {
       "tagline": "Stop Guessing. Start Building What People Want.",
-      "title": "Find Startup Ideas Reddit Users Are",
+      "title": "Discover What People Are",
       "titleHighlight": "Begging",
-      "titleEnd": "Someone to Build",
-      "description": "We scan 1,000+ subreddits daily to find explicit product requests like \"Someone should build...\" and score each idea 0-100 based on real demand signals.",
+      "titleEnd": "to Be Built on Reddit",
+      "description": "We scan 1,000+ subreddits daily to find posts like \"Someone should build...\" or \"I wish there was...\" and score each idea 0-100 based on real demand signals.",
       "stats": {
         "timeSaved": "6+ hrs",
         "timeSavedLabel": "Saved weekly",
