@@ -2,19 +2,21 @@
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
+import { useTranslations } from 'next-intl';
 import { Button } from '@sognora/ui';
 import { useUIStore } from '@/core/stores';
 import styles from './floating-navbar.module.css';
 
-const navItems = [
-  { label: 'Features', href: '#features' },
-  { label: 'How It Works', href: '#how-it-works' },
-  { label: 'Pricing', href: '#pricing' },
-];
-
 export function FloatingNavbar() {
+  const t = useTranslations('nav');
   const [scrolled, setScrolled] = useState(false);
   const openLoginModal = useUIStore((state) => state.openLoginModal);
+
+  const navItems = [
+    { label: t('features'), href: '#features' },
+    { label: t('howItWorks'), href: '#how-it-works' },
+    { label: t('pricing'), href: '#pricing' },
+  ];
 
   useEffect(() => {
     const handleScroll = () => {
@@ -62,7 +64,7 @@ export function FloatingNavbar() {
           size="sm"
           onClick={() => openLoginModal()}
         >
-          Get Started
+          {t('getStarted')}
         </Button>
       </div>
     </nav>

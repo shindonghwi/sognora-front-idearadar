@@ -5,5 +5,230 @@
     "loading": "Loading...",
     "error": "An error occurred",
     "retry": "Retry"
+  },
+  "landing": {
+    "hero": {
+      "tagline": "Stop Guessing. Start Building What People Want.",
+      "title": "Find Startup Ideas Reddit Users Are",
+      "titleHighlight": "Begging",
+      "titleEnd": "Someone to Build",
+      "description": "We scan 1,000+ subreddits daily to find explicit product requests like \"Someone should build...\" and score each idea 0-100 based on real demand signals.",
+      "stats": {
+        "timeSaved": "6+ hrs",
+        "timeSavedLabel": "Saved weekly",
+        "subreddits": "1,000+",
+        "subredditsLabel": "Subreddits scanned",
+        "ideas": "10,000+",
+        "ideasLabel": "Ideas validated"
+      },
+      "emailPlaceholder": "Enter your email",
+      "emailButton": "Get Free Ideas",
+      "emailHint": "Free: 5 ideas/week. No credit card required."
+    },
+    "liveExamples": {
+      "label": "Live from Reddit",
+      "title": "Real Ideas People Are Asking For Right Now",
+      "description": "These are actual Reddit posts we found and scored. Click any to see the full context.",
+      "upvotes": "upvotes",
+      "comments": "comments",
+      "examples": [
+        {
+          "quote": "Someone should build a tool that monitors competitor pricing and alerts you when they change. I'd pay $50/month for this.",
+          "subreddit": "r/SaaS",
+          "upvotes": 234,
+          "comments": 67,
+          "score": 94,
+          "timeAgo": "2 days ago"
+        },
+        {
+          "quote": "I wish there was an app that automatically converts my voice memos into formatted meeting notes with action items.",
+          "subreddit": "r/Productivity",
+          "upvotes": 156,
+          "comments": 43,
+          "score": 87,
+          "timeAgo": "3 days ago"
+        },
+        {
+          "quote": "Why doesn't anyone make a simple invoicing tool for freelancers that doesn't require a subscription? Just pay once.",
+          "subreddit": "r/Freelance",
+          "upvotes": 312,
+          "comments": 89,
+          "score": 91,
+          "timeAgo": "1 day ago"
+        },
+        {
+          "quote": "Someone needs to build a browser extension that blocks AI-generated content from search results. Would pay good money.",
+          "subreddit": "r/Technology",
+          "upvotes": 567,
+          "comments": 124,
+          "score": 96,
+          "timeAgo": "4 hours ago"
+        }
+      ]
+    },
+    "comparison": {
+      "label": "Why IdeaRadar",
+      "title": "Stop Wasting Hours on Manual Research",
+      "before": {
+        "badge": "Without IdeaRadar",
+        "items": [
+          "Scroll Reddit for 6+ hours weekly",
+          "Miss trending ideas buried in threads",
+          "No way to measure idea demand",
+          "Manually track interesting posts",
+          "Random, unstructured research"
+        ]
+      },
+      "after": {
+        "badge": "With IdeaRadar",
+        "items": [
+          "Get curated ideas in your inbox",
+          "Real-time alerts for high-score ideas",
+          "0-100 validation score per idea",
+          "Auto-saved, searchable database",
+          "Organized by niche & demand"
+        ]
+      }
+    },
+    "digest": {
+      "label": "Weekly Digest",
+      "title": "Get Top Ideas Delivered to Your Inbox",
+      "description": "Every week, we send you the 20 highest-scoring ideas from the past 7 days. Each email includes the original Reddit quote, validation score breakdown, and direct link to the source post.",
+      "features": [
+        "Curated top 20 ideas weekly",
+        "Full score breakdown per idea",
+        "Direct links to Reddit posts",
+        "Niche category tags"
+      ],
+      "button": "Subscribe Free",
+      "emailMock": {
+        "from": "From: IdeaRadar Weekly",
+        "date": "Today",
+        "subject": "Your Top 20 Validated Ideas This Week",
+        "more": "+ 17 more ideas..."
+      }
+    },
+    "categories": {
+      "label": "Browse by Niche",
+      "title": "Find Ideas in Your Industry",
+      "description": "Filter by 12+ categories to find opportunities in your area of expertise.",
+      "ideas": "ideas",
+      "list": [
+        { "name": "SaaS", "count": 1247 },
+        { "name": "Developer Tools", "count": 892 },
+        { "name": "Productivity", "count": 756 },
+        { "name": "E-commerce", "count": 634 },
+        { "name": "Health & Fitness", "count": 521 },
+        { "name": "Finance", "count": 489 },
+        { "name": "Education", "count": 412 },
+        { "name": "Mobile Apps", "count": 378 },
+        { "name": "AI/ML", "count": 356 },
+        { "name": "Marketing", "count": 298 },
+        { "name": "Social", "count": 267 },
+        { "name": "Gaming", "count": 234 }
+      ]
+    },
+    "howScore": {
+      "label": "Validation Score",
+      "title": "How We Measure Real Demand",
+      "description": "Each idea gets a 0-100 score based on multiple demand signals.",
+      "factors": [
+        { "label": "Upvotes", "max": 30, "percent": 100, "desc": "How many people agree this should exist" },
+        { "label": "Comments", "max": 25, "percent": 83, "desc": "Discussion depth indicates interest level" },
+        { "label": "Repetition", "max": 25, "percent": 83, "desc": "Similar requests across multiple subreddits" },
+        { "label": "Sentiment", "max": 15, "percent": 50, "desc": "Urgency and willingness to pay signals" },
+        { "label": "Freshness", "max": 5, "percent": 17, "desc": "Recent posts indicate current demand" }
+      ],
+      "pts": "pts"
+    },
+    "pricing": {
+      "label": "Pricing",
+      "title": "Simple, Transparent Pricing",
+      "description": "Start free. Upgrade when you're ready. Cancel anytime.",
+      "perMonth": "/mo",
+      "getStarted": "Get Started",
+      "mostPopular": "Most Popular",
+      "plans": [
+        {
+          "name": "Free",
+          "price": "$0",
+          "description": "Try before you commit",
+          "features": [
+            "5 ideas per week",
+            "7-day delayed access",
+            "Basic category filters",
+            "Weekly email digest"
+          ]
+        },
+        {
+          "name": "Hunter",
+          "price": "$19",
+          "description": "For serious builders",
+          "features": [
+            "50 ideas per week",
+            "Real-time access",
+            "All 12+ niche filters",
+            "Bookmark & export",
+            "Priority support"
+          ],
+          "popular": true
+        },
+        {
+          "name": "Pro",
+          "price": "$39",
+          "description": "For power users",
+          "features": [
+            "Unlimited ideas",
+            "API access",
+            "Custom Slack/Discord alerts",
+            "Historical archive access",
+            "Dedicated support"
+          ]
+        }
+      ]
+    },
+    "faq": {
+      "label": "FAQ",
+      "title": "Frequently Asked Questions",
+      "items": [
+        {
+          "question": "What makes IdeaRadar different from just searching Reddit?",
+          "answer": "We use AI to specifically detect explicit product requests (\"Someone should build...\", \"I wish there was...\") and score them based on engagement, repetition across subreddits, and sentiment intensity. You get validated demand signals, not just random complaints."
+        },
+        {
+          "question": "How is the validation score calculated?",
+          "answer": "Each idea is scored 0-100 based on: Upvotes (30pts), Comments (25pts), Repetition across subreddits (25pts), Sentiment intensity (15pts), and Freshness (5pts). A score above 80 indicates strong validated demand."
+        },
+        {
+          "question": "What's included in the free tier?",
+          "answer": "Free users get 5 ideas per week with a 7-day delay. You can browse basic categories and receive weekly email digests. Upgrade to Hunter ($19/mo) for 50 real-time ideas or Pro ($39/mo) for unlimited access."
+        },
+        {
+          "question": "Can I filter ideas by my niche?",
+          "answer": "Yes! We categorize ideas into 12+ niches including SaaS, Developer Tools, E-commerce, Health, Finance, and more. Hunter and Pro users can set up custom alerts for specific niches."
+        },
+        {
+          "question": "How often is the database updated?",
+          "answer": "We scan 1,000+ subreddits continuously. Free users see ideas with a 7-day delay, while paid users get real-time access to new ideas as they're discovered and scored."
+        }
+      ]
+    },
+    "cta": {
+      "title": "Stop Scrolling. Start Building.",
+      "description": "Every day you wait, someone else might build the idea you could have found first. Join 500+ builders who get validated ideas delivered weekly.",
+      "button": "Get Your First 5 Ideas Free"
+    },
+    "footer": {
+      "terms": "Terms",
+      "privacy": "Privacy",
+      "support": "Support",
+      "copyright": "© {year} IdeaRadar. All rights reserved."
+    }
+  },
+  "nav": {
+    "features": "Features",
+    "howItWorks": "How It Works",
+    "pricing": "Pricing",
+    "getStarted": "Get Started"
   }
 }

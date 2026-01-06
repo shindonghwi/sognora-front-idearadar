@@ -2,149 +2,60 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
+import { useTranslations } from 'next-intl';
 import { FloatingNavbar } from '@/components/shared/floating-navbar';
 import { useUIStore } from '@/core/stores';
 import styles from './landing-page.module.css';
 
-// Real Reddit examples with validation scores
-const liveExamples = [
-  {
-    quote: "Someone should build a tool that monitors competitor pricing and alerts you when they change. I'd pay $50/month for this.",
-    subreddit: 'r/SaaS',
-    upvotes: 234,
-    comments: 67,
-    score: 94,
-    timeAgo: '2 days ago',
-  },
-  {
-    quote: "I wish there was an app that automatically converts my voice memos into formatted meeting notes with action items.",
-    subreddit: 'r/Productivity',
-    upvotes: 156,
-    comments: 43,
-    score: 87,
-    timeAgo: '3 days ago',
-  },
-  {
-    quote: "Why doesn't anyone make a simple invoicing tool for freelancers that doesn't require a subscription? Just pay once.",
-    subreddit: 'r/Freelance',
-    upvotes: 312,
-    comments: 89,
-    score: 91,
-    timeAgo: '1 day ago',
-  },
-  {
-    quote: "Someone needs to build a browser extension that blocks AI-generated content from search results. Would pay good money.",
-    subreddit: 'r/Technology',
-    upvotes: 567,
-    comments: 124,
-    score: 96,
-    timeAgo: '4 hours ago',
-  },
-];
+interface Example {
+  quote: string;
+  subreddit: string;
+  upvotes: number;
+  comments: number;
+  score: number;
+  timeAgo: string;
+}
 
-// Niche categories
-const categories = [
-  { name: 'SaaS', count: 1247 },
-  { name: 'Developer Tools', count: 892 },
-  { name: 'Productivity', count: 756 },
-  { name: 'E-commerce', count: 634 },
-  { name: 'Health & Fitness', count: 521 },
-  { name: 'Finance', count: 489 },
-  { name: 'Education', count: 412 },
-  { name: 'Mobile Apps', count: 378 },
-  { name: 'AI/ML', count: 356 },
-  { name: 'Marketing', count: 298 },
-  { name: 'Social', count: 267 },
-  { name: 'Gaming', count: 234 },
-];
+interface Category {
+  name: string;
+  count: number;
+}
 
-// Before/After comparison
-const comparison = {
-  before: [
-    'Scroll Reddit for 6+ hours weekly',
-    'Miss trending ideas buried in threads',
-    'No way to measure idea demand',
-    'Manually track interesting posts',
-    'Random, unstructured research',
-  ],
-  after: [
-    'Get curated ideas in your inbox',
-    'Real-time alerts for high-score ideas',
-    '0-100 validation score per idea',
-    'Auto-saved, searchable database',
-    'Organized by niche & demand',
-  ],
-};
+interface FaqItem {
+  question: string;
+  answer: string;
+}
 
-// FAQ items
-const faqItems = [
-  {
-    question: 'What makes IdeaRadar different from just searching Reddit?',
-    answer: 'We use AI to specifically detect explicit product requests ("Someone should build...", "I wish there was...") and score them based on engagement, repetition across subreddits, and sentiment intensity. You get validated demand signals, not just random complaints.',
-  },
-  {
-    question: 'How is the validation score calculated?',
-    answer: 'Each idea is scored 0-100 based on: Upvotes (30pts), Comments (25pts), Repetition across subreddits (25pts), Sentiment intensity (15pts), and Freshness (5pts). A score above 80 indicates strong validated demand.',
-  },
-  {
-    question: 'What\'s included in the free tier?',
-    answer: 'Free users get 5 ideas per week with a 7-day delay. You can browse basic categories and receive weekly email digests. Upgrade to Hunter ($19/mo) for 50 real-time ideas or Pro ($39/mo) for unlimited access.',
-  },
-  {
-    question: 'Can I filter ideas by my niche?',
-    answer: 'Yes! We categorize ideas into 12+ niches including SaaS, Developer Tools, E-commerce, Health, Finance, and more. Hunter and Pro users can set up custom alerts for specific niches.',
-  },
-  {
-    question: 'How often is the database updated?',
-    answer: 'We scan 1,000+ subreddits continuously. Free users see ideas with a 7-day delay, while paid users get real-time access to new ideas as they\'re discovered and scored.',
-  },
-];
+interface Factor {
+  label: string;
+  max: number;
+  percent: number;
+  desc: string;
+}
 
-const pricingPlans = [
-  {
-    name: 'Free',
-    price: '$0',
-    description: 'Try before you commit',
-    features: [
-      '5 ideas per week',
-      '7-day delayed access',
-      'Basic category filters',
-      'Weekly email digest',
-    ],
-    popular: false,
-  },
-  {
-    name: 'Hunter',
-    price: '$19',
-    description: 'For serious builders',
-    features: [
-      '50 ideas per week',
-      'Real-time access',
-      'All 12+ niche filters',
-      'Bookmark & export',
-      'Priority support',
-    ],
-    popular: true,
-  },
-  {
-    name: 'Pro',
-    price: '$39',
-    description: 'For power users',
-    features: [
-      'Unlimited ideas',
-      'API access',
-      'Custom Slack/Discord alerts',
-      'Historical archive access',
-      'Dedicated support',
-    ],
-    popular: false,
-  },
-];
+interface PricingPlan {
+  name: string;
+  price: string;
+  description: string;
+  features: string[];
+  popular?: boolean;
+}
 
 export function LandingPage() {
+  const t = useTranslations('landing');
   const openLoginModal = useUIStore((state) => state.openLoginModal);
   const [email, setEmail] = useState('');
   const [openFaq, setOpenFaq] = useState<number | null>(null);
+
+  // Get data from translations
+  const liveExamples = t.raw('liveExamples.examples') as Example[];
+  const categories = t.raw('categories.list') as Category[];
+  const beforeItems = t.raw('comparison.before.items') as string[];
+  const afterItems = t.raw('comparison.after.items') as string[];
+  const faqItems = t.raw('faq.items') as FaqItem[];
+  const scoreFactors = t.raw('howScore.factors') as Factor[];
+  const pricingPlans = t.raw('pricing.plans') as PricingPlan[];
+  const digestFeatures = t.raw('digest.features') as string[];
 
   const handleEmailSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -167,32 +78,31 @@ export function LandingPage() {
       <section className={styles.hero}>
         <div className={styles.heroBackground} />
         <div className={styles.heroContent}>
-          <p className={styles.heroTagline}>Stop Guessing. Start Building What People Want.</p>
+          <p className={styles.heroTagline}>{t('hero.tagline')}</p>
 
           <h1 className={styles.heroTitle}>
-            Find Startup Ideas Reddit Users Are <span className={styles.highlight}>Begging</span> Someone to Build
+            {t('hero.title')} <span className={styles.highlight}>{t('hero.titleHighlight')}</span> {t('hero.titleEnd')}
           </h1>
 
           <p className={styles.heroDescription}>
-            We scan 1,000+ subreddits daily to find explicit product requests like
-            "Someone should build..." and score each idea 0-100 based on real demand signals.
+            {t('hero.description')}
           </p>
 
           {/* Stats bar */}
           <div className={styles.statsBar}>
             <div className={styles.statItem}>
-              <span className={styles.statNumber}>6+ hrs</span>
-              <span className={styles.statLabel}>Saved weekly</span>
+              <span className={styles.statNumber}>{t('hero.stats.timeSaved')}</span>
+              <span className={styles.statLabel}>{t('hero.stats.timeSavedLabel')}</span>
             </div>
             <div className={styles.statDivider} />
             <div className={styles.statItem}>
-              <span className={styles.statNumber}>1,000+</span>
-              <span className={styles.statLabel}>Subreddits scanned</span>
+              <span className={styles.statNumber}>{t('hero.stats.subreddits')}</span>
+              <span className={styles.statLabel}>{t('hero.stats.subredditsLabel')}</span>
             </div>
             <div className={styles.statDivider} />
             <div className={styles.statItem}>
-              <span className={styles.statNumber}>10,000+</span>
-              <span className={styles.statLabel}>Ideas validated</span>
+              <span className={styles.statNumber}>{t('hero.stats.ideas')}</span>
+              <span className={styles.statLabel}>{t('hero.stats.ideasLabel')}</span>
             </div>
           </div>
 
@@ -200,17 +110,17 @@ export function LandingPage() {
           <form className={styles.emailForm} onSubmit={handleEmailSubmit}>
             <input
               type="email"
-              placeholder="Enter your email"
+              placeholder={t('hero.emailPlaceholder')}
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               className={styles.emailInput}
               required
             />
             <button type="submit" className={styles.emailButton}>
-              Get Free Ideas
+              {t('hero.emailButton')}
             </button>
           </form>
-          <p className={styles.emailHint}>Free: 5 ideas/week. No credit card required.</p>
+          <p className={styles.emailHint}>{t('hero.emailHint')}</p>
         </div>
       </section>
 
@@ -218,10 +128,10 @@ export function LandingPage() {
       <section className={styles.liveExamples}>
         <div className={styles.sectionContainer}>
           <div className={styles.sectionHeader}>
-            <span className={styles.sectionLabel}>Live from Reddit</span>
-            <h2 className={styles.sectionTitle}>Real Ideas People Are Asking For Right Now</h2>
+            <span className={styles.sectionLabel}>{t('liveExamples.label')}</span>
+            <h2 className={styles.sectionTitle}>{t('liveExamples.title')}</h2>
             <p className={styles.sectionDescription}>
-              These are actual Reddit posts we found and scored. Click any to see the full context.
+              {t('liveExamples.description')}
             </p>
           </div>
 
@@ -235,8 +145,8 @@ export function LandingPage() {
                 <p className={styles.exampleQuote}>"{example.quote}"</p>
                 <div className={styles.exampleFooter}>
                   <div className={styles.exampleStats}>
-                    <span>{example.upvotes} upvotes</span>
-                    <span>{example.comments} comments</span>
+                    <span>{example.upvotes} {t('liveExamples.upvotes')}</span>
+                    <span>{example.comments} {t('liveExamples.comments')}</span>
                   </div>
                   <div className={`${styles.exampleScore} ${getScoreColor(example.score)}`}>
                     <span className={styles.scoreValue}>{example.score}</span>
@@ -253,19 +163,19 @@ export function LandingPage() {
       <section className={styles.comparison}>
         <div className={styles.sectionContainer}>
           <div className={styles.sectionHeader}>
-            <span className={styles.sectionLabel}>Why IdeaRadar</span>
-            <h2 className={styles.sectionTitle}>Stop Wasting Hours on Manual Research</h2>
+            <span className={styles.sectionLabel}>{t('comparison.label')}</span>
+            <h2 className={styles.sectionTitle}>{t('comparison.title')}</h2>
           </div>
 
           <div className={styles.comparisonGrid}>
             <div className={styles.comparisonCard}>
               <div className={styles.comparisonHeader}>
-                <span className={styles.comparisonBadgeBefore}>Without IdeaRadar</span>
+                <span className={styles.comparisonBadgeBefore}>{t('comparison.before.badge')}</span>
               </div>
               <ul className={styles.comparisonList}>
-                {comparison.before.map((item, index) => (
+                {beforeItems.map((item, index) => (
                   <li key={index} className={styles.comparisonItemBefore}>
-                    <span className={styles.crossMark}>✕</span>
+                    <span className={styles.crossMark}>x</span>
                     {item}
                   </li>
                 ))}
@@ -274,12 +184,12 @@ export function LandingPage() {
 
             <div className={styles.comparisonCard}>
               <div className={styles.comparisonHeader}>
-                <span className={styles.comparisonBadgeAfter}>With IdeaRadar</span>
+                <span className={styles.comparisonBadgeAfter}>{t('comparison.after.badge')}</span>
               </div>
               <ul className={styles.comparisonList}>
-                {comparison.after.map((item, index) => (
+                {afterItems.map((item, index) => (
                   <li key={index} className={styles.comparisonItemAfter}>
-                    <span className={styles.checkMark}>✓</span>
+                    <span className={styles.checkMark}>v</span>
                     {item}
                   </li>
                 ))}
@@ -294,21 +204,18 @@ export function LandingPage() {
         <div className={styles.sectionContainer}>
           <div className={styles.digestContent}>
             <div className={styles.digestInfo}>
-              <span className={styles.sectionLabel}>Weekly Digest</span>
-              <h2 className={styles.sectionTitle}>Get Top Ideas Delivered to Your Inbox</h2>
+              <span className={styles.sectionLabel}>{t('digest.label')}</span>
+              <h2 className={styles.sectionTitle}>{t('digest.title')}</h2>
               <p className={styles.digestDescription}>
-                Every week, we send you the 20 highest-scoring ideas from the past 7 days.
-                Each email includes the original Reddit quote, validation score breakdown,
-                and direct link to the source post.
+                {t('digest.description')}
               </p>
               <ul className={styles.digestFeatures}>
-                <li>Curated top 20 ideas weekly</li>
-                <li>Full score breakdown per idea</li>
-                <li>Direct links to Reddit posts</li>
-                <li>Niche category tags</li>
+                {digestFeatures.map((feature, index) => (
+                  <li key={index}>{feature}</li>
+                ))}
               </ul>
               <button className={styles.digestButton} onClick={() => openLoginModal()}>
-                Subscribe Free
+                {t('digest.button')}
               </button>
             </div>
 
@@ -316,34 +223,34 @@ export function LandingPage() {
               <div className={styles.emailMock}>
                 <div className={styles.emailHeader}>
                   <div className={styles.emailHeaderTop}>
-                    <span className={styles.emailFrom}>From: IdeaRadar Weekly</span>
-                    <span className={styles.emailDate}>Today</span>
+                    <span className={styles.emailFrom}>{t('digest.emailMock.from')}</span>
+                    <span className={styles.emailDate}>{t('digest.emailMock.date')}</span>
                   </div>
-                  <div className={styles.emailSubject}>Your Top 20 Validated Ideas This Week</div>
+                  <div className={styles.emailSubject}>{t('digest.emailMock.subject')}</div>
                 </div>
                 <div className={styles.emailBody}>
                   <div className={styles.emailIdea}>
                     <div className={styles.emailIdeaScore}>94</div>
                     <div className={styles.emailIdeaContent}>
-                      <p>"Someone should build a tool that monitors competitor pricing..."</p>
-                      <span>r/SaaS - 234 upvotes</span>
+                      <p>"{liveExamples[0]?.quote?.substring(0, 60)}..."</p>
+                      <span>{liveExamples[0]?.subreddit} - {liveExamples[0]?.upvotes} {t('liveExamples.upvotes')}</span>
                     </div>
                   </div>
                   <div className={styles.emailIdea}>
                     <div className={styles.emailIdeaScoreMed}>87</div>
                     <div className={styles.emailIdeaContent}>
-                      <p>"I wish there was an app that converts voice memos to..."</p>
-                      <span>r/Productivity - 156 upvotes</span>
+                      <p>"{liveExamples[1]?.quote?.substring(0, 50)}..."</p>
+                      <span>{liveExamples[1]?.subreddit} - {liveExamples[1]?.upvotes} {t('liveExamples.upvotes')}</span>
                     </div>
                   </div>
                   <div className={styles.emailIdea}>
                     <div className={styles.emailIdeaScore}>91</div>
                     <div className={styles.emailIdeaContent}>
-                      <p>"Why doesn't anyone make a simple invoicing tool for..."</p>
-                      <span>r/Freelance - 312 upvotes</span>
+                      <p>"{liveExamples[2]?.quote?.substring(0, 50)}..."</p>
+                      <span>{liveExamples[2]?.subreddit} - {liveExamples[2]?.upvotes} {t('liveExamples.upvotes')}</span>
                     </div>
                   </div>
-                  <div className={styles.emailMore}>+ 17 more ideas...</div>
+                  <div className={styles.emailMore}>{t('digest.emailMock.more')}</div>
                 </div>
               </div>
             </div>
@@ -355,10 +262,10 @@ export function LandingPage() {
       <section className={styles.categories}>
         <div className={styles.sectionContainer}>
           <div className={styles.sectionHeader}>
-            <span className={styles.sectionLabel}>Browse by Niche</span>
-            <h2 className={styles.sectionTitle}>Find Ideas in Your Industry</h2>
+            <span className={styles.sectionLabel}>{t('categories.label')}</span>
+            <h2 className={styles.sectionTitle}>{t('categories.title')}</h2>
             <p className={styles.sectionDescription}>
-              Filter by 12+ categories to find opportunities in your area of expertise.
+              {t('categories.description')}
             </p>
           </div>
 
@@ -366,7 +273,7 @@ export function LandingPage() {
             {categories.map((category) => (
               <div key={category.name} className={styles.categoryCard}>
                 <span className={styles.categoryName}>{category.name}</span>
-                <span className={styles.categoryCount}>{category.count} ideas</span>
+                <span className={styles.categoryCount}>{category.count} {t('categories.ideas')}</span>
               </div>
             ))}
           </div>
@@ -377,68 +284,26 @@ export function LandingPage() {
       <section className={styles.howScore}>
         <div className={styles.sectionContainer}>
           <div className={styles.sectionHeader}>
-            <span className={styles.sectionLabel}>Validation Score</span>
-            <h2 className={styles.sectionTitle}>How We Measure Real Demand</h2>
+            <span className={styles.sectionLabel}>{t('howScore.label')}</span>
+            <h2 className={styles.sectionTitle}>{t('howScore.title')}</h2>
             <p className={styles.sectionDescription}>
-              Each idea gets a 0-100 score based on multiple demand signals.
+              {t('howScore.description')}
             </p>
           </div>
 
           <div className={styles.scoreBreakdown}>
-            <div className={styles.scoreItem}>
-              <div className={styles.scoreItemHeader}>
-                <span className={styles.scoreItemLabel}>Upvotes</span>
-                <span className={styles.scoreItemMax}>30 pts</span>
+            {scoreFactors.map((factor, index) => (
+              <div key={index} className={styles.scoreItem}>
+                <div className={styles.scoreItemHeader}>
+                  <span className={styles.scoreItemLabel}>{factor.label}</span>
+                  <span className={styles.scoreItemMax}>{factor.max} {t('howScore.pts')}</span>
+                </div>
+                <div className={styles.scoreBar}>
+                  <div className={styles.scoreFill} style={{ width: `${factor.percent}%` }} />
+                </div>
+                <p className={styles.scoreItemDesc}>{factor.desc}</p>
               </div>
-              <div className={styles.scoreBar}>
-                <div className={styles.scoreFill} style={{ width: '100%' }} />
-              </div>
-              <p className={styles.scoreItemDesc}>How many people agree this should exist</p>
-            </div>
-
-            <div className={styles.scoreItem}>
-              <div className={styles.scoreItemHeader}>
-                <span className={styles.scoreItemLabel}>Comments</span>
-                <span className={styles.scoreItemMax}>25 pts</span>
-              </div>
-              <div className={styles.scoreBar}>
-                <div className={styles.scoreFill} style={{ width: '83%' }} />
-              </div>
-              <p className={styles.scoreItemDesc}>Discussion depth indicates interest level</p>
-            </div>
-
-            <div className={styles.scoreItem}>
-              <div className={styles.scoreItemHeader}>
-                <span className={styles.scoreItemLabel}>Repetition</span>
-                <span className={styles.scoreItemMax}>25 pts</span>
-              </div>
-              <div className={styles.scoreBar}>
-                <div className={styles.scoreFill} style={{ width: '83%' }} />
-              </div>
-              <p className={styles.scoreItemDesc}>Similar requests across multiple subreddits</p>
-            </div>
-
-            <div className={styles.scoreItem}>
-              <div className={styles.scoreItemHeader}>
-                <span className={styles.scoreItemLabel}>Sentiment</span>
-                <span className={styles.scoreItemMax}>15 pts</span>
-              </div>
-              <div className={styles.scoreBar}>
-                <div className={styles.scoreFill} style={{ width: '50%' }} />
-              </div>
-              <p className={styles.scoreItemDesc}>Urgency and willingness to pay signals</p>
-            </div>
-
-            <div className={styles.scoreItem}>
-              <div className={styles.scoreItemHeader}>
-                <span className={styles.scoreItemLabel}>Freshness</span>
-                <span className={styles.scoreItemMax}>5 pts</span>
-              </div>
-              <div className={styles.scoreBar}>
-                <div className={styles.scoreFill} style={{ width: '17%' }} />
-              </div>
-              <p className={styles.scoreItemDesc}>Recent posts indicate current demand</p>
-            </div>
+            ))}
           </div>
         </div>
       </section>
@@ -447,10 +312,10 @@ export function LandingPage() {
       <section id="pricing" className={styles.pricing}>
         <div className={styles.sectionContainer}>
           <div className={styles.sectionHeader}>
-            <span className={styles.sectionLabel}>Pricing</span>
-            <h2 className={styles.sectionTitle}>Simple, Transparent Pricing</h2>
+            <span className={styles.sectionLabel}>{t('pricing.label')}</span>
+            <h2 className={styles.sectionTitle}>{t('pricing.title')}</h2>
             <p className={styles.sectionDescription}>
-              Start free. Upgrade when you're ready. Cancel anytime.
+              {t('pricing.description')}
             </p>
           </div>
 
@@ -460,11 +325,11 @@ export function LandingPage() {
                 key={plan.name}
                 className={`${styles.pricingCard} ${plan.popular ? styles.pricingCardPopular : ''}`}
               >
-                {plan.popular && <span className={styles.popularBadge}>Most Popular</span>}
+                {plan.popular && <span className={styles.popularBadge}>{t('pricing.mostPopular')}</span>}
                 <h3 className={styles.pricingName}>{plan.name}</h3>
                 <div className={styles.pricingPrice}>
                   {plan.price}
-                  <span>/mo</span>
+                  <span>{t('pricing.perMonth')}</span>
                 </div>
                 <p className={styles.pricingDescription}>{plan.description}</p>
                 <ul className={styles.pricingFeatures}>
@@ -476,7 +341,7 @@ export function LandingPage() {
                   className={`${styles.pricingButton} ${plan.popular ? styles.pricingButtonPrimary : styles.pricingButtonSecondary}`}
                   onClick={() => openLoginModal()}
                 >
-                  Get Started
+                  {t('pricing.getStarted')}
                 </button>
               </div>
             ))}
@@ -488,8 +353,8 @@ export function LandingPage() {
       <section className={styles.faq}>
         <div className={styles.sectionContainer}>
           <div className={styles.sectionHeader}>
-            <span className={styles.sectionLabel}>FAQ</span>
-            <h2 className={styles.sectionTitle}>Frequently Asked Questions</h2>
+            <span className={styles.sectionLabel}>{t('faq.label')}</span>
+            <h2 className={styles.sectionTitle}>{t('faq.title')}</h2>
           </div>
 
           <div className={styles.faqList}>
@@ -503,7 +368,7 @@ export function LandingPage() {
                   onClick={() => setOpenFaq(openFaq === index ? null : index)}
                 >
                   <span>{item.question}</span>
-                  <span className={styles.faqToggle}>{openFaq === index ? '−' : '+'}</span>
+                  <span className={styles.faqToggle}>{openFaq === index ? '-' : '+'}</span>
                 </button>
                 {openFaq === index && (
                   <div className={styles.faqAnswer}>
@@ -519,13 +384,12 @@ export function LandingPage() {
       {/* CTA Section */}
       <section className={styles.cta}>
         <div className={styles.ctaContent}>
-          <h2 className={styles.ctaTitle}>Stop Scrolling. Start Building.</h2>
+          <h2 className={styles.ctaTitle}>{t('cta.title')}</h2>
           <p className={styles.ctaDescription}>
-            Every day you wait, someone else might build the idea you could have found first.
-            Join 500+ builders who get validated ideas delivered weekly.
+            {t('cta.description')}
           </p>
           <button className={styles.ctaButton} onClick={() => openLoginModal()}>
-            Get Your First 5 Ideas Free
+            {t('cta.button')}
           </button>
         </div>
       </section>
@@ -538,13 +402,13 @@ export function LandingPage() {
           </Link>
 
           <div className={styles.footerLinks}>
-            <Link href="/terms" className={styles.footerLink}>Terms</Link>
-            <Link href="/privacy" className={styles.footerLink}>Privacy</Link>
-            <Link href="/support" className={styles.footerLink}>Support</Link>
+            <Link href="/terms" className={styles.footerLink}>{t('footer.terms')}</Link>
+            <Link href="/privacy" className={styles.footerLink}>{t('footer.privacy')}</Link>
+            <Link href="/support" className={styles.footerLink}>{t('footer.support')}</Link>
           </div>
 
           <p className={styles.footerCopyright}>
-            © {new Date().getFullYear()} IdeaRadar. All rights reserved.
+            {t('footer.copyright', { year: new Date().getFullYear() })}
           </p>
         </div>
       </footer>
