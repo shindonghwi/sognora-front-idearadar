@@ -2,7 +2,7 @@
 
 import { SognoraThemeProvider } from '@sognora/ui/theme/client';
 import { createContext, useContext, useEffect, useState, useCallback } from 'react';
-import { auneriThemeDark, auneriThemeLight } from '../theme/front-theme';
+import { appThemeDark, appThemeLight } from '../theme/front-theme';
 
 type ThemeMode = 'light' | 'dark' | 'system';
 
@@ -23,13 +23,13 @@ export function useTheme() {
 }
 
 /**
- * Theme Provider (Auneri)
+ * Theme Provider (App)
  *
- * ✅ 라이트 모드 기본 (밝고 친근한 분위기)
- * ✅ localStorage에 모드 저장
- * ✅ System preference 지원
- * ✅ 새 API 적용 (themeName, mode, setMode, lightConfig, darkConfig)
- * ✅ FOUC 방지 (CSS 변수는 globals.css에서 정의)
+ * ✅ Light mode default
+ * ✅ Save mode to localStorage
+ * ✅ System preference support
+ * ✅ New API (themeName, mode, setMode, lightConfig, darkConfig)
+ * ✅ FOUC prevention (CSS variables defined in globals.css)
  */
 export function ThemeProvider({ children }: { children: React.ReactNode }) {
   const [mode, setModeState] = useState<ThemeMode>('light');
@@ -46,7 +46,7 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
     document.cookie = `theme-mode=${newMode};path=/;max-age=31536000;SameSite=Lax`;
 
     // data-theme 업데이트
-    document.documentElement.setAttribute('data-theme', `auneri-${newMode}`);
+    document.documentElement.setAttribute('data-theme', `app-${newMode}`);
   }, []);
 
   // 클라이언트 사이드에서만 실행 (SSR 방지)
@@ -59,7 +59,7 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
     const targetMode: ThemeMode = savedMode || 'light';
 
     setModeState(targetMode);
-    document.documentElement.setAttribute('data-theme', `auneri-${targetMode}`);
+    document.documentElement.setAttribute('data-theme', `app-${targetMode}`);
   }, []);
 
   // System preference 변경 감지
@@ -69,7 +69,7 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
     const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
     const handleChange = (e: MediaQueryListEvent) => {
       const effectiveMode = e.matches ? 'dark' : 'light';
-      document.documentElement.setAttribute('data-theme', `auneri-${effectiveMode}`);
+      document.documentElement.setAttribute('data-theme', `app-${effectiveMode}`);
     };
 
     mediaQuery.addEventListener('change', handleChange);
@@ -86,11 +86,11 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
   return (
     <ThemeContext.Provider value={{ mode: effectiveMode, setMode }}>
       <SognoraThemeProvider
-        themeName="auneri"
+        themeName="app"
         mode={effectiveMode}
         setMode={setMode}
-        lightConfig={auneriThemeLight}
-        darkConfig={auneriThemeDark}
+        lightConfig={appThemeLight}
+        darkConfig={appThemeDark}
       >
         {children}
       </SognoraThemeProvider>

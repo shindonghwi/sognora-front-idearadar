@@ -1,27 +1,53 @@
 /**
- * 인증 상태 Store
+ * Auth State Store
  *
- * 책임: 인증 상태 관리 + 프로필 정보 관리
- * - UI 상태(모달, 로딩)는 ui-store.ts에서 관리
- * - 토큰 저장은 token.ts 유틸리티에서 담당 (localStorage + Cookie)
- * - persist로 상태 유지하되 AuthProvider에서 SSR 상태와 동기화
+ * Responsibilities: Auth state management + Profile info management
+ * - UI states (modal, loading) are managed in ui-store.ts
+ * - Token storage is handled by token.ts utility (localStorage + Cookie)
+ * - State persisted with zustand persist, synced with SSR state via AuthProvider
+ *
+ * TODO: Replace local types with generated types after running `make swagger`
  */
 
 import { create } from 'zustand';
 import { persist, createJSONStorage } from 'zustand/middleware';
 import { clearTokens, clearAccountStatus } from '@/core/utils/token';
-import type { ProfileRO, ProfileAttributeRO } from '@/core/api/generated/ro/profile';
-import { ProfileAttributeKey, ProfileStatus } from '@/core/api/generated/types/profile';
+
+// Local type definitions (replace with generated types after `make swagger`)
+export enum ProfileStatus {
+  ProfileStatusActive = 'ACTIVE',
+  ProfileStatusInactive = 'INACTIVE',
+  ProfileStatusPending = 'PENDING',
+}
+
+export enum ProfileAttributeKey {
+  ProfileKeyNickname = 'nickname',
+  ProfileKeyDisplayName = 'display_name',
+  ProfileKeyAvatarURL = 'avatar_url',
+}
+
+export interface ProfileRO {
+  idx?: number;
+  email?: string;
+  status?: ProfileStatus;
+  authProvider?: string;
+  createdAt?: string;
+}
+
+export interface ProfileAttributeRO {
+  key: string;
+  value: string | number | boolean;
+}
 
 interface AuthState {
-  // 상태
+  // State
   isAuthenticated: boolean;
   accountStatus: ProfileStatus | null;
   profile: ProfileRO | null;
   attributes: ProfileAttributeRO[];
   _hasHydrated: boolean;
 
-  // 액션
+  // Actions
   login: (accountStatus?: ProfileStatus) => void;
   logout: () => void;
   setProfile: (profile: ProfileRO | null) => void;
@@ -29,7 +55,7 @@ interface AuthState {
   setAccountStatus: (status: ProfileStatus) => void;
   setHasHydrated: (state: boolean) => void;
 
-  // 헬퍼
+  // Helpers
   getAttribute: (key: string) => ProfileAttributeRO | undefined;
   getDisplayName: () => string;
   getAvatarUrl: () => string | null;
@@ -39,14 +65,14 @@ interface AuthState {
 export const useAuthStore = create<AuthState>()(
   persist(
     (set, get) => ({
-      // 초기 상태
+      // Initial state
       isAuthenticated: false,
       accountStatus: null,
       profile: null,
       attributes: [],
       _hasHydrated: false,
 
-      // 액션
+      // Actions
       setHasHydrated: (state) => set({ _hasHydrated: state }),
       login: (accountStatus?: ProfileStatus) => set({
         isAuthenticated: true,
@@ -56,7 +82,6 @@ export const useAuthStore = create<AuthState>()(
         clearTokens();
         clearAccountStatus();
         set({ isAuthenticated: false, accountStatus: null, profile: null, attributes: [] });
-        // URL에서 returnUrl 파라미터 제거 후 홈으로 이동
         if (typeof window !== 'undefined') {
           window.location.href = '/';
         }
@@ -65,7 +90,7 @@ export const useAuthStore = create<AuthState>()(
       setAttributes: (attributes) => set({ attributes }),
       setAccountStatus: (status) => set({ accountStatus: status }),
 
-      // 헬퍼
+      // Helpers
       getAttribute: (key) => {
         const attrs = get().attributes;
         return Array.isArray(attrs) ? attrs.find((attr) => attr.key === key) : undefined;
@@ -73,7 +98,6 @@ export const useAuthStore = create<AuthState>()(
       getDisplayName: () => {
         const attrs = get().attributes;
         if (!Array.isArray(attrs)) return 'User';
-        // nickname 우선, 없으면 display_name, 둘 다 없으면 'User'
         const nicknameAttr = attrs.find((attr) => attr.key === ProfileAttributeKey.ProfileKeyNickname);
         if (nicknameAttr?.value) {
           return String(nicknameAttr.value);
@@ -90,9 +114,7 @@ export const useAuthStore = create<AuthState>()(
         const avatarAttr = attrs.find((attr) => attr.key === ProfileAttributeKey.ProfileKeyAvatarURL);
         if (!avatarAttr?.value) return null;
         const path = String(avatarAttr.value);
-        // 이미 full URL이면 그대로 반환
         if (path.startsWith('http')) return path;
-        // path만 저장된 경우 CDN URL과 결합
         const cdnUrl = process.env.NEXT_PUBLIC_CDN_URL;
         return cdnUrl ? `${cdnUrl}/${path}` : null;
       },

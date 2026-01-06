@@ -25,17 +25,17 @@ html, body {
   font-family: var(--font-family-primary);
 }
 
-/* FOUC 방지: 테마 변수 로드 전 기본 배경색 */
-/* NOTE: 값은 front-theme.ts의 semantic.surface와 동기화 필요 */
+/* FOUC prevention: default background before theme variables load */
+/* NOTE: Values must sync with front-theme.ts semantic.surface */
 /* Light: surface.default = #FFFFFF, Dark: surface.base = #121212 */
-html[data-theme="auneri-dark"],
-html[data-theme="auneri-dark"] body {
+html[data-theme="app-dark"],
+html[data-theme="app-dark"] body {
   background-color: #121212;
   color-scheme: dark;
 }
 
-html[data-theme="auneri-light"],
-html[data-theme="auneri-light"] body {
+html[data-theme="app-light"],
+html[data-theme="app-light"] body {
   background-color: #FFFFFF;
   color-scheme: light;
 }
@@ -89,34 +89,34 @@ html[data-theme="auneri-light"] body {
   min-width: 0 !important;
 }
 
-/* ===== Project-Specific Variables (Auneri) ===== */
+/* ===== Project-Specific Variables (App) ===== */
 :root {
-  /* Legacy Auneri Variables - for backward compatibility */
-  --auneri-primary-400: #FB923C;
-  --auneri-primary-500: #F97316;
-  --auneri-primary-600: #EA580C;
-  --auneri-primary-700: #C2410C;
-  --auneri-secondary-400: #94A3B8;
-  --auneri-secondary-500: #64748B;
-  --auneri-secondary-600: #475569;
-  --auneri-secondary-700: #334155;
-  --auneri-secondary-800: #1E293B;
-  --auneri-secondary-900: #0F172A;
-  --auneri-bg-default: #FFFFFF;
-  --auneri-bg-paper: #FFFFFF;
-  --auneri-dark-bg: #18181B;
-  --auneri-dark-paper: #27272A;
-  --auneri-dark-elevated: #3F3F46;
-  --auneri-dark-card: #27272A;
-  --auneri-dark-card-light: #3F3F46;
-  --auneri-dark-text-primary: #FAFAFA;
-  --auneri-dark-text-secondary: #A1A1AA;
-  --auneri-dark-text-muted: rgba(255, 255, 255, 0.6);
-  --auneri-dark-text-hint: rgba(255, 255, 255, 0.4);
-  --auneri-aurora-orange: rgba(249, 115, 22, 0.4);
-  --auneri-aurora-orange-light: rgba(249, 115, 22, 0.2);
-  --auneri-aurora-orange-soft: rgba(249, 115, 22, 0.1);
-  --auneri-aurora-orange-subtle: rgba(249, 115, 22, 0.05);
-  --auneri-transition-base: 0.3s ease;
-  --auneri-transition-smooth: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  /* App Brand Variables - customize via SETUP.md */
+  --app-primary-400: #60A5FA;
+  --app-primary-500: #3B82F6;
+  --app-primary-600: #2563EB;
+  --app-primary-700: #1D4ED8;
+  --app-secondary-400: #94A3B8;
+  --app-secondary-500: #64748B;
+  --app-secondary-600: #475569;
+  --app-secondary-700: #334155;
+  --app-secondary-800: #1E293B;
+  --app-secondary-900: #0F172A;
+  --app-bg-default: #FFFFFF;
+  --app-bg-paper: #FFFFFF;
+  --app-dark-bg: #18181B;
+  --app-dark-paper: #27272A;
+  --app-dark-elevated: #3F3F46;
+  --app-dark-card: #27272A;
+  --app-dark-card-light: #3F3F46;
+  --app-dark-text-primary: #FAFAFA;
+  --app-dark-text-secondary: #A1A1AA;
+  --app-dark-text-muted: rgba(255, 255, 255, 0.6);
+  --app-dark-text-hint: rgba(255, 255, 255, 0.4);
+  --app-accent-glow: rgba(59, 130, 246, 0.4);
+  --app-accent-glow-light: rgba(59, 130, 246, 0.2);
+  --app-accent-glow-soft: rgba(59, 130, 246, 0.1);
+  --app-accent-glow-subtle: rgba(59, 130, 246, 0.05);
+  --app-transition-base: 0.3s ease;
+  --app-transition-smooth: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }

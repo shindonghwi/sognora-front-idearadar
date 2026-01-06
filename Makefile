@@ -1,6 +1,6 @@
 .PHONY: help dev build clean swagger update-ui
 
-# TODO: 프로젝트에 맞게 포트 수정
+# Port configuration (update via SETUP.md)
 PORT := 3000
 CURRENT_VERSION := $(shell node -p "require('./package.json').version")
 # swagger TARGET: user (default), admin
