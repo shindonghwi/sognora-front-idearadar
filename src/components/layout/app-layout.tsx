@@ -1,7 +1,7 @@
 'use client';
 
 import { Header } from '@/components/shared/header';
-import { Footer } from '@/features/landing/sections/footer';
+import { Footer } from '@/components/shared/footer';
 import styles from './app-layout.module.css';
 
 interface AppLayoutProps {

@@ -1,26 +1,24 @@
 'use client';
 
 import { useEffect, useState, useCallback } from 'react';
-import { useAuthStore } from '@/core/stores';
+import { useAuthStore, ProfileStatus, ProfileRO } from '@/core/stores/auth-store';
 import { setAccessToken, setAccountStatus, clearTokens, clearAccountStatus } from '@/core/utils/token';
-import { ProfileStatus } from '@/core/api/generated/types/profile';
-import type { ProfileRO } from '@/core/api/generated/ro/profile';
 import styles from './dev-tools-float-button.module.css';
 
-// 개발용 더미 프로필
+// Dev dummy profile
 const DEV_PROFILE: ProfileRO = {
   idx: 999999,
   email: 'dev@example.com',
   status: ProfileStatus.ProfileStatusActive,
-  authProvider: 'kakao',
+  authProvider: 'dev',
   createdAt: new Date().toISOString(),
 };
 
-// 개발용 더미 토큰 - AuthProvider에서도 사용할 수 있도록 export
+// Dev dummy token - exported for use in other components
 export const DEV_ACCESS_TOKEN = 'dev-access-token-for-testing';
 
 /**
- * 쿠키에서 직접 access_token 읽기 (SSR 안전)
+ * Read access_token from cookie (SSR safe)
  */
 function getTokenFromCookie(): string | null {
   if (typeof document === 'undefined') return null;
@@ -29,7 +27,7 @@ function getTokenFromCookie(): string | null {
 }
 
 /**
- * 개발용 토큰인지 확인
+ * Check if token is dev token
  */
 export function isDevAccessToken(token: string | null | undefined): boolean {
   return token === DEV_ACCESS_TOKEN;
@@ -38,25 +36,24 @@ export function isDevAccessToken(token: string | null | undefined): boolean {
 /**
  * DevToolsFloatButton
  *
- * 개발용 플로팅 버튼
- * - 로그인/로그아웃 상태 토글
- * - 쿠키 설정으로 미들웨어도 우회
- * - 페이지 로드 시 쿠키에서 상태 복원
+ * Development floating button
+ * - Toggle login/logout state
+ * - Cookie-based for middleware bypass
+ * - Restores state from cookie on page load
  */
 export function DevToolsFloatButton() {
   const { isAuthenticated, login, logout, setProfile } = useAuthStore();
   const [mounted, setMounted] = useState(false);
   const [cookieToken, setCookieToken] = useState<string | null>(null);
 
-  // 마운트 확인 및 쿠키 읽기
+  // Mount check and read cookie
   useEffect(() => {
-    // eslint-disable-next-line react-hooks/set-state-in-effect
     setMounted(true);
     const token = getTokenFromCookie();
     setCookieToken(token);
   }, []);
 
-  // 개발용 토큰이 있으면 Zustand 상태 복원 (한 번만 실행)
+  // Restore Zustand state if dev token exists
   useEffect(() => {
     if (!mounted) return;
 
@@ -72,17 +69,17 @@ export function DevToolsFloatButton() {
     const isCurrentlyLoggedIn = currentToken === DEV_ACCESS_TOKEN || isAuthenticated;
 
     if (isCurrentlyLoggedIn) {
-      // 로그아웃
+      // Logout
       clearTokens();
       clearAccountStatus();
       logout();
       setCookieToken(null);
-      // 보호된 페이지에 있으면 홈으로 이동
+      // Redirect to home if on protected page
       if (window.location.pathname.includes('/my/')) {
         window.location.href = '/';
       }
     } else {
-      // 로그인
+      // Login
       setAccessToken(DEV_ACCESS_TOKEN);
       setAccountStatus(ProfileStatus.ProfileStatusActive);
       login(ProfileStatus.ProfileStatusActive);
@@ -91,19 +88,19 @@ export function DevToolsFloatButton() {
     }
   }, [isAuthenticated, login, logout, setProfile]);
 
-  // SSR 중에는 렌더링하지 않음 (hydration mismatch 방지)
+  // Don't render during SSR (hydration mismatch prevention)
   if (!mounted) {
     return null;
   }
 
-  // 버튼 상태: 쿠키에 dev 토큰이 있거나 Zustand에서 인증됨
+  // Button state: dev token in cookie or authenticated in Zustand
   const isLoggedIn = cookieToken === DEV_ACCESS_TOKEN || isAuthenticated;
 
   return (
     <button
       className={styles.floatButton}
       onClick={handleAuthToggle}
-      title={isLoggedIn ? '로그아웃으로 전환' : '로그인으로 전환'}
+      title={isLoggedIn ? 'Switch to logged out' : 'Switch to logged in'}
     >
       {isLoggedIn ? '🔓' : '🔒'}
     </button>

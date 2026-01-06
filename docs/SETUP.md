@@ -1,221 +1,210 @@
-# 새 서비스 초기 설정 가이드
+# New Service Setup Guide
 
-> Claude Code가 새 프로젝트 설정 시 이 문서를 읽고 순서대로 진행합니다.
-
----
-
-## 사전 질문 (Claude Code → 사용자)
-
-새 서비스 설정 전 아래 정보를 확인하세요:
-
-1. **서비스명**: 영문 소문자 (예: `newbrand`)
-2. **서비스 표시명**: 한글/영문 (예: `뉴브랜드`, `NewBrand`)
-3. **포트 번호**: 개발 서버 포트 (예: `3007`)
-4. **서비스 설명**: 한 줄 설명
-5. **Google OAuth Client ID**: (없으면 나중에 설정)
-6. **브랜드 주요 색상**: Primary 컬러 (예: `#E67E22`)
+> Claude Code reads this document when setting up a new project and proceeds in order.
 
 ---
 
-## 체크리스트
+## Pre-setup Questions (Claude Code → User)
 
-### Phase 1: 기본 설정
+Before setting up a new service, confirm the following:
 
-- [ ] **1.1 package.json 수정**
-  - `name`: `sognora-front-{서비스명}`
+1. **Service name**: lowercase English (e.g., `howmuchpet`)
+2. **Display name**: How users see the service (e.g., `HowMuchPet`)
+3. **Port number**: Development server port (e.g., `3008`)
+4. **Service description**: One-line description
+5. **Primary color**: Brand primary color (e.g., `#FF6B35`)
+6. **Supported languages**: Which languages? (e.g., `en` only, or `en,ko,ja`)
+
+---
+
+## Checklist
+
+### Phase 1: Basic Configuration
+
+- [ ] **1.1 Copy .env.example to .env**
+  - Update values based on answers
+
+- [ ] **1.2 package.json**
+  - `name`: `sognora-front-{service-name}`
   - `version`: `0.1.0`
-  - `scripts.dev`: `next dev -p {포트}`
-  - `scripts.start`: `next start -p {포트}`
+  - `scripts.dev`: `next dev -p {port}`
+  - `scripts.start`: `next start -p {port}`
 
-- [ ] **1.2 Makefile 수정**
-  - `PORT := {포트}` (3행)
-  - help 메시지: `Sognora {서비스 표시명}` (7행)
+- [ ] **1.3 Makefile**
+  - `PORT := {port}` (line 3)
+  - help message: `Sognora {Display Name}` (line 9)
 
-- [ ] **1.3 .env 생성**
-  ```env
-  NEXT_PUBLIC_ENV=local
-  NEXT_PUBLIC_BRAND_KEY={서비스명}
-  NEXT_PUBLIC_SITE_URL=http://localhost:{포트}
-  NEXT_PUBLIC_GOOGLE_CLIENT_ID={구글_클라이언트_ID}
-  NEXT_PUBLIC_CDN_URL=https://d3uceoqa908nb.cloudfront.net
+- [ ] **1.4 env/.env.local**
+  - Same content as `.env`
+
+- [ ] **1.5 CLAUDE.md**
+  - Update project name, port, service description
+
+---
+
+### Phase 2: Brand Configuration
+
+- [ ] **2.1 messages/{locale}.json**
+  - Create translation files for each supported language
+  - Minimum structure:
+  ```json
+  {
+    "common": {
+      "appName": "{Display Name}",
+      "tagline": "{Service description}",
+      "loading": "Loading...",
+      "error": "An error occurred",
+      "retry": "Retry"
+    }
+  }
   ```
 
-- [ ] **1.4 env/.env.local 생성**
-  - `.env`와 동일한 내용
+- [ ] **2.2 docs/brand/** (optional)
+  - `identity.md` - Brand identity
+  - `design.md` - Design direction
+  - `ux.md` - User experience
+  - `anti-patterns.md` - Anti-patterns to avoid
 
-- [ ] **1.5 CLAUDE.md 수정**
-  - 프로젝트명, 포트, 서비스 설명 업데이트
-
----
-
-### Phase 2: 브랜드 설정
-
-- [ ] **2.1 messages/ 생성**
-  - `ko.json`, `en.json`, `ja.json` 생성
-  - 서비스명, 공통 텍스트 번역
-
-- [ ] **2.2 docs/brand/ 생성**
-  - `identity.md` - 브랜드 정체성
-  - `design.md` - 디자인 방향
-  - `ux.md` - 사용자 경험
-  - `anti-patterns.md` - 피해야 할 패턴
-
-- [ ] **2.3 public/ 설정**
-  - `images/common/favicon.png` - 파비콘
-  - `images/og-default.png` - OG 이미지
-  - `fonts/` - 필요한 폰트
+- [ ] **2.3 public/**
+  - `images/common/favicon.png` - Favicon
+  - `images/og-default.png` - OG image
 
 ---
 
-### Phase 3: 코드 수정
+### Phase 3: Code Modifications
 
-- [ ] **3.1 src/core/seo/metadata.ts**
-  - `SITE_INFO.name`: 서비스 표시명
-  - `SITE_INFO.description`: 서비스 설명
-  - `keywords`: SEO 키워드
-  - `twitter.site`: 트위터 계정
+- [ ] **3.1 src/infra/i18n/config.ts**
+  - Update `locales` array based on supported languages
+  - Set `defaultLocale`
 
-- [ ] **3.2 src/core/constants/legal-urls.ts**
-  - `brand`: 서비스명
-  - 법적 문서 URL (개인정보처리방침, 이용약관, 환불정책)
+- [ ] **3.2 src/core/seo/metadata.ts**
+  - `SITE_INFO.name`: Display name
+  - `SITE_INFO.description`: Service description
+  - `keywords`: SEO keywords
+  - `twitter.site`: Twitter account (optional)
 
-- [ ] **3.3 src/infra/theme/front-theme.ts**
-  - 테마 변수명: `{서비스명}ThemeLight`, `{서비스명}ThemeDark`
-  - Primary 색상 팔레트
-  - 브랜드에 맞는 색상 체계
+- [ ] **3.3 src/core/constants/legal-urls.ts**
+  - `brand`: Service name
+  - Legal document URLs (privacy policy, terms of service, refund policy)
 
-- [ ] **3.4 src/components/auth/** (필요시)
-  - 로그인 모달 구현
-  - OAuth 연동 (Google, Kakao 등)
+- [ ] **3.4 src/infra/theme/front-theme.ts**
+  - Rename theme exports: `appThemeLight` → `{serviceName}ThemeLight`
+  - Update primary color palette to match brand color
+  - Update related colors (hover, subtle, etc.)
+
+- [ ] **3.5 Theme references**
+  - Update all imports from `appThemeLight/Dark` to new names
+  - Files to check:
+    - `src/infra/providers/theme-provider.tsx`
+    - `src/app/[locale]/layout.tsx`
+
+- [ ] **3.6 src/app/globals.css**
+  - Update `--app-*` CSS variables to `--{serviceName}-*`
+  - Update data-theme selectors if needed
+
+- [ ] **3.7 src/components/shared/header/header.tsx**
+  - Update logo text (line 116)
+
+- [ ] **3.8 src/components/shared/footer/footer.tsx**
+  - Update copyright text
+
+- [ ] **3.9 src/app/global-error.tsx**
+  - Update brand name in error page
 
 ---
 
-### Phase 4: API 연동
+### Phase 4: API Integration (when backend is ready)
 
-- [ ] **4.1 백엔드 Swagger 연결**
+- [ ] **4.1 Update API URLs**
+  - `src/core/api/manual/axios-instance.ts`
+  - Update `development` and `production` URLs
+
+- [ ] **4.2 Connect to backend Swagger**
   ```bash
   make swagger
   ```
-  - `src/core/api/generated/` 파일 생성됨
-  - `src/core/domain/` React Query 훅 생성됨
+  - Generates `src/core/api/generated/` files
+  - Generates `src/core/domain/` React Query hooks
+
+- [ ] **4.3 Replace local types with generated types**
+  - `src/core/stores/auth-store.ts` - Replace local enums with generated ones
+  - Enable full auth integration in `src/infra/providers/auth-context.tsx`
 
 ---
 
-### Phase 5: 확인
+### Phase 5: Verification
 
-- [ ] **5.1 개발 서버 실행**
+- [ ] **5.1 Start development server**
   ```bash
   npm install
   make dev
   ```
 
-- [ ] **5.2 빌드 테스트**
-  ```bash
-  make build
-  ```
-
-- [ ] **5.3 타입 체크**
+- [ ] **5.2 Type check**
   ```bash
   npm run type-check
   ```
 
+- [ ] **5.3 Lint**
+  ```bash
+  npm run lint
+  ```
+
+- [ ] **5.4 Build test**
+  ```bash
+  make build
+  ```
+
 ---
 
-## 파일별 상세 가이드
+## File Reference
+
+### .env
+```env
+NEXT_PUBLIC_ENV=local
+NEXT_PUBLIC_BRAND_KEY={service-name}
+NEXT_PUBLIC_SITE_URL=http://localhost:{port}
+NEXT_PUBLIC_CDN_URL=
+```
 
 ### package.json
 ```json
 {
-  "name": "sognora-front-{서비스명}",
+  "name": "sognora-front-{service-name}",
   "version": "0.1.0",
   "scripts": {
-    "dev": "next dev -p {포트}",
-    "start": "next start -p {포트}"
+    "dev": "next dev -p {port}",
+    "start": "next start -p {port}"
   }
 }
 ```
 
 ### Makefile
 ```makefile
-PORT := {포트}
+PORT := {port}
 
 help:
-	@echo "Sognora {서비스 표시명} v$(CURRENT_VERSION)"
-```
-
-### .env
-```env
-NEXT_PUBLIC_ENV=local
-NEXT_PUBLIC_BRAND_KEY={서비스명}
-NEXT_PUBLIC_SITE_URL=http://localhost:{포트}
-NEXT_PUBLIC_GOOGLE_CLIENT_ID={구글_클라이언트_ID}
-NEXT_PUBLIC_CDN_URL=https://d3uceoqa908nb.cloudfront.net
-```
-
-### messages/ko.json (최소 구조)
-```json
-{
-  "common": {
-    "appName": "{서비스 표시명}",
-    "loading": "로딩 중...",
-    "error": "오류가 발생했습니다",
-    "retry": "다시 시도",
-    "cancel": "취소",
-    "confirm": "확인",
-    "save": "저장",
-    "delete": "삭제",
-    "edit": "수정",
-    "close": "닫기"
-  },
-  "auth": {
-    "login": "로그인",
-    "logout": "로그아웃",
-    "loginRequired": "로그인이 필요합니다"
-  },
-  "nav": {
-    "home": "홈",
-    "myPage": "마이페이지",
-    "settings": "설정"
-  }
-}
+	@echo "Sognora {Display Name} v$(CURRENT_VERSION)"
 ```
 
 ### src/core/seo/metadata.ts
 ```typescript
 export const SITE_INFO = {
-  name: '{서비스 표시명}',
-  description: '{서비스 설명}',
+  name: '{Display Name}',
+  description: '{Service description}',
   url: config.siteUrl || '',
   ogImage: '/images/og-default.png',
 } as const;
 ```
 
-### src/core/constants/legal-urls.ts
-```typescript
-export const LEGAL_DOCUMENTS = {
-  brand: '{서비스명}',
-  version: '0.0.1',
-  effectiveDate: '',
-  updatedAt: '',
-  documents: {
-    'privacy-policy': {
-      ko: '{개인정보처리방침 URL}',
-      en: '',
-      ja: '',
-    },
-    // ...
-  },
-} as const;
-```
-
 ### src/infra/theme/front-theme.ts
 ```typescript
-export const {서비스명}ThemeLight: ThemeConfig = {
+export const {serviceName}ThemeLight: ThemeConfig = {
   mode: 'light',
   palette: {
     primary: {
-      500: '{브랜드 주요 색상}',
-      // ...
+      500: '{brand-primary-color}',
+      // Generate other shades based on primary
     },
   },
   // ...
@@ -224,41 +213,52 @@ export const {서비스명}ThemeLight: ThemeConfig = {
 
 ---
 
-## 디렉토리 구조
+## Directory Structure
 
 ```
-{프로젝트}/
-├── .env                    # 환경변수
-├── CLAUDE.md               # Claude Code 가이드
-├── Makefile                # 빌드 명령어
-├── package.json            # 의존성
+{project}/
+├── .env                    # Environment variables
+├── .env.example            # Environment template
+├── CLAUDE.md               # Claude Code guide
+├── Makefile                # Build commands
+├── package.json            # Dependencies
 ├── docs/
-│   └── brand/              # 브랜드 가이드
+│   ├── SETUP.md            # This file
+│   └── brand/              # Brand guide (optional)
 ├── env/
-│   └── .env.local          # 로컬 환경변수
-├── messages/               # i18n 번역
-│   ├── ko.json
-│   ├── en.json
-│   └── ja.json
-├── public/                 # 정적 파일
+│   └── .env.local          # Local environment
+├── messages/               # i18n translations
+│   └── en.json
+├── public/                 # Static files
 │   ├── fonts/
 │   └── images/
 └── src/
-    ├── components/auth/    # 인증 컴포넌트 (구현 필요)
+    ├── app/                # Next.js App Router
+    ├── components/
+    │   ├── auth/           # Auth components (implement as needed)
+    │   ├── layout/         # Layout components
+    │   └── shared/         # Shared components (header, footer, sidebar)
     ├── core/
-    │   ├── constants/legal-urls.ts  # 법적 문서 URL
-    │   └── seo/metadata.ts          # SEO 메타데이터
-    ├── features/           # 페이지 (구현 필요)
+    │   ├── api/            # API layer
+    │   ├── config/         # Configuration
+    │   ├── constants/      # Constants
+    │   ├── seo/            # SEO utilities
+    │   ├── stores/         # Zustand stores
+    │   └── utils/          # Utilities
+    ├── features/           # Feature pages (implement here)
     └── infra/
-        └── theme/front-theme.ts     # 브랜드 테마
+        ├── i18n/           # i18n configuration
+        ├── middleware/     # Next.js middleware
+        ├── providers/      # React providers
+        └── theme/          # Theme configuration
 ```
 
 ---
 
-## 완료 후
+## After Completion
 
-모든 체크리스트 완료 시:
-1. `npm install` 실행
-2. `make swagger` 실행 (백엔드 연결 시)
-3. `make dev` 로 개발 서버 시작
-4. `features/` 에 페이지 구현 시작
+When all checklist items are complete:
+1. `npm install` - Install dependencies
+2. `make dev` - Start development server
+3. Implement features in `features/` directory
+4. Run `make swagger` when backend is ready

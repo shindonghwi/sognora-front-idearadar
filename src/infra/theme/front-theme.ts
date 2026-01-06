@@ -1,7 +1,7 @@
 import { ThemeConfig } from '@sognora/ui/theme';
 
 
-export const auneriThemeLight: ThemeConfig = {
+export const appThemeLight: ThemeConfig = {
   // ===== Mode =====
   mode: 'light',
 
@@ -626,11 +626,11 @@ export const auneriThemeLight: ThemeConfig = {
 };
 
 /**
- * Auneri Theme - Dark Mode
- * Spotify style dark with burnt orange accents
+ * App Theme - Dark Mode
+ * Dark mode with blue accents
  */
-export const auneriThemeDark: ThemeConfig = {
-  ...auneriThemeLight,
+export const appThemeDark: ThemeConfig = {
+  ...appThemeLight,
   mode: 'dark',
 
   // ===== Semantic Tokens (Layer 2) - Dark Mode =====
@@ -707,11 +707,11 @@ export const auneriThemeDark: ThemeConfig = {
   },
 
   palette: {
-    ...auneriThemeLight.palette,
+    ...appThemeLight.palette,
 
     // Grey - STATIC (Layer 1: 테마와 무관하게 동일한 값 유지)
     // 컴포넌트는 semantic 토큰 사용 권장: --surface-*, --on-surface-*, --border-*
-    // grey: auneriThemeLight.palette.grey, // 상속받음 - 동일한 값
+    // grey: appThemeLight.palette.grey, // inherited - same value
 
     // Background - Dark mode semantic aliases (deprecated: use --surface-* instead)
     background: {

@@ -33,11 +33,6 @@ export const BRAND_KEY = process.env.NEXT_PUBLIC_BRAND_KEY;
 export const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL;
 
 /**
- * Google OAuth Client ID
- */
-export const GOOGLE_CLIENT_ID = process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID;
-
-/**
  * 환경 설정 객체
  */
 export const config = {
@@ -45,7 +40,6 @@ export const config = {
   apiBaseUrl: API_BASE_URL,
   brandKey: BRAND_KEY,
   siteUrl: SITE_URL,
-  googleClientId: GOOGLE_CLIENT_ID,
   isDevelopment: ENV === 'dev',
   isProduction: ENV === 'prod',
   isLocal: ENV === 'local',
