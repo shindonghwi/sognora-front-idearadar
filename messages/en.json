@@ -1,1 +1,9 @@
-{}
+{
+  "common": {
+    "appName": "IdeaRadar",
+    "tagline": "Find validated startup ideas from Reddit daily",
+    "loading": "Loading...",
+    "error": "An error occurred",
+    "retry": "Retry"
+  }
+}

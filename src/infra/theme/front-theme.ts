@@ -1,7 +1,7 @@
 import { ThemeConfig } from '@sognora/ui/theme';
 
 
-export const appThemeLight: ThemeConfig = {
+export const idearadarThemeLight: ThemeConfig = {
   // ===== Mode =====
   mode: 'light',
 
@@ -34,25 +34,25 @@ export const appThemeLight: ThemeConfig = {
       default: '#E0E0E0',   // grey-300: 기본 테두리
       muted: '#EEEEEE',     // grey-200: 약한 테두리/구분선
       strong: '#BDBDBD',    // grey-400: 강조 테두리
-      focus: '#E67E22',     // primary-500: 포커스 링
+      focus: '#3B82F6',     // blue-500: 포커스 링
       error: '#F43F5E',     // error-500: 에러 상태
       inverse: '#616161',   // grey-700: 반전 배경 위 테두리
     },
 
     // Interactive - 상호작용 요소
     interactive: {
-      default: '#E67E22',   // primary-500: 클릭 가능한 요소 기본
+      default: '#3B82F6',   // blue-500: 클릭 가능한 요소 기본
       hover: '#F5F5F5',     // grey-100: 호버 상태 배경
       active: '#EEEEEE',    // grey-200: 클릭/활성 상태
-      selected: 'rgba(230, 126, 34, 0.12)',  // primary-500/12: 선택된 상태 배경
+      selected: 'rgba(59, 130, 246, 0.12)',  // blue-500/12: 선택된 상태 배경
       disabled: '#F5F5F5',  // grey-100: 비활성화 배경
     },
 
     // Accent - 브랜드/강조
     accent: {
-      primary: '#E67E22',   // primary-500: 주요 액션, CTA
-      primaryHover: '#D35400',  // primary-600: 주요 액션 호버
-      primarySubtle: '#FFF7ED', // primary-50: 배지, 태그 배경
+      primary: '#3B82F6',   // blue-500: 주요 액션, CTA
+      primaryHover: '#2563EB',  // blue-600: 주요 액션 호버
+      primarySubtle: '#EFF6FF', // blue-50: 배지, 태그 배경
       onPrimary: '#FFFFFF', // 액센트 위 텍스트
     },
 
@@ -80,18 +80,18 @@ export const appThemeLight: ThemeConfig = {
 
   // ===== Palette (Layer 1 - Primitive) =====
   palette: {
-    // Primary - Burnt Orange (스포티파이 스타일 + 주황)
+    // Primary - Blue (IdeaRadar brand)
     primary: {
-      50: '#FFF7ED',
-      100: '#FFEDD5',
-      200: '#FED7AA',
-      300: '#FDBA74',
-      400: '#FB923C',
-      500: '#E67E22',  // Burnt Orange - 메인
-      600: '#D35400',
-      700: '#C2410C',
-      800: '#9A3412',
-      900: '#7C2D12',
+      50: '#EFF6FF',
+      100: '#DBEAFE',
+      200: '#BFDBFE',
+      300: '#93C5FD',
+      400: '#60A5FA',
+      500: '#3B82F6',  // Blue - 메인
+      600: '#2563EB',
+      700: '#1D4ED8',
+      800: '#1E40AF',
+      900: '#1E3A8A',
       contrast: '#FFFFFF',
     },
 
@@ -311,14 +311,14 @@ export const appThemeLight: ThemeConfig = {
     // Divider
     divider: '#E0E0E0',
 
-    // Action states - Orange accent
+    // Action states - Blue accent
     action: {
-      active: '#E67E22',
-      hover: 'rgba(230, 126, 34, 0.08)',
-      selected: 'rgba(230, 126, 34, 0.12)',
+      active: '#3B82F6',
+      hover: 'rgba(59, 130, 246, 0.08)',
+      selected: 'rgba(59, 130, 246, 0.12)',
       disabled: '#BDBDBD',
       disabledBackground: '#F5F5F5',
-      focus: 'rgba(230, 126, 34, 0.20)',
+      focus: 'rgba(59, 130, 246, 0.20)',
     },
 
     white: '#FFFFFF',
@@ -629,8 +629,8 @@ export const appThemeLight: ThemeConfig = {
  * App Theme - Dark Mode
  * Dark mode with blue accents
  */
-export const appThemeDark: ThemeConfig = {
-  ...appThemeLight,
+export const idearadarThemeDark: ThemeConfig = {
+  ...idearadarThemeLight,
   mode: 'dark',
 
   // ===== Semantic Tokens (Layer 2) - Dark Mode =====
@@ -662,25 +662,25 @@ export const appThemeDark: ThemeConfig = {
       default: '#404040',   // 기본 테두리
       muted: '#2C2C2C',     // 약한 테두리/구분선
       strong: '#535353',    // 강조 테두리
-      focus: '#FB923C',     // primary-400: 포커스 링 (더 밝게)
+      focus: '#60A5FA',     // blue-400: 포커스 링 (더 밝게)
       error: '#FB7185',     // error-400: 에러 상태 (더 밝게)
       inverse: '#E0E0E0',   // 반전 배경 위 테두리
     },
 
     // Interactive - 상호작용 요소
     interactive: {
-      default: '#FB923C',   // primary-400: 클릭 가능한 요소 기본 (더 밝게)
+      default: '#60A5FA',   // blue-400: 클릭 가능한 요소 기본 (더 밝게)
       hover: '#282828',     // 호버 상태 배경
       active: '#404040',    // 클릭/활성 상태
-      selected: 'rgba(251, 146, 60, 0.20)',  // primary-400/20: 선택된 상태 배경
+      selected: 'rgba(96, 165, 250, 0.20)',  // blue-400/20: 선택된 상태 배경
       disabled: '#282828',  // 비활성화 배경
     },
 
     // Accent - 브랜드/강조
     accent: {
-      primary: '#FB923C',   // primary-400: 주요 액션, CTA (더 밝게)
-      primaryHover: '#FDBA74',  // primary-300: 주요 액션 호버
-      primarySubtle: 'rgba(230, 126, 34, 0.20)', // primary-500/20: 배지, 태그 배경
+      primary: '#60A5FA',   // blue-400: 주요 액션, CTA (더 밝게)
+      primaryHover: '#93C5FD',  // blue-300: 주요 액션 호버
+      primarySubtle: 'rgba(59, 130, 246, 0.20)', // blue-500/20: 배지, 태그 배경
       onPrimary: '#000000', // 액센트 위 텍스트 (어두운 텍스트)
     },
 
@@ -707,7 +707,7 @@ export const appThemeDark: ThemeConfig = {
   },
 
   palette: {
-    ...appThemeLight.palette,
+    ...idearadarThemeLight.palette,
 
     // Grey - STATIC (Layer 1: 테마와 무관하게 동일한 값 유지)
     // 컴포넌트는 semantic 토큰 사용 권장: --surface-*, --on-surface-*, --border-*
@@ -733,14 +733,14 @@ export const appThemeDark: ThemeConfig = {
     // Divider (deprecated: use --border-* instead)
     divider: '#404040',  // 수정: #2C2C2C → #404040 (더 좋은 대비)
 
-    // Action states - Orange accent for dark mode
+    // Action states - Blue accent for dark mode
     action: {
-      active: '#FB923C',
-      hover: 'rgba(251, 146, 60, 0.12)',
-      selected: 'rgba(251, 146, 60, 0.20)',
+      active: '#60A5FA',
+      hover: 'rgba(96, 165, 250, 0.12)',
+      selected: 'rgba(96, 165, 250, 0.20)',
       disabled: '#616161',
       disabledBackground: '#2C2C2C',
-      focus: 'rgba(251, 146, 60, 0.28)',
+      focus: 'rgba(96, 165, 250, 0.28)',
     },
   },
 };

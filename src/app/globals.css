@@ -14,11 +14,8 @@
 
 /* ===== Global Reset ===== */
 html, body {
-  overflow: hidden; /* 전체 페이지 스크롤 방지 - Sidebar와 Main만 개별 스크롤 */
   width: 100%;
-  height: 100vh; /* viewport 높이 고정 */
-  max-height: 100vh;
-  max-width: 100vw;
+  min-height: 100vh;
   margin: 0;
   padding: 0;
   background-color: var(--surface-base);
@@ -28,14 +25,14 @@ html, body {
 /* FOUC prevention: default background before theme variables load */
 /* NOTE: Values must sync with front-theme.ts semantic.surface */
 /* Light: surface.default = #FFFFFF, Dark: surface.base = #121212 */
-html[data-theme="app-dark"],
-html[data-theme="app-dark"] body {
+html[data-theme="idearadar-dark"],
+html[data-theme="idearadar-dark"] body {
   background-color: #121212;
   color-scheme: dark;
 }
 
-html[data-theme="app-light"],
-html[data-theme="app-light"] body {
+html[data-theme="idearadar-light"],
+html[data-theme="idearadar-light"] body {
   background-color: #FFFFFF;
   color-scheme: light;
 }
@@ -89,34 +86,34 @@ html[data-theme="app-light"] body {
   min-width: 0 !important;
 }
 
-/* ===== Project-Specific Variables (App) ===== */
+/* ===== Project-Specific Variables (IdeaRadar) ===== */
 :root {
-  /* App Brand Variables - customize via SETUP.md */
-  --app-primary-400: #60A5FA;
-  --app-primary-500: #3B82F6;
-  --app-primary-600: #2563EB;
-  --app-primary-700: #1D4ED8;
-  --app-secondary-400: #94A3B8;
-  --app-secondary-500: #64748B;
-  --app-secondary-600: #475569;
-  --app-secondary-700: #334155;
-  --app-secondary-800: #1E293B;
-  --app-secondary-900: #0F172A;
-  --app-bg-default: #FFFFFF;
-  --app-bg-paper: #FFFFFF;
-  --app-dark-bg: #18181B;
-  --app-dark-paper: #27272A;
-  --app-dark-elevated: #3F3F46;
-  --app-dark-card: #27272A;
-  --app-dark-card-light: #3F3F46;
-  --app-dark-text-primary: #FAFAFA;
-  --app-dark-text-secondary: #A1A1AA;
-  --app-dark-text-muted: rgba(255, 255, 255, 0.6);
-  --app-dark-text-hint: rgba(255, 255, 255, 0.4);
-  --app-accent-glow: rgba(59, 130, 246, 0.4);
-  --app-accent-glow-light: rgba(59, 130, 246, 0.2);
-  --app-accent-glow-soft: rgba(59, 130, 246, 0.1);
-  --app-accent-glow-subtle: rgba(59, 130, 246, 0.05);
-  --app-transition-base: 0.3s ease;
-  --app-transition-smooth: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  /* IdeaRadar Brand Variables */
+  --idearadar-primary-400: #60A5FA;
+  --idearadar-primary-500: #3B82F6;
+  --idearadar-primary-600: #2563EB;
+  --idearadar-primary-700: #1D4ED8;
+  --idearadar-secondary-400: #94A3B8;
+  --idearadar-secondary-500: #64748B;
+  --idearadar-secondary-600: #475569;
+  --idearadar-secondary-700: #334155;
+  --idearadar-secondary-800: #1E293B;
+  --idearadar-secondary-900: #0F172A;
+  --idearadar-bg-default: #FFFFFF;
+  --idearadar-bg-paper: #FFFFFF;
+  --idearadar-dark-bg: #0F172A;
+  --idearadar-dark-paper: #1E293B;
+  --idearadar-dark-elevated: #334155;
+  --idearadar-dark-card: #1E293B;
+  --idearadar-dark-card-light: #334155;
+  --idearadar-dark-text-primary: #F8FAFC;
+  --idearadar-dark-text-secondary: #CBD5E1;
+  --idearadar-dark-text-muted: #64748B;
+  --idearadar-dark-text-hint: rgba(255, 255, 255, 0.4);
+  --idearadar-accent-glow: rgba(59, 130, 246, 0.4);
+  --idearadar-accent-glow-light: rgba(59, 130, 246, 0.2);
+  --idearadar-accent-glow-soft: rgba(59, 130, 246, 0.1);
+  --idearadar-accent-glow-subtle: rgba(59, 130, 246, 0.05);
+  --idearadar-transition-base: 0.3s ease;
+  --idearadar-transition-smooth: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }

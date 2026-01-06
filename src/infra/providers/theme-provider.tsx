@@ -2,7 +2,7 @@
 
 import { SognoraThemeProvider } from '@sognora/ui/theme/client';
 import { createContext, useContext, useEffect, useState, useCallback } from 'react';
-import { appThemeDark, appThemeLight } from '../theme/front-theme';
+import { idearadarThemeDark, idearadarThemeLight } from '../theme/front-theme';
 
 type ThemeMode = 'light' | 'dark' | 'system';
 
@@ -46,7 +46,7 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
     document.cookie = `theme-mode=${newMode};path=/;max-age=31536000;SameSite=Lax`;
 
     // data-theme 업데이트
-    document.documentElement.setAttribute('data-theme', `app-${newMode}`);
+    document.documentElement.setAttribute('data-theme', `idearadar-${newMode}`);
   }, []);
 
   // 클라이언트 사이드에서만 실행 (SSR 방지)
@@ -59,7 +59,7 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
     const targetMode: ThemeMode = savedMode || 'light';
 
     setModeState(targetMode);
-    document.documentElement.setAttribute('data-theme', `app-${targetMode}`);
+    document.documentElement.setAttribute('data-theme', `idearadar-${targetMode}`);
   }, []);
 
   // System preference 변경 감지
@@ -69,7 +69,7 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
     const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
     const handleChange = (e: MediaQueryListEvent) => {
       const effectiveMode = e.matches ? 'dark' : 'light';
-      document.documentElement.setAttribute('data-theme', `app-${effectiveMode}`);
+      document.documentElement.setAttribute('data-theme', `idearadar-${effectiveMode}`);
     };
 
     mediaQuery.addEventListener('change', handleChange);
@@ -86,11 +86,11 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
   return (
     <ThemeContext.Provider value={{ mode: effectiveMode, setMode }}>
       <SognoraThemeProvider
-        themeName="app"
+        themeName="idearadar"
         mode={effectiveMode}
         setMode={setMode}
-        lightConfig={appThemeLight}
-        darkConfig={appThemeDark}
+        lightConfig={idearadarThemeLight}
+        darkConfig={idearadarThemeDark}
       >
         {children}
       </SognoraThemeProvider>
