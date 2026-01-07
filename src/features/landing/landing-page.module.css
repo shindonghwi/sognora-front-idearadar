@@ -1,31 +1,40 @@
-/* Landing Page Styles - v4 Premium Redesign */
+/* Landing Page Styles - v5 Premium Animated Light Theme */
+
+:root {
+  /* Primary Colors - Orange/Amber */
+  --gradient-primary: linear-gradient(135deg, #F97316 0%, #F59E0B 100%);
+  --gradient-hover: linear-gradient(135deg, #EA580C 0%, #D97706 100%);
+  --glow-orange: rgba(249, 115, 22, 0.35);
+  --glow-amber: rgba(245, 158, 11, 0.3);
+
+  /* Light Theme */
+  --bg-light: #FFFFFF;
+  --bg-light-alt: #FAFAFA;
+  --bg-card: #FFFFFF;
+  --border-light: #E4E4E7;
+  --text-dark: #18181B;
+  --text-secondary: #52525B;
+  --text-muted: #71717A;
+}
 
 .landing {
   min-height: 100vh;
-  background: #FFFFFF;
+  background: var(--bg-light);
   overflow-x: hidden;
   overflow-y: auto;
+  color: var(--text-dark);
 }
 
 /* ===== HERO SECTION ===== */
 .hero {
   position: relative;
-  padding: 180px 24px 120px;
+  padding: 140px 24px 100px;
   text-align: center;
   overflow: hidden;
 }
 
 .heroBackground {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background:
-    radial-gradient(ellipse 100% 80% at 50% -30%, rgba(249, 115, 22, 0.12), transparent),
-    radial-gradient(ellipse 60% 50% at 90% 20%, rgba(245, 158, 11, 0.08), transparent),
-    radial-gradient(ellipse 50% 40% at 10% 60%, rgba(249, 115, 22, 0.06), transparent);
-  pointer-events: none;
+  display: none; /* Replaced by AnimatedGradient component */
 }
 
 .heroContent {
@@ -38,7 +47,7 @@
   font-family: 'Manrope', sans-serif;
   font-size: 13px;
   font-weight: 700;
-  color: var(--primary-500, #F97316);
+  color: #F97316;
   text-transform: uppercase;
   letter-spacing: 0.12em;
   margin: 0 0 20px;
@@ -49,7 +58,7 @@
   font-size: 64px;
   font-weight: 800;
   line-height: 1.1;
-  color: var(--neutral-900, #18181B);
+  color: #18181B;
   margin: 0 0 24px;
   letter-spacing: -0.03em;
 }
@@ -64,7 +73,7 @@
 .heroDescription {
   font-size: 19px;
   line-height: 1.7;
-  color: var(--neutral-600, #52525B);
+  color: #52525B;
   margin: 0 0 40px;
   max-width: 640px;
   margin-left: auto;
@@ -99,7 +108,7 @@
 .statLabel {
   display: block;
   font-size: 14px;
-  color: var(--neutral-500, #71717A);
+  color: #71717A;
   margin-top: 4px;
   font-weight: 500;
 }
@@ -107,60 +116,20 @@
 .statDivider {
   width: 1px;
   height: 40px;
-  background: var(--neutral-200, #E4E4E7);
+  background: #E4E4E7;
 }
 
-/* Email Form */
-.emailForm {
+/* Hero CTA Button */
+.heroButtons {
   display: flex;
   gap: 12px;
   justify-content: center;
-  max-width: 500px;
   margin: 0 auto 16px;
 }
 
-.emailInput {
-  flex: 1;
-  padding: 16px 20px;
-  font-size: 15px;
-  border: 1px solid var(--neutral-300, #D4D4D8);
-  border-radius: var(--radius-lg, 12px);
-  background: #FFFFFF;
-  color: var(--neutral-900, #18181B);
-  outline: none;
-  transition: all var(--transition-base, 0.2s ease);
-}
-
-.emailInput:focus {
-  border-color: var(--primary-500, #F97316);
-  box-shadow: 0 0 0 3px rgba(249, 115, 22, 0.12);
-}
-
-.emailInput::placeholder {
-  color: var(--neutral-400, #A1A1AA);
-}
-
-.emailButton {
-  padding: 16px 28px;
-  font-size: 15px;
-  font-weight: 600;
-  color: #FFFFFF;
-  background: linear-gradient(135deg, #F97316 0%, #F59E0B 100%);
-  border: none;
-  border-radius: var(--radius-lg, 12px);
-  cursor: pointer;
-  transition: all var(--transition-base, 0.2s ease);
-  white-space: nowrap;
-}
-
-.emailButton:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 24px rgba(249, 115, 22, 0.35);
-}
-
-.emailHint {
+.heroHint {
   font-size: 13px;
-  color: var(--neutral-500, #71717A);
+  color: #71717A;
   margin: 0;
 }
 
@@ -181,7 +150,7 @@
   font-family: 'Manrope', sans-serif;
   font-size: 12px;
   font-weight: 700;
-  color: var(--primary-500, #F97316);
+  color: #F97316;
   text-transform: uppercase;
   letter-spacing: 0.12em;
   margin-bottom: 16px;
@@ -191,14 +160,14 @@
   font-family: 'Manrope', sans-serif;
   font-size: 40px;
   font-weight: 700;
-  color: var(--neutral-900, #18181B);
+  color: #18181B;
   margin: 0 0 16px;
   letter-spacing: -0.02em;
 }
 
 .sectionDescription {
   font-size: 17px;
-  color: var(--neutral-600, #52525B);
+  color: #52525B;
   max-width: 580px;
   margin: 0 auto;
   line-height: 1.7;
@@ -206,8 +175,9 @@
 
 /* ===== LIVE EXAMPLES SECTION ===== */
 .liveExamples {
-  padding: 80px 0 100px;
-  background: var(--neutral-50, #FAFAFA);
+  padding: 90px 0 100px;
+  background: #FAFAFA;
+  position: relative;
 }
 
 .examplesGrid {
@@ -218,17 +188,17 @@
 
 .exampleCard {
   background: #FFFFFF;
-  border: 1px solid var(--neutral-200, #E4E4E7);
+  border: 1px solid #E4E4E7;
   border-radius: var(--radius-xl, 16px);
   padding: 24px;
   transition: all var(--transition-base, 0.2s ease);
   cursor: pointer;
-  box-shadow: var(--shadow-xs, 0 1px 2px rgba(0, 0, 0, 0.04));
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
 }
 
 .exampleCard:hover {
-  border-color: var(--primary-400, #FB923C);
-  box-shadow: var(--shadow-md, 0 4px 16px rgba(0, 0, 0, 0.06), 0 8px 24px rgba(0, 0, 0, 0.04));
+  border-color: #FB923C;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06), 0 8px 24px rgba(0, 0, 0, 0.04);
   transform: translateY(-4px);
 }
 
@@ -242,18 +212,18 @@
 .exampleSubreddit {
   font-size: 13px;
   font-weight: 600;
-  color: var(--primary-500, #F97316);
+  color: #F97316;
 }
 
 .exampleTime {
   font-size: 12px;
-  color: var(--neutral-400, #A1A1AA);
+  color: #A1A1AA;
 }
 
 .exampleQuote {
   font-size: 15px;
   line-height: 1.65;
-  color: var(--neutral-700, #3F3F46);
+  color: #3F3F46;
   margin: 0 0 20px;
   font-style: italic;
 }
@@ -268,7 +238,7 @@
   display: flex;
   gap: 16px;
   font-size: 13px;
-  color: var(--neutral-500, #71717A);
+  color: #71717A;
 }
 
 .exampleScore {
@@ -311,12 +281,12 @@
 
 .scoreLabel {
   font-size: 12px;
-  color: var(--neutral-500, #71717A);
+  color: #71717A;
 }
 
 /* ===== COMPARISON SECTION ===== */
 .comparison {
-  padding: 90px 0 110px;
+  padding: 90px 0 100px;
   background: #FFFFFF;
 }
 
@@ -329,10 +299,10 @@
 }
 
 .comparisonCard {
-  background: var(--neutral-50, #FAFAFA);
+  background: #FAFAFA;
   border-radius: var(--radius-2xl, 20px);
   padding: 32px;
-  border: 1px solid var(--neutral-200, #E4E4E7);
+  border: 1px solid #E4E4E7;
 }
 
 .comparisonHeader {
@@ -396,7 +366,7 @@
 
 /* ===== DIGEST PREVIEW SECTION ===== */
 .digestPreview {
-  padding: 110px 0 90px;
+  padding: 90px 0 100px;
   background: linear-gradient(180deg, var(--neutral-50, #FAFAFA) 0%, #FFFFFF 100%);
 }
 
@@ -578,7 +548,7 @@
 
 /* ===== CATEGORIES SECTION ===== */
 .categories {
-  padding: 70px 0 90px;
+  padding: 90px 0 100px;
   background: #FFFFFF;
 }
 
@@ -685,7 +655,7 @@
 
 /* ===== PRICING SECTION ===== */
 .pricing {
-  padding: 100px 0 120px;
+  padding: 90px 0 100px;
   background: #FFFFFF;
 }
 
@@ -695,6 +665,7 @@
   gap: 28px;
   max-width: 1020px;
   margin: 0 auto;
+  align-items: stretch;
 }
 
 .pricingCard {
@@ -704,6 +675,9 @@
   border-radius: var(--radius-2xl, 20px);
   text-align: center;
   transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
 }
 
 .pricingCard:hover {
@@ -765,7 +739,28 @@
 .pricingDescription {
   font-size: 14px;
   color: var(--neutral-500, #71717A);
-  margin: 8px 0 24px;
+  margin: 8px 0 16px;
+}
+
+.pricingLimits {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 20px;
+  padding: 16px;
+  background: var(--neutral-50, #FAFAFA);
+  border-radius: var(--radius-lg, 12px);
+}
+
+.pricingLimit {
+  text-align: center;
+}
+
+.pricingLimitValue {
+  font-family: 'Manrope', sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--neutral-900, #18181B);
 }
 
 .pricingFeatures {
@@ -773,6 +768,7 @@
   padding: 0;
   margin: 0 0 28px;
   text-align: left;
+  flex-grow: 1;
 }
 
 .pricingFeatures li {
@@ -796,6 +792,47 @@
   background: linear-gradient(135deg, #10B981 0%, #059669 100%);
   border-radius: 50%;
   flex-shrink: 0;
+}
+
+/* Report Section with Indent */
+.reportSection {
+  margin: 0 0 28px;
+  padding: 16px;
+  background: #F9FAFB;
+  border-radius: 12px;
+  border: 1px solid #E5E7EB;
+}
+
+.reportSectionTitle {
+  font-size: 14px;
+  font-weight: 700;
+  color: #F97316;
+  margin: 0 0 12px;
+}
+
+.reportSectionItems {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.reportSectionItems li {
+  position: relative;
+  padding: 6px 0 6px 20px;
+  font-size: 13px;
+  color: #6B7280;
+  line-height: 1.5;
+}
+
+.reportSectionItems li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 12px;
+  width: 6px;
+  height: 6px;
+  background: #D1D5DB;
+  border-radius: 50%;
 }
 
 .pricingButton {
@@ -832,7 +869,7 @@
 
 /* ===== FAQ SECTION ===== */
 .faq {
-  padding: 80px 0 100px;
+  padding: 90px 0 100px;
   background: var(--neutral-50, #FAFAFA);
 }
 
@@ -894,7 +931,7 @@
 
 /* ===== CTA SECTION ===== */
 .cta {
-  padding: 100px 24px;
+  padding: 90px 24px 100px;
   background: linear-gradient(135deg, #18181B 0%, #27272A 50%, #18181B 100%);
   text-align: center;
   position: relative;
@@ -1002,7 +1039,7 @@
 
 /* ===== VIBE CODERS SECTION ===== */
 .vibeCoders {
-  padding: 110px 0 100px;
+  padding: 90px 0 100px;
   background: linear-gradient(180deg, #18181B 0%, #0F0F11 100%);
   position: relative;
   overflow: hidden;
@@ -1075,133 +1112,97 @@
   margin: 0;
 }
 
-/* ===== TOKEN COMPARISON SECTION ===== */
-.tokenComparison {
-  padding: 80px 0 110px;
+/* ===== COST COMPARISON SECTION ===== */
+.costComparison {
+  padding: 90px 0 100px;
   background: #FFFFFF;
 }
 
-.tokenChartWrapper {
-  max-width: 900px;
+.costTableWrapper {
+  max-width: 700px;
   margin: 0 auto;
+}
+
+.costTable {
+  width: 100%;
+  border-collapse: collapse;
   background: var(--neutral-50, #FAFAFA);
+  border-radius: var(--radius-xl, 16px);
+  overflow: hidden;
   border: 1px solid var(--neutral-200, #E4E4E7);
-  border-radius: var(--radius-2xl, 20px);
-  padding: 40px;
 }
 
-.tokenChartLegend {
-  display: flex;
-  justify-content: center;
-  gap: 48px;
-  margin-bottom: 32px;
+.costTable thead tr {
+  background: var(--neutral-100, #F4F4F5);
 }
 
-.legendItem {
-  display: flex;
-  align-items: center;
-  gap: 12px;
+.costTable th {
+  padding: 20px 24px;
   font-size: 14px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.costTable th:first-child {
+  width: 40%;
+}
+
+.costTableDiy {
+  color: var(--neutral-500, #71717A);
+  text-align: center;
+}
+
+.costTableOurs {
+  color: #F97316;
+  text-align: center;
+}
+
+.costTable tbody tr {
+  border-top: 1px solid var(--neutral-200, #E4E4E7);
+}
+
+.costTable tbody tr:hover {
+  background: var(--neutral-100, #F4F4F5);
+}
+
+.costTable td {
+  padding: 20px 24px;
+  font-size: 16px;
+}
+
+.costTableLabel {
   font-weight: 600;
   color: var(--neutral-700, #3F3F46);
 }
 
-.legendLine {
-  width: 32px;
-  height: 4px;
-  border-radius: 2px;
+.costTableDiyValue {
+  text-align: center;
+  color: var(--neutral-500, #71717A);
+  text-decoration: line-through;
+  opacity: 0.8;
 }
 
-.legendLineManual {
-  background: var(--neutral-400, #A1A1AA);
-}
-
-.legendLineOurs {
-  background: linear-gradient(90deg, #F97316, #F59E0B);
-}
-
-/* Line Chart */
-.lineChartContainer {
-  width: 100%;
-}
-
-.chartSvg {
-  width: 100%;
-  height: auto;
-  display: block;
-}
-
-.gridLine {
-  stroke: var(--neutral-200, #E4E4E7);
-  stroke-width: 1;
-}
-
-.axisLabel {
-  font-family: 'Manrope', sans-serif;
-  font-size: 12px;
-  font-weight: 600;
-  fill: var(--neutral-400, #A1A1AA);
-}
-
-.areaManual {
-  fill: var(--neutral-200, #E4E4E7);
-  opacity: 0.5;
-}
-
-.lineManual {
-  stroke: var(--neutral-400, #A1A1AA);
-  stroke-width: 3;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-}
-
-.lineOurs {
-  stroke: #F97316;
-  stroke-width: 4;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-}
-
-.dotManual {
-  fill: #FFFFFF;
-  stroke: var(--neutral-400, #A1A1AA);
-  stroke-width: 3;
-}
-
-.dotOurs {
-  fill: #F97316;
-  stroke: #FFFFFF;
-  stroke-width: 3;
-}
-
-.valueLabel {
-  font-family: 'Manrope', sans-serif;
-  font-size: 11px;
+.costTableOursValue {
+  text-align: center;
   font-weight: 700;
-  fill: var(--neutral-600, #52525B);
+  color: #F97316;
 }
 
-.oursLabel {
-  font-family: 'Manrope', sans-serif;
-  font-size: 13px;
-  font-weight: 700;
-  fill: #F97316;
-}
-
-/* Savings Callout */
-.savingsCallout {
+.costSavings {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 16px;
+  gap: 12px;
   margin-top: 32px;
-  padding-top: 32px;
-  border-top: 1px solid var(--neutral-200, #E4E4E7);
+  padding: 24px;
+  background: linear-gradient(135deg, rgba(249, 115, 22, 0.1) 0%, rgba(245, 158, 11, 0.1) 100%);
+  border-radius: var(--radius-xl, 16px);
 }
 
-.savingsNumber {
+.costSavingsValue {
   font-family: 'Manrope', sans-serif;
-  font-size: 64px;
+  font-size: 48px;
   font-weight: 800;
   background: linear-gradient(135deg, #F97316 0%, #F59E0B 100%);
   -webkit-background-clip: text;
@@ -1210,12 +1211,10 @@
   line-height: 1;
 }
 
-.savingsText {
+.costSavingsLabel {
   font-size: 18px;
   font-weight: 600;
   color: var(--neutral-600, #52525B);
-  max-width: 120px;
-  line-height: 1.3;
 }
 
 /* ===== PIPELINE SECTION ===== */
@@ -1255,59 +1254,178 @@
   color: var(--neutral-400, #A1A1AA);
 }
 
-/* Horizontal Timeline */
-.pipelineTimeline {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  margin-top: 56px;
-  position: relative;
+/* Pipeline Phase */
+.pipelinePhase {
+  margin-top: 48px;
+  padding: 32px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: var(--radius-xl, 16px);
 }
 
-.pipelineTimeline::before {
-  content: '';
-  position: absolute;
-  top: 12px;
-  left: 0;
-  right: 0;
-  height: 2px;
-  background: rgba(255, 255, 255, 0.1);
+.pipelinePhase + .pipelinePhase {
+  margin-top: 24px;
+}
+
+.pipelinePhaseHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 24px;
+}
+
+.pipelinePhaseTitle {
+  font-family: 'Manrope', sans-serif;
+  font-size: 20px;
+  font-weight: 700;
+  color: #FFFFFF;
+  margin: 0;
+}
+
+.pipelinePhaseDesc {
+  font-size: 14px;
+  color: var(--neutral-400, #A1A1AA);
+  margin: 0 0 24px;
+}
+
+.pipelineBadgeFree {
+  padding: 6px 16px;
+  background: linear-gradient(135deg, #10B981 0%, #059669 100%);
+  color: #FFFFFF;
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  border-radius: 100px;
+}
+
+.pipelineBadgePro {
+  padding: 6px 16px;
+  background: linear-gradient(135deg, #F97316 0%, #F59E0B 100%);
+  color: #FFFFFF;
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  border-radius: 100px;
+}
+
+/* Phase 1: Horizontal Timeline */
+.pipelineTimeline {
+  display: flex;
+  gap: 16px;
 }
 
 .pipelineStep {
   flex: 1;
-  position: relative;
-  text-align: center;
-  padding: 0 16px;
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  padding: 16px;
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: var(--radius-lg, 12px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
 }
 
-.pipelineDot {
-  width: 24px;
-  height: 24px;
-  border-radius: 50%;
+.pipelineStepNumber {
+  width: 32px;
+  height: 32px;
+  min-width: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   background: linear-gradient(135deg, #F97316 0%, #F59E0B 100%);
-  margin: 0 auto 20px;
-  position: relative;
-  box-shadow: 0 0 0 4px rgba(249, 115, 22, 0.2);
+  color: #FFFFFF;
+  font-family: 'Manrope', sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  border-radius: 50%;
 }
 
-.pipelineTitle {
+.pipelineStepContent {
+  flex: 1;
+}
+
+.pipelineStepTitle {
   font-family: 'Manrope', sans-serif;
-  font-size: 18px;
+  font-size: 16px;
   font-weight: 700;
   color: #FFFFFF;
-  margin: 0 0 8px;
+  margin: 0 0 4px;
 }
 
-.pipelineDesc {
-  font-size: 14px;
+.pipelineStepDesc {
+  font-size: 13px;
   color: var(--neutral-400, #A1A1AA);
   margin: 0;
-  line-height: 1.5;
+  line-height: 1.4;
 }
 
-.pipelineLine {
-  display: none;
+/* Phase 2: Analysis Grid */
+.pipelineAnalysisGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+
+.pipelineAnalysisCard {
+  padding: 20px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: var(--radius-lg, 12px);
+  transition: all 0.2s ease;
+}
+
+.pipelineAnalysisCard:hover {
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+.pipelineAnalysisHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+
+.pipelineAnalysisTitle {
+  font-family: 'Manrope', sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  color: #FFFFFF;
+  margin: 0;
+}
+
+.pipelineAnalysisDesc {
+  font-size: 13px;
+  color: var(--neutral-400, #A1A1AA);
+  margin: 0;
+  line-height: 1.4;
+}
+
+/* Tier Badges */
+.tierBadge {
+  padding: 4px 10px;
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  border-radius: 100px;
+}
+
+.tierBadgeLite {
+  background: rgba(16, 185, 129, 0.2);
+  color: #10B981;
+}
+
+.tierBadgePro {
+  background: rgba(59, 130, 246, 0.2);
+  color: #3B82F6;
+}
+
+.tierBadgeMax {
+  background: rgba(139, 92, 246, 0.2);
+  color: #A78BFA;
 }
 
 /* ===== RESPONSIVE ===== */
@@ -1358,24 +1476,22 @@
     grid-template-columns: repeat(2, 1fr);
   }
 
-  .tokenChartWrapper {
-    padding: 32px 20px;
+  .costTableWrapper {
+    max-width: 100%;
   }
 
   .pipelineTimeline {
     flex-wrap: wrap;
-    gap: 32px;
-    justify-content: center;
-  }
-
-  .pipelineTimeline::before {
-    display: none;
+    gap: 12px;
   }
 
   .pipelineStep {
-    flex: 1 1 calc(50% - 16px);
+    flex: 1 1 calc(50% - 6px);
     min-width: 200px;
-    max-width: 250px;
+  }
+
+  .pipelineAnalysisGrid {
+    grid-template-columns: repeat(2, 1fr);
   }
 }
 
@@ -1402,12 +1518,8 @@
     height: 1px;
   }
 
-  .emailForm {
+  .heroButtons {
     flex-direction: column;
-  }
-
-  .emailButton {
-    width: 100%;
   }
 
   .sectionTitle {
@@ -1427,7 +1539,7 @@
   .faq,
   .cta,
   .vibeCoders,
-  .tokenComparison {
+  .costComparison {
     padding: 70px 0;
   }
 
@@ -1435,50 +1547,46 @@
     grid-template-columns: 1fr;
   }
 
-  .tokenChartWrapper {
-    padding: 24px 12px;
+  .costTable th,
+  .costTable td {
+    padding: 16px 12px;
+    font-size: 14px;
   }
 
-  .tokenChartLegend {
-    gap: 24px;
-  }
-
-  .axisLabel {
-    font-size: 9px;
-  }
-
-  .valueLabel {
-    font-size: 9px;
-  }
-
-  .savingsCallout {
+  .costSavings {
     flex-direction: column;
     gap: 8px;
     text-align: center;
   }
 
-  .savingsNumber {
-    font-size: 48px;
-  }
-
-  .savingsText {
-    max-width: none;
+  .costSavingsValue {
+    font-size: 36px;
   }
 
   .pipeline {
     padding: 70px 0;
   }
 
+  .pipelinePhase {
+    padding: 20px;
+  }
+
   .pipelineTimeline {
     flex-direction: column;
-    align-items: center;
-    gap: 32px;
+    gap: 12px;
   }
 
   .pipelineStep {
     flex: none;
     width: 100%;
-    max-width: 280px;
+  }
+
+  .pipelineAnalysisGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .pipelineAnalysisCard {
+    padding: 16px;
   }
 
   .ctaTitle {

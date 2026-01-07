@@ -1,215 +1,227 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { useTranslations } from 'next-intl';
-import { usePreferencesStore, useAuthStore } from '@/core/stores';
-import {
-  NICHE_OPTIONS,
-  REVENUE_OPTIONS,
-  SCALE_OPTIONS,
-  type TargetRevenue,
-  type ServiceScale,
-} from '@/core/mocks/preferences';
-import { ROUTES } from '@/core/routes';
+import { motion, AnimatePresence } from 'framer-motion';
+import { GlowButton } from '@/features/landing/components';
 import styles from './onboarding-page.module.css';
 
-type Step = 1 | 2 | 3;
+const CATEGORIES = [
+  'SaaS',
+  'Developer Tools',
+  'Productivity',
+  'E-commerce',
+  'Health & Fitness',
+  'Finance',
+  'Education',
+  'Mobile Apps',
+  'AI/ML',
+  'Marketing',
+  'Social',
+  'Gaming',
+];
+
+const REVENUE_OPTIONS = [
+  { value: '1k', label: '$1K/mo', description: 'Side income' },
+  { value: '5k', label: '$5K/mo', description: 'Part-time income' },
+  { value: '10k', label: '$10K/mo', description: 'Full-time income' },
+  { value: '50k', label: '$50K+/mo', description: 'Scale business' },
+];
+
+const MARKET_SIZE_OPTIONS = [
+  { value: 'niche', label: 'Niche', description: 'Small, focused market' },
+  { value: 'medium', label: 'Medium', description: 'Growing market' },
+  { value: 'large', label: 'Large', description: 'Mass market' },
+];
+
+interface OnboardingData {
+  categories: string[];
+  revenue: string;
+  marketSize: string;
+}
 
 export function OnboardingPage() {
-  const t = useTranslations('onboarding');
   const router = useRouter();
-  const { isAuthenticated } = useAuthStore();
-  const {
-    preferences,
-    setNiches,
-    setTargetRevenue,
-    setServiceScale,
-    completeOnboarding,
-    isOnboardingCompleted,
-  } = usePreferencesStore();
+  const [step, setStep] = useState(1);
+  const [data, setData] = useState<OnboardingData>({
+    categories: [],
+    revenue: '',
+    marketSize: '',
+  });
 
-  const [step, setStep] = useState<Step>(1);
-  const [selectedNiches, setSelectedNiches] = useState<string[]>(preferences.niches);
-  const [selectedRevenue, setSelectedRevenue] = useState<TargetRevenue>(preferences.targetRevenue);
-  const [selectedScale, setSelectedScale] = useState<ServiceScale>(preferences.serviceScale);
-  const [mounted, setMounted] = useState(false);
+  const totalSteps = 3;
 
-  useEffect(() => {
-    setMounted(true);
-  }, []);
+  const handleCategoryToggle = (category: string) => {
+    setData((prev) => ({
+      ...prev,
+      categories: prev.categories.includes(category)
+        ? prev.categories.filter((c) => c !== category)
+        : [...prev.categories, category],
+    }));
+  };
 
-  // Redirect if not authenticated or already completed
-  useEffect(() => {
-    if (mounted) {
-      if (!isAuthenticated) {
-        router.replace(ROUTES.HOME);
-      } else if (isOnboardingCompleted()) {
-        router.replace(ROUTES.IDEAS);
-      }
+  const handleRevenueSelect = (value: string) => {
+    setData((prev) => ({ ...prev, revenue: value }));
+  };
+
+  const handleMarketSizeSelect = (value: string) => {
+    setData((prev) => ({ ...prev, marketSize: value }));
+  };
+
+  const canProceed = () => {
+    switch (step) {
+      case 1:
+        return data.categories.length > 0;
+      case 2:
+        return data.revenue !== '';
+      case 3:
+        return data.marketSize !== '';
+      default:
+        return false;
     }
-  }, [mounted, isAuthenticated, isOnboardingCompleted, router]);
-
-  const handleNicheToggle = (nicheId: string) => {
-    setSelectedNiches((prev) => {
-      if (prev.includes(nicheId)) {
-        return prev.filter((n) => n !== nicheId);
-      }
-      if (prev.length >= 3) {
-        return prev;
-      }
-      return [...prev, nicheId];
-    });
   };
 
   const handleNext = () => {
-    if (step === 1) {
-      setNiches(selectedNiches);
-      setStep(2);
-    } else if (step === 2) {
-      setTargetRevenue(selectedRevenue);
-      setStep(3);
-    } else if (step === 3) {
-      setServiceScale(selectedScale);
-      completeOnboarding();
-      router.push(ROUTES.IDEAS);
+    if (step < totalSteps) {
+      setStep(step + 1);
+    } else {
+      // Save to localStorage or API
+      localStorage.setItem('onboarding', JSON.stringify(data));
+      router.push('/dashboard');
     }
   };
 
   const handleBack = () => {
     if (step > 1) {
-      setStep((prev) => (prev - 1) as Step);
+      setStep(step - 1);
     }
   };
 
-  const isNextDisabled = () => {
-    if (step === 1) return selectedNiches.length === 0;
-    return false;
-  };
-
-  const progressPercent = (step / 3) * 100;
-
-  if (!mounted) {
-    return null;
-  }
-
   return (
-    <div className={styles.page}>
-      <div className={styles.container}>
-        {/* Logo */}
-        <div className={styles.logo}>
-          <span className={styles.logoText}>IdeaRadar</span>
+    <div className={styles.container}>
+      <div className={styles.content}>
+        {/* Progress */}
+        <div className={styles.progress}>
+          <div className={styles.progressBar}>
+            <motion.div
+              className={styles.progressFill}
+              initial={{ width: 0 }}
+              animate={{ width: `${(step / totalSteps) * 100}%` }}
+              transition={{ duration: 0.3 }}
+            />
+          </div>
+          <span className={styles.progressText}>
+            Step {step} of {totalSteps}
+          </span>
         </div>
 
-        {/* Card */}
-        <div className={styles.card}>
-          {/* Progress Bar */}
-          <div className={styles.progress}>
-            <div className={styles.progressHeader}>
-              <span className={styles.stepLabel}>{t('step')} {step} {t('of')} 3</span>
-            </div>
-            <div className={styles.progressBar}>
-              <div
-                className={styles.progressFill}
-                style={{ width: `${progressPercent}%` }}
-              />
-            </div>
-          </div>
-
-          {/* Step 1: Niches */}
+        {/* Steps */}
+        <AnimatePresence mode="wait">
           {step === 1 && (
-            <>
-              <h1 className={styles.stepTitle}>{t('niche.title')}</h1>
-              <p className={styles.stepDescription}>{t('niche.description')}</p>
-
-              <div className={styles.nicheGrid}>
-                {NICHE_OPTIONS.map((niche) => {
-                  const isSelected = selectedNiches.includes(niche.id);
-                  const isDisabled = !isSelected && selectedNiches.length >= 3;
-                  return (
-                    <button
-                      key={niche.id}
-                      className={`${styles.nicheOption} ${isSelected ? styles.selected : ''} ${isDisabled ? styles.disabled : ''}`}
-                      onClick={() => handleNicheToggle(niche.id)}
-                      disabled={isDisabled}
-                    >
-                      <span className={styles.nicheCheck} />
-                      <span className={styles.nicheLabel}>{niche.label}</span>
-                    </button>
-                  );
-                })}
-              </div>
-
-              <p className={styles.selectedCount}>
-                {selectedNiches.length}/3 {t('niche.selected')}
+            <motion.div
+              key="step1"
+              initial={{ opacity: 0, x: 20 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: -20 }}
+              transition={{ duration: 0.3 }}
+              className={styles.step}
+            >
+              <h1 className={styles.title}>What interests you?</h1>
+              <p className={styles.description}>
+                Select the categories you want to explore. You can change this later.
               </p>
-            </>
+              <div className={styles.categoryGrid}>
+                {CATEGORIES.map((category) => (
+                  <button
+                    key={category}
+                    onClick={() => handleCategoryToggle(category)}
+                    className={`${styles.categoryChip} ${
+                      data.categories.includes(category) ? styles.selected : ''
+                    }`}
+                  >
+                    {category}
+                  </button>
+                ))}
+              </div>
+            </motion.div>
           )}
 
-          {/* Step 2: Revenue */}
           {step === 2 && (
-            <>
-              <h1 className={styles.stepTitle}>{t('revenue.title')}</h1>
-              <p className={styles.stepDescription}>{t('revenue.description')}</p>
-
-              <div className={styles.revenueList}>
+            <motion.div
+              key="step2"
+              initial={{ opacity: 0, x: 20 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: -20 }}
+              transition={{ duration: 0.3 }}
+              className={styles.step}
+            >
+              <h1 className={styles.title}>Revenue goal?</h1>
+              <p className={styles.description}>
+                How much do you want to earn per month?
+              </p>
+              <div className={styles.optionGrid}>
                 {REVENUE_OPTIONS.map((option) => (
                   <button
                     key={option.value}
-                    className={`${styles.revenueOption} ${selectedRevenue === option.value ? styles.selected : ''}`}
-                    onClick={() => setSelectedRevenue(option.value)}
+                    onClick={() => handleRevenueSelect(option.value)}
+                    className={`${styles.optionCard} ${
+                      data.revenue === option.value ? styles.selected : ''
+                    }`}
                   >
-                    <span className={styles.radioCircle} />
-                    <div className={styles.revenueContent}>
-                      <span className={styles.revenueLabel}>{option.label}</span>
-                      <span className={styles.revenueDescription}>{option.description}</span>
-                    </div>
+                    <span className={styles.optionLabel}>{option.label}</span>
+                    <span className={styles.optionDesc}>{option.description}</span>
                   </button>
                 ))}
               </div>
-            </>
+            </motion.div>
           )}
 
-          {/* Step 3: Scale */}
           {step === 3 && (
-            <>
-              <h1 className={styles.stepTitle}>{t('scale.title')}</h1>
-              <p className={styles.stepDescription}>{t('scale.description')}</p>
-
-              <div className={styles.scaleList}>
-                {SCALE_OPTIONS.map((option) => (
+            <motion.div
+              key="step3"
+              initial={{ opacity: 0, x: 20 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: -20 }}
+              transition={{ duration: 0.3 }}
+              className={styles.step}
+            >
+              <h1 className={styles.title}>Preferred market size?</h1>
+              <p className={styles.description}>
+                What size of market are you looking for?
+              </p>
+              <div className={styles.optionGrid}>
+                {MARKET_SIZE_OPTIONS.map((option) => (
                   <button
                     key={option.value}
-                    className={`${styles.scaleOption} ${selectedScale === option.value ? styles.selected : ''}`}
-                    onClick={() => setSelectedScale(option.value)}
+                    onClick={() => handleMarketSizeSelect(option.value)}
+                    className={`${styles.optionCard} ${
+                      data.marketSize === option.value ? styles.selected : ''
+                    }`}
                   >
-                    <span className={styles.scaleCheck}>
-                      {selectedScale === option.value && 'v'}
-                    </span>
-                    <div className={styles.scaleLabel}>{option.label}</div>
-                    <div className={styles.scaleDescription}>{option.description}</div>
-                    <div className={styles.scaleExamples}>{option.examples}</div>
+                    <span className={styles.optionLabel}>{option.label}</span>
+                    <span className={styles.optionDesc}>{option.description}</span>
                   </button>
                 ))}
               </div>
-            </>
+            </motion.div>
           )}
+        </AnimatePresence>
 
-          {/* Buttons */}
-          <div className={styles.buttons}>
-            {step > 1 && (
-              <button className={styles.backButton} onClick={handleBack}>
-                {t('back')}
-              </button>
-            )}
-            <button
-              className={styles.nextButton}
-              onClick={handleNext}
-              disabled={isNextDisabled()}
-            >
-              {step === 3 ? t('complete') : t('next')}
+        {/* Navigation */}
+        <div className={styles.navigation}>
+          {step > 1 && (
+            <button onClick={handleBack} className={styles.backButton}>
+              Back
             </button>
-          </div>
+          )}
+          <GlowButton
+            onClick={handleNext}
+            variant="primary"
+            size="lg"
+            className={!canProceed() ? styles.disabled : ''}
+          >
+            {step === totalSteps ? 'Get Started' : 'Continue'}
+          </GlowButton>
         </div>
       </div>
     </div>

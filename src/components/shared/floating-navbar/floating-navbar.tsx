@@ -6,7 +6,6 @@ import { useTranslations } from 'next-intl';
 import { Button } from '@sognora/ui';
 import { useUIStore, useAuthStore } from '@/core/stores';
 import { clearTokens, clearAccountStatus } from '@/core/utils/token';
-import { ROUTES } from '@/core/routes';
 import styles from './floating-navbar.module.css';
 
 export function FloatingNavbar() {
@@ -102,28 +101,6 @@ export function FloatingNavbar() {
             </button>
             {dropdownOpen && (
               <div className={styles.dropdown}>
-                <Link
-                  href={ROUTES.IDEAS}
-                  className={styles.dropdownItem}
-                  onClick={() => setDropdownOpen(false)}
-                >
-                  {t('myIdeas')}
-                </Link>
-                <Link
-                  href={ROUTES.REPORTS}
-                  className={styles.dropdownItem}
-                  onClick={() => setDropdownOpen(false)}
-                >
-                  {t('myReports')}
-                </Link>
-                <Link
-                  href={ROUTES.ACCOUNT_SETTINGS}
-                  className={styles.dropdownItem}
-                  onClick={() => setDropdownOpen(false)}
-                >
-                  {t('settings')}
-                </Link>
-                <div className={styles.dropdownDivider} />
                 <button className={styles.dropdownItem} onClick={handleLogout}>
                   {t('logout')}
                 </button>

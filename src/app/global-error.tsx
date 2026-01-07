@@ -236,7 +236,7 @@ export default function RootGlobalError({
                 }}
               >
                 <a
-                  href="/ideas"
+                  href="/"
                   style={{
                     fontSize: '14px',
                     color: 'var(--text-default)',
@@ -244,10 +244,10 @@ export default function RootGlobalError({
                     position: 'relative',
                   }}
                 >
-                  Browse Ideas
+                  Home
                 </a>
                 <a
-                  href="/ideas/saved"
+                  href="/pricing"
                   style={{
                     fontSize: '14px',
                     color: 'var(--text-default)',
@@ -255,18 +255,7 @@ export default function RootGlobalError({
                     position: 'relative',
                   }}
                 >
-                  Saved Ideas
-                </a>
-                <a
-                  href="/support"
-                  style={{
-                    fontSize: '14px',
-                    color: 'var(--text-default)',
-                    textDecoration: 'none',
-                    position: 'relative',
-                  }}
-                >
-                  Support
+                  Pricing
                 </a>
               </div>
             </div>

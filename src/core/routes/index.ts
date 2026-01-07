@@ -14,23 +14,11 @@ export const ROUTES = {
   HOME: '/',
   PRICING: '/pricing',
 
-  // Protected routes - Ideas
-  IDEAS: '/ideas',
-  REPORTS: '/reports',
+  // Protected routes
   ONBOARDING: '/onboarding',
-
-  // Protected routes (account/* 페이지)
-  ACCOUNT_PROFILE: '/account/profile',
-  ACCOUNT_LIBRARY: '/account/library',
-  ACCOUNT_SETTINGS: '/account/settings',
-  ACCOUNT_DORMANT: '/account/dormant',
-  ACCOUNT_WITHDRAWAL: '/account/withdrawal',
-
-  // Legacy routes (호환성 유지)
-  MY_PROFILE: '/my/profile',
-  MY_PURCHASES: '/my/purchases',
-  LIBRARY: '/library',
+  DASHBOARD: '/dashboard',
   PAYMENT: '/payment',
+  SETTINGS: '/settings',
 } as const;
 
 /**
@@ -42,8 +30,8 @@ export type Route = (typeof ROUTES)[keyof typeof ROUTES];
  * 동적 라우트 생성 함수
  */
 export const DYNAMIC_ROUTES = {
-  IDEA_DETAIL: (id: string) => `/ideas/${id}` as const,
-};
+  REPORT_DETAIL: (id: string) => `/reports/${id}` as const,
+} as const;
 
 /**
  * 라우트 설정 (인증, 권한 등)
@@ -51,14 +39,11 @@ export const DYNAMIC_ROUTES = {
 export const ROUTE_CONFIG = {
   /** 인증이 필요한 경로 */
   protected: [
-    '/account',
-    ROUTES.IDEAS,
-    ROUTES.REPORTS,
     ROUTES.ONBOARDING,
-    ROUTES.MY_PROFILE,
-    ROUTES.MY_PURCHASES,
-    ROUTES.LIBRARY,
+    ROUTES.DASHBOARD,
     ROUTES.PAYMENT,
+    ROUTES.SETTINGS,
+    '/reports',
   ] as const,
 
   /** 인증 없이 접근 가능한 경로 */

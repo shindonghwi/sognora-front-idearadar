@@ -48,7 +48,9 @@ export function LoginModal() {
     setProfile(DEV_PROFILE);
 
     closeLoginModal();
-    router.push(ROUTES.IDEAS);
+    // TODO: Check if user has completed onboarding
+    // If yes → DASHBOARD, if no → ONBOARDING
+    router.push(ROUTES.ONBOARDING);
   };
 
   return (
