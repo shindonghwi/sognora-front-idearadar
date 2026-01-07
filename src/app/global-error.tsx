@@ -22,10 +22,10 @@ export default function RootGlobalError({
   }, [error]);
 
   return (
-    <html lang="ko">
+    <html lang="en">
       <head>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <title>500 - 서버 오류</title>
+        <title>500 - Server Error</title>
         <style>{`
           * {
             box-sizing: border-box;
@@ -38,8 +38,8 @@ export default function RootGlobalError({
             --text-default: #212121;
             --text-muted: #757575;
             --border-muted: #E0E0E0;
-            --accent-primary: #E67E22;
-            --accent-hover: #D35400;
+            --accent-primary: #3B82F6;
+            --accent-hover: #2563EB;
             --secondary-bg: #F5F5F5;
             --secondary-text: #424242;
           }
@@ -50,8 +50,8 @@ export default function RootGlobalError({
               --text-default: #FAFAFA;
               --text-muted: #A3A3A3;
               --border-muted: #282828;
-              --accent-primary: #FB923C;
-              --accent-hover: #FDBA74;
+              --accent-primary: #60A5FA;
+              --accent-hover: #93C5FD;
               --secondary-bg: #282828;
               --secondary-text: #D4D4D4;
             }
@@ -84,7 +84,7 @@ export default function RootGlobalError({
               textDecoration: 'none',
             }}
           >
-            AUNERI
+            IdeaRadar
           </a>
         </header>
 
@@ -130,7 +130,7 @@ export default function RootGlobalError({
                 letterSpacing: '-0.02em',
               }}
             >
-              서버 오류가 발생했습니다
+              Server Error
             </h1>
 
             {/* Description */}
@@ -142,9 +142,9 @@ export default function RootGlobalError({
                 marginBottom: '40px',
               }}
             >
-              일시적인 문제가 발생했습니다.
+              A temporary error has occurred.
               <br />
-              잠시 후 다시 시도해주세요.
+              Please try again later.
             </p>
 
             {/* Action Buttons */}
@@ -177,7 +177,7 @@ export default function RootGlobalError({
                   e.currentTarget.style.background = 'var(--accent-primary)';
                 }}
               >
-                홈으로 이동
+                Go to Home
               </button>
               <button
                 onClick={reset}
@@ -199,7 +199,7 @@ export default function RootGlobalError({
                   e.currentTarget.style.borderColor = 'var(--border-muted)';
                 }}
               >
-                다시 시도
+                Try Again
               </button>
             </div>
 
@@ -225,7 +225,7 @@ export default function RootGlobalError({
                   marginBottom: '16px',
                 }}
               >
-                추천 페이지
+                Helpful Links
               </span>
               <div
                 style={{
@@ -236,7 +236,7 @@ export default function RootGlobalError({
                 }}
               >
                 <a
-                  href="/explore"
+                  href="/"
                   style={{
                     fontSize: '14px',
                     color: 'var(--text-default)',
@@ -244,10 +244,10 @@ export default function RootGlobalError({
                     position: 'relative',
                   }}
                 >
-                  운세 둘러보기
+                  Home
                 </a>
                 <a
-                  href="/my/results"
+                  href="/pricing"
                   style={{
                     fontSize: '14px',
                     color: 'var(--text-default)',
@@ -255,18 +255,7 @@ export default function RootGlobalError({
                     position: 'relative',
                   }}
                 >
-                  내 운세 기록
-                </a>
-                <a
-                  href="/support/faq"
-                  style={{
-                    fontSize: '14px',
-                    color: 'var(--text-default)',
-                    textDecoration: 'none',
-                    position: 'relative',
-                  }}
-                >
-                  자주 묻는 질문
+                  Pricing
                 </a>
               </div>
             </div>

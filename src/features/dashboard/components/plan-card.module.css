@@ -1,0 +1,106 @@
+/* Plan Card Styles */
+
+.card {
+  background: #FFFFFF;
+  border: 1px solid #E4E4E7;
+  border-radius: 16px;
+  padding: 24px;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.planInfo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.planBadge {
+  display: inline-flex;
+  align-items: center;
+  padding: 6px 14px;
+  background: linear-gradient(135deg, #F97316 0%, #F59E0B 100%);
+  border-radius: 100px;
+  font-size: 13px;
+  font-weight: 700;
+  color: #FFFFFF;
+}
+
+.renewalDate {
+  font-size: 14px;
+  color: #71717A;
+}
+
+.upgradeButton {
+  padding: 10px 20px;
+  background: transparent;
+  border: 1.5px solid #E4E4E7;
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #52525B;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.upgradeButton:hover {
+  border-color: #F97316;
+  color: #F97316;
+}
+
+/* Usage */
+.usage {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+
+@media (max-width: 480px) {
+  .usage {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+}
+
+.usageItem {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.usageHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.usageLabel {
+  font-size: 14px;
+  font-weight: 500;
+  color: #52525B;
+}
+
+.usageCount {
+  font-size: 14px;
+  font-weight: 600;
+  color: #18181B;
+}
+
+.progressBar {
+  height: 6px;
+  background: #E4E4E7;
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.progressFill {
+  height: 100%;
+  background: linear-gradient(135deg, #F97316 0%, #F59E0B 100%);
+  border-radius: 3px;
+  transition: width 0.3s ease;
+}

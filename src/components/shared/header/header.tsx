@@ -13,8 +13,6 @@ import styles from './header.module.css';
 
 const languageOptions = [
   { value: 'en', label: <span>🇺🇸 English</span> },
-  { value: 'ko', label: <span>🇰🇷 한국어</span> },
-  { value: 'ja', label: <span>🇯🇵 日本語</span> },
 ];
 
 function ProfileDropdown() {
@@ -97,7 +95,7 @@ export function Header() {
   const router = useRouter();
   const pathname = usePathname();
   const params = useParams();
-  const currentLocale = (params?.locale as 'ko' | 'en' | 'ja') || 'en';
+  const currentLocale = (params?.locale as 'en') || 'en';
 
   const toggleTheme = () => {
     const newMode = mode === 'light' ? 'dark' : 'light';
@@ -106,14 +104,14 @@ export function Header() {
 
   const handleLanguageChange = (value: string | number | (string | number)[]) => {
     const newLocale = typeof value === 'string' ? value : String(value);
-    router.replace(pathname, { locale: newLocale as 'ko' | 'en' | 'ja' });
+    router.replace(pathname, { locale: newLocale as 'en' });
   };
 
   return (
     <header className={styles.header}>
       {/* Left: Logo */}
       <div className={styles.leftSection}>
-        <Link href="/" className={styles.logo}>App</Link>
+        <Link href="/" className={styles.logo}>IdeaRadar</Link>
       </div>
 
       {/* Right: Theme toggle + Language + Login/Profile */}

@@ -1,1 +1,452 @@
-{}
+{
+  "common": {
+    "appName": "IdeaRadar",
+    "tagline": "Find ideas that pay within 30 days",
+    "loading": "Loading...",
+    "error": "An error occurred",
+    "retry": "Retry"
+  },
+  "landing": {
+    "hero": {
+      "tagline": "People are literally saying 'Take my money.' We find those posts.",
+      "title": "Validated Startup Ideas,",
+      "titleHighlight": "Daily",
+      "titleEnd": "",
+      "description": "We monitor Reddit for posts like \"Someone should build...\" and score them by real demand signals. You get ideas people actually want.",
+      "stats": {
+        "timeSaved": "1,000+",
+        "timeSavedLabel": "Communities Scanned Daily",
+        "subreddits": "Weekly",
+        "subredditsLabel": "Curated Digest",
+        "ideas": "Free",
+        "ideasLabel": "To Start"
+      },
+      "ctaButton": "Continue with Google",
+      "ctaHint": "Free to start. No credit card required."
+    },
+    "liveExamples": {
+      "label": "Live from Reddit",
+      "title": "Real Ideas People Are Asking For Right Now",
+      "description": "These are actual Reddit posts we found and scored. Click any to see the full context.",
+      "upvotes": "upvotes",
+      "comments": "comments",
+      "examples": [
+        {
+          "quote": "Someone should build a tool that monitors competitor pricing and alerts you when they change. I'd pay $50/month for this.",
+          "subreddit": "r/SaaS",
+          "upvotes": 234,
+          "comments": 67,
+          "score": 94,
+          "timeAgo": "2 days ago"
+        },
+        {
+          "quote": "I wish there was an app that automatically converts my voice memos into formatted meeting notes with action items.",
+          "subreddit": "r/Productivity",
+          "upvotes": 156,
+          "comments": 43,
+          "score": 87,
+          "timeAgo": "3 days ago"
+        },
+        {
+          "quote": "Why doesn't anyone make a simple invoicing tool for freelancers that doesn't require a subscription? Just pay once.",
+          "subreddit": "r/Freelance",
+          "upvotes": 312,
+          "comments": 89,
+          "score": 91,
+          "timeAgo": "1 day ago"
+        },
+        {
+          "quote": "Someone needs to build a browser extension that blocks AI-generated content from search results. Would pay good money.",
+          "subreddit": "r/Technology",
+          "upvotes": 567,
+          "comments": 124,
+          "score": 96,
+          "timeAgo": "4 hours ago"
+        }
+      ]
+    },
+    "vibeCoders": {
+      "label": "Why This Works",
+      "title": "Why These Ideas Are Different",
+      "description": "Every idea comes from someone explicitly asking for it. No guessing if people want it.",
+      "features": [
+        {
+          "title": "Someone already said 'I'd pay for this'",
+          "description": "Real posts from people who want this product to exist"
+        },
+        {
+          "title": "Upvotes prove demand",
+          "description": "Not just your gut feeling - actual engagement data"
+        },
+        {
+          "title": "Problem + customers = ready to ship",
+          "description": "Clear problem statements with willing buyers"
+        }
+      ]
+    },
+    "costComparison": {
+      "label": "Why IdeaRadar",
+      "title": "Stop Wasting Time on Manual Research",
+      "description": "Finding validated startup ideas shouldn't take all week.",
+      "diy": "DIY",
+      "ideaRadar": "IdeaRadar",
+      "rows": [
+        { "label": "Time per week", "diy": "6+ hours", "ours": "0 min" },
+        { "label": "Idea source", "diy": "Random scrolling", "ours": "AI-curated" },
+        { "label": "Analysis", "diy": "Manual research", "ours": "Auto-generated" },
+        { "label": "Validation", "diy": "Guesswork", "ours": "Data-backed score" }
+      ],
+      "savings": {
+        "value": "6+ hrs",
+        "label": "saved per week"
+      }
+    },
+    "pipeline": {
+      "label": "How It Works",
+      "title": "From Reddit to Actionable Report",
+      "phase1": {
+        "title": "Phase 1: Discovery",
+        "badge": "All Free",
+        "steps": [
+          { "title": "Scan", "description": "Monitor 1,000+ subreddits for product requests" },
+          { "title": "Spot", "description": "AI catches 'Someone should build...' posts" },
+          { "title": "Score", "description": "Rank ideas 0-100 by real demand signals" },
+          { "title": "Deliver", "description": "Get curated ideas in your inbox weekly" }
+        ]
+      },
+      "phase2": {
+        "title": "Phase 2: Deep Analysis",
+        "badge": "9 Reports",
+        "description": "Turn raw ideas into actionable business plans",
+        "steps": [
+          { "title": "The Vibe", "description": "Product name, tagline, MVP features, target users, differentiators", "tier": "lite", "tierLabel": "LITE" },
+          { "title": "Customer", "description": "2-3 personas, segment sizing, customer journey map", "tier": "pro", "tierLabel": "PRO" },
+          { "title": "Market", "description": "TAM/SAM/SOM, growth rate, trends, market timing", "tier": "pro", "tierLabel": "PRO" },
+          { "title": "Competitors", "description": "10 competitor profiles, gaps, barriers, differentiation strategy", "tier": "pro", "tierLabel": "PRO" },
+          { "title": "SEO", "description": "50 keywords, SERP analysis, traffic projections", "tier": "pro", "tierLabel": "PRO" },
+          { "title": "Money", "description": "Revenue model, pricing strategy, CAC/LTV, break-even, MRR projections", "tier": "max", "tierLabel": "MAX" },
+          { "title": "Marketing", "description": "Channels, communities, influencers, content calendar, launch playbook", "tier": "max", "tierLabel": "MAX" },
+          { "title": "Build", "description": "Tech stack, dev timeline, costs, validation experiments", "tier": "max", "tierLabel": "MAX" },
+          { "title": "Ship It?", "description": "Overall score, risks, SWOT, Go/No-Go, action plan", "tier": "max", "tierLabel": "MAX" }
+        ]
+      }
+    },
+    "comparison": {
+      "label": "Why IdeaRadar",
+      "title": "Stop Wasting Hours on Manual Research",
+      "before": {
+        "badge": "Without IdeaRadar",
+        "items": [
+          "Scroll Reddit for 6+ hours weekly",
+          "Miss trending ideas buried in threads",
+          "No way to measure idea demand",
+          "Manually track interesting posts",
+          "Random, unstructured research"
+        ]
+      },
+      "after": {
+        "badge": "With IdeaRadar",
+        "items": [
+          "Get curated ideas in your inbox",
+          "Weekly digest of top-scoring ideas",
+          "0-100 validation score per idea",
+          "Auto-saved, searchable database",
+          "Organized by niche & demand"
+        ]
+      }
+    },
+    "digest": {
+      "label": "Weekly Digest",
+      "title": "20 Validated Ideas, Every Monday",
+      "description": "Every week, we send you the 20 highest-scoring ideas from the past 7 days. Each email includes the original Reddit quote, validation score breakdown, and direct link to the source post.",
+      "features": [
+        "Curated top 20 ideas weekly",
+        "Full score breakdown per idea",
+        "Direct links to Reddit posts",
+        "Niche category tags"
+      ],
+      "button": "Subscribe Free",
+      "emailMock": {
+        "from": "From: IdeaRadar Weekly",
+        "date": "Today",
+        "subject": "Your Top 20 Validated Ideas This Week",
+        "more": "+ 17 more ideas..."
+      }
+    },
+    "categories": {
+      "label": "Browse by Niche",
+      "title": "Find Ideas in Your Industry",
+      "description": "Filter by category to find opportunities in your area of expertise.",
+      "list": [
+        { "name": "SaaS" },
+        { "name": "Developer Tools" },
+        { "name": "Productivity" },
+        { "name": "E-commerce" },
+        { "name": "Health & Fitness" },
+        { "name": "Finance" },
+        { "name": "Education" },
+        { "name": "Mobile Apps" },
+        { "name": "AI/ML" },
+        { "name": "Marketing" },
+        { "name": "Social" },
+        { "name": "Gaming" }
+      ]
+    },
+    "howScore": {
+      "label": "Validation Score",
+      "title": "How We Measure Real Demand",
+      "description": "Each idea gets a 0-100 score. Above 80 = strong validated demand.",
+      "factors": [
+        { "label": "Upvotes", "max": 30, "percent": 100, "desc": "How many people agree this should exist" },
+        { "label": "Comments", "max": 25, "percent": 83, "desc": "Discussion depth indicates interest level" },
+        { "label": "Repetition", "max": 25, "percent": 83, "desc": "Similar requests across multiple subreddits" },
+        { "label": "Sentiment", "max": 15, "percent": 50, "desc": "Urgency and willingness to pay signals" },
+        { "label": "Freshness", "max": 5, "percent": 17, "desc": "Recent posts indicate current demand" }
+      ],
+      "pts": "pts"
+    },
+    "pricing": {
+      "label": "Pricing",
+      "title": "Pick Your Plan",
+      "description": "Start free. Scale when you're ready.",
+      "perMonth": "/mo",
+      "mostPopular": "Most Popular",
+      "plans": [
+        {
+          "name": "Lite",
+          "price": "$0",
+          "tagline": "Discover",
+          "description": "Find validated ideas from Reddit",
+          "ideas": "10 ideas/month",
+          "reports": "1 report",
+          "cta": "Start Free",
+          "features": [
+            "0-100 validation score",
+            "Weekly email digest"
+          ],
+          "reportSection": {
+            "title": "The Vibe report",
+            "items": [
+              "Product name & tagline",
+              "Target user profiles",
+              "MVP feature list"
+            ]
+          }
+        },
+        {
+          "name": "Pro",
+          "price": "$19",
+          "tagline": "Validate",
+          "description": "Analyze before you build",
+          "ideas": "50 ideas/month",
+          "reports": "5 reports",
+          "cta": "Start Pro",
+          "features": [
+            "Everything in Lite"
+          ],
+          "reportSection": {
+            "title": "+4 analysis reports",
+            "items": [
+              "Customer: 3 personas, pain points",
+              "Market: TAM/SAM/SOM sizing",
+              "Competitors: 10 profiles, gaps",
+              "SEO: 50 keywords, traffic estimate"
+            ]
+          },
+          "popular": true
+        },
+        {
+          "name": "Max",
+          "price": "$39",
+          "tagline": "Execute",
+          "description": "Full business playbook",
+          "ideas": "Unlimited",
+          "reports": "All 9 reports",
+          "cta": "Go Max",
+          "features": [
+            "Everything in Pro"
+          ],
+          "reportSection": {
+            "title": "+4 execution reports",
+            "items": [
+              "Money: Revenue model, pricing tiers",
+              "Marketing: Channels, launch plan",
+              "Build: Tech stack, MVP timeline",
+              "Ship It?: Go/No-Go verdict, risks"
+            ]
+          }
+        }
+      ]
+    },
+    "faq": {
+      "label": "FAQ",
+      "title": "Frequently Asked Questions",
+      "items": [
+        {
+          "question": "What makes IdeaRadar different from just searching Reddit?",
+          "answer": "We use AI to specifically detect explicit product requests (\"Someone should build...\", \"I wish there was...\") and score them based on engagement, repetition across subreddits, and sentiment intensity. You get validated demand signals, not just random complaints."
+        },
+        {
+          "question": "How is the validation score calculated?",
+          "answer": "Each idea is scored 0-100 based on: Upvotes (30pts), Comments (25pts), Repetition across subreddits (25pts), Sentiment intensity (15pts), and Freshness (5pts). A score above 80 indicates strong validated demand."
+        },
+        {
+          "question": "What's included in the free tier?",
+          "answer": "Lite users get 10 ideas per month with real-time access. You can browse all categories, receive weekly email digests, and get 1 analysis report (The Vibe). Upgrade to Pro ($19/mo) for 50 ideas + 5 reports, or Max ($39/mo) for unlimited ideas + all 9 reports."
+        },
+        {
+          "question": "Can I filter ideas by my niche?",
+          "answer": "Yes! We categorize ideas into 12+ niches including SaaS, Developer Tools, E-commerce, Health, Finance, and more. All users can filter ideas by category and receive weekly digests based on their interests."
+        },
+        {
+          "question": "How often is the database updated?",
+          "answer": "We scan 1,000+ subreddits continuously. All users get real-time access to new ideas as they're discovered and scored. Pro and Max users get access to deeper analysis reports."
+        },
+        {
+          "question": "Can I really find a profitable idea here?",
+          "answer": "Every idea in our database comes from someone explicitly asking for a product. These aren't random suggestions - they're real requests with upvotes proving others want it too. The highest-scoring ideas often include phrases like 'I'd pay $X for this.'"
+        }
+      ]
+    },
+    "cta": {
+      "title": "Don't Miss Tomorrow's Top Ideas",
+      "description": "New validated ideas are discovered every day. The one you've been looking for might be next.",
+      "button": "Get Started Free"
+    },
+    "footer": {
+      "terms": "Terms",
+      "privacy": "Privacy",
+      "support": "Support",
+      "copyright": "© {year} IdeaRadar. All rights reserved."
+    }
+  },
+  "auth": {
+    "login": {
+      "title": "Welcome to IdeaRadar",
+      "subtitle": "Sign in to discover validated startup ideas",
+      "google": "Continue with Google",
+      "terms": "By continuing, you agree to our Terms of Service and Privacy Policy"
+    }
+  },
+  "nav": {
+    "features": "Features",
+    "howItWorks": "How It Works",
+    "pricing": "Pricing",
+    "getStarted": "Start Shipping",
+    "logout": "Log out"
+  },
+  "pricing": {
+    "title": "Pick Your Plan",
+    "description": "Start free. Scale when you're ready.",
+    "perMonth": "/mo",
+    "getStarted": "Get Started",
+    "mostPopular": "Most Popular",
+    "plans": [
+      {
+        "name": "Lite",
+        "price": "$0",
+        "tagline": "Discover",
+        "description": "Find validated ideas from Reddit",
+        "ideas": "10 ideas/month",
+        "reports": "1 report",
+        "cta": "Start Free",
+        "features": [
+          "0-100 validation score",
+          "Weekly email digest"
+        ],
+        "reportSection": {
+          "title": "The Vibe report",
+          "items": [
+            "Product name & tagline",
+            "Target user profiles",
+            "MVP feature list"
+          ]
+        }
+      },
+      {
+        "name": "Pro",
+        "price": "$19",
+        "tagline": "Validate",
+        "description": "Analyze before you build",
+        "ideas": "50 ideas/month",
+        "reports": "5 reports",
+        "cta": "Start Pro",
+        "features": [
+          "Everything in Lite"
+        ],
+        "reportSection": {
+          "title": "+4 analysis reports",
+          "items": [
+            "Customer: 3 personas, pain points",
+            "Market: TAM/SAM/SOM sizing",
+            "Competitors: 10 profiles, gaps",
+            "SEO: 50 keywords, traffic estimate"
+          ]
+        },
+        "popular": true
+      },
+      {
+        "name": "Max",
+        "price": "$39",
+        "tagline": "Execute",
+        "description": "Full business playbook",
+        "ideas": "Unlimited",
+        "reports": "All 9 reports",
+        "cta": "Go Max",
+        "features": [
+          "Everything in Pro"
+        ],
+        "reportSection": {
+          "title": "+4 execution reports",
+          "items": [
+            "Money: Revenue model, pricing tiers",
+            "Marketing: Channels, launch plan",
+            "Build: Tech stack, MVP timeline",
+            "Ship It?: Go/No-Go verdict, risks"
+          ]
+        }
+      }
+    ],
+    "faq": {
+      "label": "FAQ",
+      "title": "Frequently Asked Questions",
+      "items": [
+        {
+          "question": "What makes IdeaRadar different from just searching Reddit?",
+          "answer": "We use AI to specifically detect explicit product requests (\"Someone should build...\", \"I wish there was...\") and score them based on engagement, repetition across subreddits, and sentiment intensity. You get validated demand signals, not just random complaints."
+        },
+        {
+          "question": "How is the validation score calculated?",
+          "answer": "Each idea is scored 0-100 based on: Upvotes (30pts), Comments (25pts), Repetition across subreddits (25pts), Sentiment intensity (15pts), and Freshness (5pts). A score above 80 indicates strong validated demand."
+        },
+        {
+          "question": "What's included in the free tier?",
+          "answer": "Lite users get 10 ideas per month with real-time access. You can browse all categories, receive weekly email digests, and get 1 analysis report (The Vibe). Upgrade to Pro ($19/mo) for 50 ideas + 5 reports, or Max ($39/mo) for unlimited ideas + all 9 reports."
+        },
+        {
+          "question": "Can I filter ideas by my niche?",
+          "answer": "Yes! We categorize ideas into 12+ niches including SaaS, Developer Tools, E-commerce, Health, Finance, and more. All users can filter ideas by category and receive weekly digests based on their interests."
+        },
+        {
+          "question": "How often is the database updated?",
+          "answer": "We scan 1,000+ subreddits continuously. All users get real-time access to new ideas as they're discovered and scored. Pro and Max users get access to deeper analysis reports."
+        },
+        {
+          "question": "Can I really find a profitable idea here?",
+          "answer": "Every idea in our database comes from someone explicitly asking for a product. These aren't random suggestions - they're real requests with upvotes proving others want it too. The highest-scoring ideas often include phrases like 'I'd pay $X for this.'"
+        }
+      ]
+    },
+    "cta": {
+      "title": "Don't Miss Tomorrow's Top Ideas",
+      "description": "New validated ideas are discovered every day. The one you've been looking for might be next.",
+      "button": "Get Started Free"
+    },
+    "footer": {
+      "terms": "Terms",
+      "privacy": "Privacy",
+      "support": "Support",
+      "copyright": "© {year} IdeaRadar. All rights reserved."
+    }
+  }
+}

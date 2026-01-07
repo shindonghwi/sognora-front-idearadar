@@ -7,7 +7,7 @@ import { AuthProvider, QueryProvider, ThemeProvider } from '@/infra/providers';
 import { LayoutClient } from './layout-client';
 import { locales } from '@/infra/i18n/config';
 import { SognoraThemeScript } from '@sognora/ui/theme/server';
-import { appThemeLight, appThemeDark } from '@/infra/theme/front-theme';
+import { idearadarThemeLight, idearadarThemeDark } from '@/infra/theme/front-theme';
 import '../globals.css';
 
 // 기본 메타데이터 export
@@ -18,14 +18,14 @@ export function generateStaticParams() {
 }
 
 // FOUC prevention: extract background colors from theme
-const LIGHT_BG = appThemeLight.semantic?.surface?.default || '#FFFFFF';
-const DARK_BG = appThemeDark.semantic?.surface?.base || '#121212';
+const LIGHT_BG = idearadarThemeLight.semantic?.surface?.default || '#FFFFFF';
+const DARK_BG = idearadarThemeDark.semantic?.surface?.base || '#121212';
 
 // FOUC prevention: inline CSS - loads before all external CSS
 const themeBlockingStyles = `
 html,body{background-color:${LIGHT_BG};color-scheme:light}
-html[data-theme="app-dark"],html[data-theme="app-dark"] body{background-color:${DARK_BG}!important;color-scheme:dark}
-html[data-theme="app-light"],html[data-theme="app-light"] body{background-color:${LIGHT_BG}!important;color-scheme:light}
+html[data-theme="idearadar-dark"],html[data-theme="idearadar-dark"] body{background-color:${DARK_BG}!important;color-scheme:dark}
+html[data-theme="idearadar-light"],html[data-theme="idearadar-light"] body{background-color:${LIGHT_BG}!important;color-scheme:light}
 `;
 
 // FOUC prevention: render-blocking script - set data-theme attribute immediately
@@ -33,9 +33,9 @@ const themeInitScript = `
 (function(){
   try{
     var m=localStorage.getItem('theme-mode')||'light';
-    document.documentElement.setAttribute('data-theme','app-'+m);
+    document.documentElement.setAttribute('data-theme','idearadar-'+m);
   }catch(e){
-    document.documentElement.setAttribute('data-theme','app-light');
+    document.documentElement.setAttribute('data-theme','idearadar-light');
   }
 })();
 `;
@@ -65,7 +65,7 @@ export default async function LocaleLayout({
   // SSR theme decision (read from cookie)
   const themeCookie = cookieStore.get('theme-mode');
   const ssrThemeMode = themeCookie?.value === 'dark' ? 'dark' : 'light';
-  const ssrDataTheme = `app-${ssrThemeMode}`;
+  const ssrDataTheme = `idearadar-${ssrThemeMode}`;
 
   return (
     <html lang={locale} className={fontClassNames} data-theme={ssrDataTheme} suppressHydrationWarning>
@@ -76,10 +76,10 @@ export default async function LocaleLayout({
         <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />
         {/* SSR Theme CSS injection */}
         <SognoraThemeScript
-          themeName="app"
+          themeName="idearadar"
           defaultMode="light"
-          lightConfig={appThemeLight}
-          darkConfig={appThemeDark}
+          lightConfig={idearadarThemeLight}
+          darkConfig={idearadarThemeDark}
           storageKey="theme-mode"
         />
       </head>

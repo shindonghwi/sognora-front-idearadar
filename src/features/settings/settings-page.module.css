@@ -1,0 +1,122 @@
+/* Settings Page Styles */
+
+.layout {
+  display: flex;
+  min-height: 100vh;
+  background: #FAFAFA;
+}
+
+.main {
+  flex: 1;
+  margin-left: 260px;
+  padding: 32px;
+}
+
+@media (max-width: 768px) {
+  .main {
+    margin-left: 0;
+    padding: 24px 16px;
+  }
+}
+
+.content {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.pageTitle {
+  font-family: 'Manrope', sans-serif;
+  font-size: 28px;
+  font-weight: 800;
+  color: #18181B;
+  margin: 0 0 8px;
+  letter-spacing: -0.02em;
+}
+
+.pageDescription {
+  font-size: 15px;
+  color: #71717A;
+  margin: 0 0 40px;
+}
+
+/* Sections */
+.section {
+  background: #FFFFFF;
+  border: 1px solid #E4E4E7;
+  border-radius: 16px;
+  padding: 24px;
+  margin-bottom: 24px;
+}
+
+.sectionTitle {
+  font-family: 'Manrope', sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  color: #18181B;
+  margin: 0 0 16px;
+}
+
+/* Category Grid */
+.categoryGrid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.categoryChip {
+  padding: 10px 18px;
+  background: #FAFAFA;
+  border: 1.5px solid #E4E4E7;
+  border-radius: 100px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #52525B;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.categoryChip:hover {
+  border-color: #F97316;
+  color: #F97316;
+}
+
+.categoryChip.selected {
+  background: linear-gradient(135deg, #F97316 0%, #F59E0B 100%);
+  border-color: transparent;
+  color: #FFFFFF;
+}
+
+/* Option Row */
+.optionRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.optionButton {
+  padding: 12px 24px;
+  background: #FAFAFA;
+  border: 1.5px solid #E4E4E7;
+  border-radius: 12px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #52525B;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.optionButton:hover {
+  border-color: #F97316;
+  color: #F97316;
+}
+
+.optionButton.selected {
+  border-color: #F97316;
+  background: #FFF7ED;
+  color: #F97316;
+}
+
+/* Save Section */
+.saveSection {
+  margin-top: 32px;
+}

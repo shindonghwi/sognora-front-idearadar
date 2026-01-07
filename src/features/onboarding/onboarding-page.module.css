@@ -1,0 +1,198 @@
+/* Onboarding Page Styles */
+
+.container {
+  min-height: 100vh;
+  background: #FFFFFF;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 24px;
+}
+
+.content {
+  width: 100%;
+  max-width: 600px;
+}
+
+/* Progress Bar */
+.progress {
+  margin-bottom: 48px;
+}
+
+.progressBar {
+  height: 4px;
+  background: #E4E4E7;
+  border-radius: 2px;
+  overflow: hidden;
+  margin-bottom: 12px;
+}
+
+.progressFill {
+  height: 100%;
+  background: linear-gradient(135deg, #F97316 0%, #F59E0B 100%);
+  border-radius: 2px;
+}
+
+.progressText {
+  font-size: 13px;
+  color: #71717A;
+  font-weight: 500;
+}
+
+/* Step Content */
+.step {
+  margin-bottom: 48px;
+}
+
+.title {
+  font-family: 'Manrope', sans-serif;
+  font-size: 32px;
+  font-weight: 800;
+  color: #18181B;
+  margin: 0 0 12px;
+  letter-spacing: -0.02em;
+}
+
+.description {
+  font-size: 16px;
+  color: #52525B;
+  margin: 0 0 32px;
+  line-height: 1.6;
+}
+
+/* Category Grid */
+.categoryGrid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.categoryChip {
+  padding: 12px 20px;
+  background: #FAFAFA;
+  border: 1.5px solid #E4E4E7;
+  border-radius: 100px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #52525B;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.categoryChip:hover {
+  border-color: #F97316;
+  color: #F97316;
+}
+
+.categoryChip.selected {
+  background: linear-gradient(135deg, #F97316 0%, #F59E0B 100%);
+  border-color: transparent;
+  color: #FFFFFF;
+}
+
+/* Option Grid */
+.optionGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+}
+
+@media (max-width: 480px) {
+  .optionGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.optionCard {
+  padding: 24px;
+  background: #FAFAFA;
+  border: 1.5px solid #E4E4E7;
+  border-radius: 16px;
+  text-align: left;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.optionCard:hover {
+  border-color: #F97316;
+  background: #FFFBEB;
+}
+
+.optionCard.selected {
+  border-color: #F97316;
+  background: #FFFBEB;
+  box-shadow: 0 0 0 3px rgba(249, 115, 22, 0.1);
+}
+
+.optionLabel {
+  font-family: 'Manrope', sans-serif;
+  font-size: 20px;
+  font-weight: 700;
+  color: #18181B;
+}
+
+.optionCard.selected .optionLabel {
+  color: #F97316;
+}
+
+.optionDesc {
+  font-size: 14px;
+  color: #71717A;
+}
+
+/* Navigation */
+.navigation {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+}
+
+.backButton {
+  padding: 14px 28px;
+  background: transparent;
+  border: 1.5px solid #E4E4E7;
+  border-radius: 12px;
+  font-size: 15px;
+  font-weight: 600;
+  color: #52525B;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.backButton:hover {
+  border-color: #A1A1AA;
+  color: #18181B;
+}
+
+.disabled {
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+/* Responsive */
+@media (max-width: 640px) {
+  .container {
+    padding: 24px 16px;
+  }
+
+  .title {
+    font-size: 26px;
+  }
+
+  .categoryChip {
+    padding: 10px 16px;
+    font-size: 13px;
+  }
+
+  .optionCard {
+    padding: 20px;
+  }
+
+  .optionLabel {
+    font-size: 18px;
+  }
+}

@@ -7,10 +7,10 @@
 import { Metadata } from 'next';
 import config from '@/core/config/env';
 
-// 기본 사이트 정보 - TODO: 서비스별 수정
+// 기본 사이트 정보
 export const SITE_INFO = {
-  name: '', // TODO: 서비스명
-  description: '', // TODO: 서비스 설명
+  name: 'IdeaRadar',
+  description: 'Find validated startup ideas from Reddit daily',
   url: config.siteUrl || '',
   ogImage: '/images/og-default.png',
 } as const;
@@ -23,7 +23,7 @@ export const defaultMetadata: Metadata = {
     template: `%s | ${SITE_INFO.name}`,
   },
   description: SITE_INFO.description,
-  keywords: [], // TODO: 서비스 키워드
+  keywords: ['startup ideas', 'Reddit', 'idea validation', 'indie hacker', 'side project', 'someone should build'],
   authors: [{ name: SITE_INFO.name }],
   icons: {
     icon: '/images/common/favicon.png',
@@ -44,7 +44,7 @@ export const defaultMetadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    site: '', // TODO: 트위터 계정
+    site: '@idearadar',
   },
   robots: {
     index: true,

@@ -5,7 +5,7 @@
  */
 
 export const LEGAL_DOCUMENTS = {
-  brand: '', // TODO: 서비스 브랜드명
+  brand: 'IdeaRadar',
   version: '0.0.1',
   effectiveDate: '',
   updatedAt: '',

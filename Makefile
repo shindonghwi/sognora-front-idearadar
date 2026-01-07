@@ -1,13 +1,13 @@
 .PHONY: help dev build clean swagger update-ui
 
 # Port configuration (update via SETUP.md)
-PORT := 3000
+PORT := 3008
 CURRENT_VERSION := $(shell node -p "require('./package.json').version")
 # swagger TARGET: user (default), admin
 TARGET := user
 
 help:
-	@echo "Sognora Template v$(CURRENT_VERSION)"
+	@echo "Sognora IdeaRadar v$(CURRENT_VERSION)"
 	@echo "Port: $(PORT)"
 	@echo ""
 	@echo "Server:"

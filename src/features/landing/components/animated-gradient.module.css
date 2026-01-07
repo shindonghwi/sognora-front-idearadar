@@ -1,0 +1,218 @@
+.gradient {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.noise {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  opacity: 0.03;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+}
+
+/* Hero variant - Light theme with orange/amber */
+.hero {
+  background: linear-gradient(135deg, #FFFFFF 0%, #FFF7ED 100%);
+}
+
+.hero .blob1 {
+  position: absolute;
+  top: -20%;
+  left: -10%;
+  width: 60%;
+  height: 60%;
+  background: radial-gradient(circle, rgba(249, 115, 22, 0.12) 0%, transparent 70%);
+  filter: blur(80px);
+  animation: float1 20s ease-in-out infinite;
+}
+
+.hero .blob2 {
+  position: absolute;
+  top: 20%;
+  right: -10%;
+  width: 50%;
+  height: 50%;
+  background: radial-gradient(circle, rgba(245, 158, 11, 0.12) 0%, transparent 70%);
+  filter: blur(80px);
+  animation: float2 25s ease-in-out infinite;
+}
+
+.hero .blob3 {
+  position: absolute;
+  bottom: -20%;
+  left: 30%;
+  width: 40%;
+  height: 40%;
+  background: radial-gradient(circle, rgba(251, 146, 60, 0.08) 0%, transparent 70%);
+  filter: blur(80px);
+  animation: float3 22s ease-in-out infinite;
+}
+
+/* Dark variant - for dark sections */
+.dark {
+  background: linear-gradient(180deg, #18181B 0%, #0F0F11 100%);
+}
+
+.dark .blob1 {
+  position: absolute;
+  top: 0;
+  left: 20%;
+  width: 40%;
+  height: 40%;
+  background: radial-gradient(circle, rgba(249, 115, 22, 0.15) 0%, transparent 70%);
+  filter: blur(100px);
+  animation: float1 25s ease-in-out infinite;
+}
+
+.dark .blob2 {
+  position: absolute;
+  bottom: 10%;
+  right: 10%;
+  width: 35%;
+  height: 35%;
+  background: radial-gradient(circle, rgba(245, 158, 11, 0.12) 0%, transparent 70%);
+  filter: blur(100px);
+  animation: float2 30s ease-in-out infinite;
+}
+
+.dark .blob3 {
+  display: none;
+}
+
+/* CTA variant - dark with orange glow */
+.cta {
+  background: linear-gradient(135deg, #18181B 0%, #27272A 100%);
+}
+
+.cta .blob1 {
+  position: absolute;
+  top: -30%;
+  left: 10%;
+  width: 80%;
+  height: 80%;
+  background: radial-gradient(circle, rgba(249, 115, 22, 0.2) 0%, transparent 60%);
+  filter: blur(100px);
+  animation: float1 18s ease-in-out infinite;
+}
+
+.cta .blob2 {
+  position: absolute;
+  bottom: -30%;
+  right: 10%;
+  width: 70%;
+  height: 70%;
+  background: radial-gradient(circle, rgba(245, 158, 11, 0.15) 0%, transparent 60%);
+  filter: blur(100px);
+  animation: float2 22s ease-in-out infinite;
+}
+
+.cta .blob3 {
+  display: none;
+}
+
+/* Floating orbs */
+.orbs {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.orb1, .orb2, .orb3 {
+  position: absolute;
+  border-radius: 50%;
+  opacity: 0.6;
+}
+
+.orb1 {
+  top: 15%;
+  left: 10%;
+  width: 8px;
+  height: 8px;
+  background: linear-gradient(135deg, #F97316, #F59E0B);
+  animation: floatOrb 8s ease-in-out infinite;
+}
+
+.orb2 {
+  top: 25%;
+  right: 15%;
+  width: 6px;
+  height: 6px;
+  background: linear-gradient(135deg, #FB923C, #FBBF24);
+  animation: floatOrb 10s ease-in-out infinite;
+  animation-delay: -3s;
+}
+
+.orb3 {
+  bottom: 30%;
+  left: 20%;
+  width: 10px;
+  height: 10px;
+  background: linear-gradient(135deg, #EA580C, #D97706);
+  animation: floatOrb 12s ease-in-out infinite;
+  animation-delay: -5s;
+}
+
+/* Animations */
+@keyframes float1 {
+  0%, 100% {
+    transform: translate(0, 0) scale(1);
+  }
+  33% {
+    transform: translate(30px, -30px) scale(1.05);
+  }
+  66% {
+    transform: translate(-20px, 20px) scale(0.95);
+  }
+}
+
+@keyframes float2 {
+  0%, 100% {
+    transform: translate(0, 0) scale(1);
+  }
+  33% {
+    transform: translate(-40px, 20px) scale(1.1);
+  }
+  66% {
+    transform: translate(30px, -30px) scale(0.9);
+  }
+}
+
+@keyframes float3 {
+  0%, 100% {
+    transform: translate(0, 0) scale(1);
+  }
+  50% {
+    transform: translate(40px, -20px) scale(1.05);
+  }
+}
+
+@keyframes floatOrb {
+  0%, 100% {
+    transform: translateY(0) translateX(0);
+    opacity: 0.6;
+  }
+  25% {
+    transform: translateY(-20px) translateX(10px);
+    opacity: 0.8;
+  }
+  50% {
+    transform: translateY(-10px) translateX(-15px);
+    opacity: 0.4;
+  }
+  75% {
+    transform: translateY(-30px) translateX(5px);
+    opacity: 0.7;
+  }
+}

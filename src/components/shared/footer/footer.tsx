@@ -15,7 +15,7 @@ export function Footer() {
           <Link href="/support" className={styles.link}>Support</Link>
         </div>
         <p className={styles.copyright}>
-          &copy; {currentYear} App. All rights reserved.
+          &copy; {currentYear} IdeaRadar. All rights reserved.
         </p>
       </div>
     </footer>

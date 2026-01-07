@@ -1,0 +1,85 @@
+.button {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.content {
+  position: relative;
+  z-index: 1;
+}
+
+.glow {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  background: radial-gradient(circle at center, rgba(255, 255, 255, 0.3), transparent 70%);
+}
+
+.button:hover .glow {
+  opacity: 1;
+}
+
+/* Variants */
+.primary {
+  background: linear-gradient(135deg, #F97316 0%, #F59E0B 100%);
+  color: #ffffff;
+  box-shadow: 0 4px 15px rgba(249, 115, 22, 0.35);
+}
+
+.primary:hover {
+  box-shadow: 0 8px 30px rgba(249, 115, 22, 0.5);
+  transform: translateY(-2px);
+}
+
+.secondary {
+  background: #FFFFFF;
+  color: #18181B;
+  border: 1px solid #D4D4D8;
+}
+
+.secondary:hover {
+  background: #FAFAFA;
+  border-color: #A1A1AA;
+}
+
+/* Sizes */
+.sm {
+  padding: 10px 20px;
+  font-size: 14px;
+}
+
+.md {
+  padding: 14px 28px;
+  font-size: 15px;
+}
+
+.lg {
+  padding: 18px 36px;
+  font-size: 16px;
+}
+
+/* Pulse animation */
+.pulse {
+  animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    box-shadow: 0 4px 15px rgba(249, 115, 22, 0.35);
+  }
+  50% {
+    box-shadow: 0 4px 30px rgba(249, 115, 22, 0.6), 0 0 60px rgba(249, 115, 22, 0.25);
+  }
+}

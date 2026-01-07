@@ -1,94 +1,94 @@
 import { ThemeConfig } from '@sognora/ui/theme';
 
 
-export const appThemeLight: ThemeConfig = {
+export const idearadarThemeLight: ThemeConfig = {
   // ===== Mode =====
   mode: 'light',
 
   // ===== Semantic Tokens (Layer 2) =====
   semantic: {
-    // Surface - 배경/영역
+    // Surface - Clean, premium backgrounds
     surface: {
-      base: '#F5F5F5',      // grey-100: 페이지 최하단 배경
-      default: '#FFFFFF',   // grey-0: 기본 콘텐츠 영역
-      paper: '#FFFFFF',     // grey-0: 카드, 패널, 사이드바
-      elevated: '#FFFFFF',  // grey-0: 모달, 드롭다운, 팝오버
-      sunken: '#F5F5F5',    // grey-100: 인풋 필드 배경, 코드블록
-      overlay: 'rgba(0, 0, 0, 0.5)',  // 모달 뒤 딤 처리
-      overlayLight: 'rgba(255, 255, 255, 0.7)',  // 컨텐츠 로딩 오버레이
-      inverse: '#212121',   // grey-900: 반전 배경
-      inverseHover: 'rgba(255, 255, 255, 0.1)',  // 어두운 배경 위 호버 효과
+      base: '#FAFAFA',      // Page background (subtle gray)
+      default: '#FFFFFF',   // Default content area
+      paper: '#FFFFFF',     // Cards, panels, sidebar
+      elevated: '#FFFFFF',  // Modals, dropdowns, popovers
+      sunken: '#F4F4F5',    // Input fields, code blocks
+      overlay: 'rgba(0, 0, 0, 0.5)',  // Modal backdrop
+      overlayLight: 'rgba(255, 255, 255, 0.7)',  // Content loading overlay
+      inverse: '#18181B',   // Inverted background
+      inverseHover: 'rgba(255, 255, 255, 0.1)',  // Hover on dark backgrounds
     },
 
-    // On-Surface - 배경 위 콘텐츠
+    // On-Surface - Text on backgrounds
     onSurface: {
-      default: '#212121',   // grey-900: 기본 텍스트
-      muted: '#757575',     // grey-600: 보조/설명 텍스트
-      subtle: '#9E9E9E',    // grey-500: 힌트, 플레이스홀더
-      disabled: '#BDBDBD',  // grey-400: 비활성화 텍스트
-      inverse: '#FFFFFF',   // grey-0: 반전 배경 위 텍스트
+      default: '#18181B',   // Primary text (zinc-900)
+      muted: '#52525B',     // Secondary text (zinc-600)
+      subtle: '#A1A1AA',    // Hint, placeholder (zinc-400)
+      disabled: '#D4D4D8',  // Disabled text (zinc-300)
+      inverse: '#FFFFFF',   // Text on inverted background
     },
 
-    // Border - 테두리/구분선
+    // Border - Clean, subtle borders
     border: {
-      default: '#E0E0E0',   // grey-300: 기본 테두리
-      muted: '#EEEEEE',     // grey-200: 약한 테두리/구분선
-      strong: '#BDBDBD',    // grey-400: 강조 테두리
-      focus: '#E67E22',     // primary-500: 포커스 링
-      error: '#F43F5E',     // error-500: 에러 상태
-      inverse: '#616161',   // grey-700: 반전 배경 위 테두리
+      default: '#D4D4D8',   // Default border (zinc-300)
+      muted: '#E4E4E7',     // Subtle border (zinc-200)
+      strong: '#A1A1AA',    // Strong border (zinc-400)
+      focus: '#F97316',     // Focus ring (orange-500)
+      error: '#EF4444',     // Error state (red-500)
+      inverse: '#52525B',   // Border on inverted background
     },
 
-    // Interactive - 상호작용 요소
+    // Interactive - User interaction states
     interactive: {
-      default: '#E67E22',   // primary-500: 클릭 가능한 요소 기본
-      hover: '#F5F5F5',     // grey-100: 호버 상태 배경
-      active: '#EEEEEE',    // grey-200: 클릭/활성 상태
-      selected: 'rgba(230, 126, 34, 0.12)',  // primary-500/12: 선택된 상태 배경
-      disabled: '#F5F5F5',  // grey-100: 비활성화 배경
+      default: '#F97316',   // Clickable elements (orange-500)
+      hover: '#F4F4F5',     // Hover state background
+      active: '#E4E4E7',    // Active/pressed state
+      selected: 'rgba(249, 115, 22, 0.12)',  // Selected state background
+      disabled: '#F4F4F5',  // Disabled background
     },
 
-    // Accent - 브랜드/강조
+    // Accent - Brand/emphasis (Orange primary)
     accent: {
-      primary: '#E67E22',   // primary-500: 주요 액션, CTA
-      primaryHover: '#D35400',  // primary-600: 주요 액션 호버
-      primarySubtle: '#FFF7ED', // primary-50: 배지, 태그 배경
-      onPrimary: '#FFFFFF', // 액센트 위 텍스트
+      primary: '#F97316',   // Primary CTA (orange-500)
+      primaryHover: '#EA580C',  // Primary hover (orange-600)
+      primarySubtle: '#FFF7ED', // Badge, tag background (orange-50)
+      onPrimary: '#FFFFFF', // Text on accent
     },
 
-    // Status - 상태 표시
+    // Status - State indicators
     status: {
       success: '#10B981',         // success-500
       successSubtle: '#ECFDF5',   // success-50
       warning: '#F59E0B',         // warning-500
       warningSubtle: '#FFFBEB',   // warning-50
-      error: '#F43F5E',           // error-500
-      errorSubtle: '#FFF1F2',     // error-50
-      info: '#6366F1',            // info-500
-      infoSubtle: '#EEF2FF',      // info-50
+      error: '#EF4444',           // red-500
+      errorSubtle: '#FEF2F2',     // red-50
+      info: '#F97316',            // orange-500
+      infoSubtle: '#FFF7ED',      // orange-50
     },
 
-    // Misc - 기타
+    // Misc
     misc: {
-      scrollbarTrack: '#F5F5F5',  // grey-100
-      scrollbarThumb: '#E0E0E0',  // grey-300
-      scrollbarThumbHover: '#BDBDBD',  // grey-400
-      skeletonBase: '#EEEEEE',    // grey-200
-      skeletonHighlight: '#F5F5F5',  // grey-100
+      scrollbarTrack: '#F4F4F5',
+      scrollbarThumb: '#D4D4D8',
+      scrollbarThumbHover: '#A1A1AA',
+      skeletonBase: '#E4E4E7',
+      skeletonHighlight: '#F4F4F5',
     },
   },
 
   // ===== Palette (Layer 1 - Primitive) =====
   palette: {
-    // Primary - Burnt Orange (스포티파이 스타일 + 주황)
+    // Primary - Orange (IdeaRadar brand)
     primary: {
       50: '#FFF7ED',
       100: '#FFEDD5',
       200: '#FED7AA',
       300: '#FDBA74',
       400: '#FB923C',
-      500: '#E67E22',  // Burnt Orange - 메인
-      600: '#D35400',
+      500: '#F97316',  // Orange - 메인
+      600: '#EA580C',
       700: '#C2410C',
       800: '#9A3412',
       900: '#7C2D12',
@@ -155,18 +155,18 @@ export const appThemeLight: ThemeConfig = {
       contrast: '#FFFFFF',
     },
 
-    // Info - Indigo (캐릭터 파랑/보라와 구분)
+    // Info - Orange (브랜드와 통일)
     info: {
-      50: '#EEF2FF',
-      100: '#E0E7FF',
-      200: '#C7D2FE',
-      300: '#A5B4FC',
-      400: '#818CF8',
-      500: '#6366F1',
-      600: '#4F46E5',
-      700: '#4338CA',
-      800: '#3730A3',
-      900: '#312E81',
+      50: '#FFF7ED',
+      100: '#FFEDD5',
+      200: '#FED7AA',
+      300: '#FDBA74',
+      400: '#FB923C',
+      500: '#F97316',
+      600: '#EA580C',
+      700: '#C2410C',
+      800: '#9A3412',
+      900: '#7C2D12',
       contrast: '#FFFFFF',
     },
 
@@ -313,12 +313,12 @@ export const appThemeLight: ThemeConfig = {
 
     // Action states - Orange accent
     action: {
-      active: '#E67E22',
-      hover: 'rgba(230, 126, 34, 0.08)',
-      selected: 'rgba(230, 126, 34, 0.12)',
+      active: '#F97316',
+      hover: 'rgba(249, 115, 22, 0.08)',
+      selected: 'rgba(249, 115, 22, 0.12)',
       disabled: '#BDBDBD',
       disabledBackground: '#F5F5F5',
-      focus: 'rgba(230, 126, 34, 0.20)',
+      focus: 'rgba(249, 115, 22, 0.20)',
     },
 
     white: '#FFFFFF',
@@ -629,8 +629,8 @@ export const appThemeLight: ThemeConfig = {
  * App Theme - Dark Mode
  * Dark mode with blue accents
  */
-export const appThemeDark: ThemeConfig = {
-  ...appThemeLight,
+export const idearadarThemeDark: ThemeConfig = {
+  ...idearadarThemeLight,
   mode: 'dark',
 
   // ===== Semantic Tokens (Layer 2) - Dark Mode =====
@@ -662,25 +662,25 @@ export const appThemeDark: ThemeConfig = {
       default: '#404040',   // 기본 테두리
       muted: '#2C2C2C',     // 약한 테두리/구분선
       strong: '#535353',    // 강조 테두리
-      focus: '#FB923C',     // primary-400: 포커스 링 (더 밝게)
+      focus: '#FB923C',     // orange-400: 포커스 링 (더 밝게)
       error: '#FB7185',     // error-400: 에러 상태 (더 밝게)
       inverse: '#E0E0E0',   // 반전 배경 위 테두리
     },
 
     // Interactive - 상호작용 요소
     interactive: {
-      default: '#FB923C',   // primary-400: 클릭 가능한 요소 기본 (더 밝게)
+      default: '#FB923C',   // orange-400: 클릭 가능한 요소 기본 (더 밝게)
       hover: '#282828',     // 호버 상태 배경
       active: '#404040',    // 클릭/활성 상태
-      selected: 'rgba(251, 146, 60, 0.20)',  // primary-400/20: 선택된 상태 배경
+      selected: 'rgba(251, 146, 60, 0.20)',  // orange-400/20: 선택된 상태 배경
       disabled: '#282828',  // 비활성화 배경
     },
 
     // Accent - 브랜드/강조
     accent: {
-      primary: '#FB923C',   // primary-400: 주요 액션, CTA (더 밝게)
-      primaryHover: '#FDBA74',  // primary-300: 주요 액션 호버
-      primarySubtle: 'rgba(230, 126, 34, 0.20)', // primary-500/20: 배지, 태그 배경
+      primary: '#FB923C',   // orange-400: 주요 액션, CTA (더 밝게)
+      primaryHover: '#FDBA74',  // orange-300: 주요 액션 호버
+      primarySubtle: 'rgba(249, 115, 22, 0.20)', // orange-500/20: 배지, 태그 배경
       onPrimary: '#000000', // 액센트 위 텍스트 (어두운 텍스트)
     },
 
@@ -692,8 +692,8 @@ export const appThemeDark: ThemeConfig = {
       warningSubtle: 'rgba(245, 158, 11, 0.20)', // warning-500/20
       error: '#FB7185',           // error-400
       errorSubtle: 'rgba(244, 63, 94, 0.20)',    // error-500/20
-      info: '#818CF8',            // info-400
-      infoSubtle: 'rgba(99, 102, 241, 0.20)',    // info-500/20
+      info: '#FB923C',            // orange-400
+      infoSubtle: 'rgba(249, 115, 22, 0.20)',    // orange-500/20
     },
 
     // Misc - 기타
@@ -707,7 +707,7 @@ export const appThemeDark: ThemeConfig = {
   },
 
   palette: {
-    ...appThemeLight.palette,
+    ...idearadarThemeLight.palette,
 
     // Grey - STATIC (Layer 1: 테마와 무관하게 동일한 값 유지)
     // 컴포넌트는 semantic 토큰 사용 권장: --surface-*, --on-surface-*, --border-*

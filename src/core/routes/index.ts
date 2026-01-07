@@ -12,19 +12,13 @@
 export const ROUTES = {
   // Public routes
   HOME: '/',
+  PRICING: '/pricing',
 
-  // Protected routes (account/* 페이지)
-  ACCOUNT_PROFILE: '/account/profile',
-  ACCOUNT_LIBRARY: '/account/library',
-  ACCOUNT_SETTINGS: '/account/settings',
-  ACCOUNT_DORMANT: '/account/dormant',
-  ACCOUNT_WITHDRAWAL: '/account/withdrawal',
-
-  // Legacy routes (호환성 유지)
-  MY_PROFILE: '/my/profile',
-  MY_PURCHASES: '/my/purchases',
-  LIBRARY: '/library',
+  // Protected routes
+  ONBOARDING: '/onboarding',
+  DASHBOARD: '/dashboard',
   PAYMENT: '/payment',
+  SETTINGS: '/settings',
 } as const;
 
 /**
@@ -36,8 +30,8 @@ export type Route = (typeof ROUTES)[keyof typeof ROUTES];
  * 동적 라우트 생성 함수
  */
 export const DYNAMIC_ROUTES = {
-  // my 페이지는 탭이 아닌 별도 페이지로 분리됨
-};
+  REPORT_DETAIL: (id: string) => `/reports/${id}` as const,
+} as const;
 
 /**
  * 라우트 설정 (인증, 권한 등)
@@ -45,16 +39,17 @@ export const DYNAMIC_ROUTES = {
 export const ROUTE_CONFIG = {
   /** 인증이 필요한 경로 */
   protected: [
-    '/account',
-    ROUTES.MY_PROFILE,
-    ROUTES.MY_PURCHASES,
-    ROUTES.LIBRARY,
+    ROUTES.ONBOARDING,
+    ROUTES.DASHBOARD,
     ROUTES.PAYMENT,
+    ROUTES.SETTINGS,
+    '/reports',
   ] as const,
 
   /** 인증 없이 접근 가능한 경로 */
   public: [
     ROUTES.HOME,
+    ROUTES.PRICING,
   ] as const,
 } as const;
 

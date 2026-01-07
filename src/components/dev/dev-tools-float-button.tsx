@@ -74,10 +74,8 @@ export function DevToolsFloatButton() {
       clearAccountStatus();
       logout();
       setCookieToken(null);
-      // Redirect to home if on protected page
-      if (window.location.pathname.includes('/my/')) {
-        window.location.href = '/';
-      }
+      // Refresh page to update UI state
+      window.location.reload();
     } else {
       // Login
       setAccessToken(DEV_ACCESS_TOKEN);
@@ -85,6 +83,9 @@ export function DevToolsFloatButton() {
       login(ProfileStatus.ProfileStatusActive);
       setProfile(DEV_PROFILE);
       setCookieToken(DEV_ACCESS_TOKEN);
+
+      // Redirect to onboarding after login
+      window.location.href = '/onboarding';
     }
   }, [isAuthenticated, login, logout, setProfile]);
 
