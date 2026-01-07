@@ -1,29 +1,29 @@
 {
   "common": {
     "appName": "IdeaRadar",
-    "tagline": "Find validated startup ideas from Reddit daily",
+    "tagline": "Find ideas that pay within 30 days",
     "loading": "Loading...",
     "error": "An error occurred",
     "retry": "Retry"
   },
   "landing": {
     "hero": {
-      "tagline": "Stop Guessing. Start Building What People Want.",
-      "title": "Discover What People Are",
-      "titleHighlight": "Begging",
-      "titleEnd": "to Be Built on Reddit",
-      "description": "We scan 1,000+ subreddits daily to find posts like \"Someone should build...\" or \"I wish there was...\" and score each idea 0-100 based on real demand signals.",
+      "tagline": "Reddit users are begging for products. We find them for you.",
+      "title": "Validated Startup Ideas,",
+      "titleHighlight": "Daily",
+      "titleEnd": "",
+      "description": "We monitor Reddit for posts like \"Someone should build...\" and score them by real demand signals. You get ideas people actually want.",
       "stats": {
-        "timeSaved": "6+ hrs",
-        "timeSavedLabel": "Saved weekly",
-        "subreddits": "1,000+",
-        "subredditsLabel": "Subreddits scanned",
-        "ideas": "10,000+",
-        "ideasLabel": "Ideas validated"
+        "timeSaved": "1,000+",
+        "timeSavedLabel": "Subreddits Monitored",
+        "subreddits": "Weekly",
+        "subredditsLabel": "Curated Digest",
+        "ideas": "Free",
+        "ideasLabel": "To Start"
       },
       "emailPlaceholder": "Enter your email",
       "emailButton": "Get Free Ideas",
-      "emailHint": "Free: 5 ideas/week. No credit card required."
+      "emailHint": "No credit card. Unsubscribe anytime."
     },
     "liveExamples": {
       "label": "Live from Reddit",
@@ -63,6 +63,76 @@
           "comments": 124,
           "score": 96,
           "timeAgo": "4 hours ago"
+        }
+      ]
+    },
+    "vibeCoders": {
+      "label": "Why This Works",
+      "title": "Ideas With Built-in Demand",
+      "description": "Every idea comes from someone explicitly asking for it. No guessing if people want it.",
+      "features": [
+        {
+          "title": "Real requests, not assumptions",
+          "description": "These are actual posts from people saying \"I would pay for this\""
+        },
+        {
+          "title": "Scored by engagement",
+          "description": "Upvotes and comments show how many people agree"
+        },
+        {
+          "title": "Ready to build",
+          "description": "Clear problem statements you can start coding today"
+        }
+      ]
+    },
+    "tokenComparison": {
+      "label": "Cost Comparison",
+      "title": "Cost to Extract One Validated Idea",
+      "description": "Finding a single validated startup idea requires scanning hundreds of posts, analyzing sentiment, and scoring viability.",
+      "chartTitle": "Cost Per Idea",
+      "manual": "Manual with LLM",
+      "withUs": "IdeaRadar",
+      "perIdea": "/ idea",
+      "llms": [
+        { "name": "GPT-4o", "manualCost": 1.25, "ourCost": 0.04 },
+        { "name": "Claude Sonnet", "manualCost": 1.05, "ourCost": 0.04 },
+        { "name": "Gemini Pro", "manualCost": 0.63, "ourCost": 0.04 },
+        { "name": "Mistral Large", "manualCost": 0.50, "ourCost": 0.04 },
+        { "name": "Llama 3.1", "manualCost": 0.14, "ourCost": 0.04 }
+      ],
+      "breakdown": {
+        "title": "What it takes to find 1 idea manually",
+        "items": [
+          { "label": "Scan 200+ Reddit posts", "tokens": "~80K tokens" },
+          { "label": "Analyze sentiment & intent", "tokens": "~40K tokens" },
+          { "label": "Score & validate viability", "tokens": "~20K tokens" },
+          { "label": "Total per idea", "tokens": "~140K tokens" }
+        ]
+      },
+      "savings": {
+        "value": "~20x",
+        "label": "avg. cheaper per idea"
+      }
+    },
+    "pipeline": {
+      "label": "How It Works",
+      "title": "From Reddit to Your Inbox",
+      "steps": [
+        {
+          "title": "Scan",
+          "description": "Monitor 1,000+ subreddits"
+        },
+        {
+          "title": "Detect",
+          "description": "Find product requests"
+        },
+        {
+          "title": "Score",
+          "description": "Rank by demand signals"
+        },
+        {
+          "title": "Deliver",
+          "description": "Send to your inbox"
         }
       ]
     },
@@ -111,21 +181,20 @@
     "categories": {
       "label": "Browse by Niche",
       "title": "Find Ideas in Your Industry",
-      "description": "Filter by 12+ categories to find opportunities in your area of expertise.",
-      "ideas": "ideas",
+      "description": "Filter by category to find opportunities in your area of expertise.",
       "list": [
-        { "name": "SaaS", "count": 1247 },
-        { "name": "Developer Tools", "count": 892 },
-        { "name": "Productivity", "count": 756 },
-        { "name": "E-commerce", "count": 634 },
-        { "name": "Health & Fitness", "count": 521 },
-        { "name": "Finance", "count": 489 },
-        { "name": "Education", "count": 412 },
-        { "name": "Mobile Apps", "count": 378 },
-        { "name": "AI/ML", "count": 356 },
-        { "name": "Marketing", "count": 298 },
-        { "name": "Social", "count": 267 },
-        { "name": "Gaming", "count": 234 }
+        { "name": "SaaS" },
+        { "name": "Developer Tools" },
+        { "name": "Productivity" },
+        { "name": "E-commerce" },
+        { "name": "Health & Fitness" },
+        { "name": "Finance" },
+        { "name": "Education" },
+        { "name": "Mobile Apps" },
+        { "name": "AI/ML" },
+        { "name": "Marketing" },
+        { "name": "Social" },
+        { "name": "Gaming" }
       ]
     },
     "howScore": {
@@ -146,13 +215,13 @@
       "title": "Simple, Transparent Pricing",
       "description": "Start free. Upgrade when you're ready. Cancel anytime.",
       "perMonth": "/mo",
-      "getStarted": "Get Started",
+      "getStarted": "Start Shipping",
       "mostPopular": "Most Popular",
       "plans": [
         {
-          "name": "Free",
+          "name": "Hobbyist",
           "price": "$0",
-          "description": "Try before you commit",
+          "description": "Test the waters",
           "features": [
             "5 ideas per week",
             "7-day delayed access",
@@ -161,9 +230,9 @@
           ]
         },
         {
-          "name": "Hunter",
+          "name": "Builder",
           "price": "$19",
-          "description": "For serious builders",
+          "description": "Ship your first product",
           "features": [
             "50 ideas per week",
             "Real-time access",
@@ -174,9 +243,9 @@
           "popular": true
         },
         {
-          "name": "Pro",
+          "name": "Founder",
           "price": "$39",
-          "description": "For power users",
+          "description": "Scale to multiple products",
           "features": [
             "Unlimited ideas",
             "API access",
@@ -201,22 +270,22 @@
         },
         {
           "question": "What's included in the free tier?",
-          "answer": "Free users get 5 ideas per week with a 7-day delay. You can browse basic categories and receive weekly email digests. Upgrade to Hunter ($19/mo) for 50 real-time ideas or Pro ($39/mo) for unlimited access."
+          "answer": "Hobbyist users get 5 ideas per week with a 7-day delay. You can browse basic categories and receive weekly email digests. Upgrade to Builder ($19/mo) for 50 real-time ideas or Founder ($39/mo) for unlimited access."
         },
         {
           "question": "Can I filter ideas by my niche?",
-          "answer": "Yes! We categorize ideas into 12+ niches including SaaS, Developer Tools, E-commerce, Health, Finance, and more. Hunter and Pro users can set up custom alerts for specific niches."
+          "answer": "Yes! We categorize ideas into 12+ niches including SaaS, Developer Tools, E-commerce, Health, Finance, and more. Builder and Founder users can set up custom alerts for specific niches."
         },
         {
           "question": "How often is the database updated?",
-          "answer": "We scan 1,000+ subreddits continuously. Free users see ideas with a 7-day delay, while paid users get real-time access to new ideas as they're discovered and scored."
+          "answer": "We scan 1,000+ subreddits continuously. Hobbyist users see ideas with a 7-day delay, while paid users get real-time access to new ideas as they're discovered and scored."
         }
       ]
     },
     "cta": {
-      "title": "Stop Scrolling. Start Building.",
-      "description": "Every day you wait, someone else might build the idea you could have found first. Join 500+ builders who get validated ideas delivered weekly.",
-      "button": "Get Your First 5 Ideas Free"
+      "title": "Stop Scrolling. Start Shipping.",
+      "description": "Every day you wait, someone else might build the idea you could have found first. Join 500+ indie makers who get validated ideas delivered weekly.",
+      "button": "Find Your First $10K Idea"
     },
     "footer": {
       "terms": "Terms",
@@ -225,10 +294,318 @@
       "copyright": "© {year} IdeaRadar. All rights reserved."
     }
   },
+  "auth": {
+    "login": {
+      "title": "Welcome to IdeaRadar",
+      "subtitle": "Sign in to discover validated startup ideas",
+      "google": "Continue with Google",
+      "terms": "By continuing, you agree to our Terms of Service and Privacy Policy"
+    }
+  },
   "nav": {
     "features": "Features",
     "howItWorks": "How It Works",
     "pricing": "Pricing",
-    "getStarted": "Get Started"
+    "getStarted": "Start Shipping",
+    "myIdeas": "My Ideas",
+    "myReports": "My Reports",
+    "settings": "Settings",
+    "logout": "Log out"
+  },
+  "ideas": {
+    "title": "Your Ideas",
+    "description": "Browse validated startup ideas from Reddit",
+    "upgrade": "Upgrade",
+    "settings": "Settings",
+    "tabs": {
+      "all": "All Ideas",
+      "bookmarked": "Bookmarked"
+    },
+    "search": {
+      "placeholder": "Search ideas..."
+    },
+    "filter": {
+      "allCategories": "All Categories"
+    },
+    "sort": {
+      "score": "Highest Score",
+      "recent": "Most Recent",
+      "upvotes": "Most Upvotes"
+    },
+    "empty": {
+      "title": "No ideas found",
+      "description": "Try adjusting your filters or check back later for new ideas."
+    }
+  },
+  "settings": {
+    "title": "Settings",
+    "backToIdeas": "Back to Ideas",
+    "subscription": {
+      "title": "Subscription",
+      "ideasUsage": "Ideas this week",
+      "reportsUsage": "Reports this week",
+      "resetNote": "Usage resets every Monday at midnight UTC",
+      "upgrade": "Upgrade Plan",
+      "manageBilling": "Manage Billing"
+    },
+    "preferences": {
+      "title": "My Preferences",
+      "edit": "Edit",
+      "interests": "Interests",
+      "targetRevenue": "Target Revenue",
+      "serviceScale": "Service Scale"
+    },
+    "notifications": {
+      "title": "Email Notifications",
+      "digest": "Weekly Digest",
+      "digestDescription": "Receive top 20 ideas every Monday morning",
+      "highScore": "High Score Alerts",
+      "highScoreDescription": "Get notified when ideas score above 90",
+      "newReport": "New Analysis Report",
+      "newReportDescription": "Get notified when a new analysis report is ready",
+      "marketing": "Product Updates",
+      "marketingDescription": "News about new features and improvements"
+    },
+    "categories": {
+      "title": "Interests",
+      "description": "Select categories to personalize your idea feed"
+    },
+    "account": {
+      "title": "Account",
+      "email": "Email",
+      "joined": "Joined"
+    },
+    "danger": {
+      "title": "Danger Zone",
+      "description": "Permanently delete your account and all associated data. This action cannot be undone.",
+      "deleteAccount": "Delete Account"
+    }
+  },
+  "ideaDetail": {
+    "back": "Back to Ideas",
+    "engagement": "Engagement",
+    "upvotes": "Upvotes",
+    "comments": "Comments",
+    "viewOnReddit": "View on Reddit",
+    "bookmark": "Bookmark",
+    "bookmarked": "Bookmarked",
+    "share": "Share",
+    "copied": "Copied!",
+    "validationScore": "Validation Score",
+    "breakdown": "Score Breakdown",
+    "factors": {
+      "upvotes": "Upvotes",
+      "comments": "Comments",
+      "repetition": "Repetition",
+      "sentiment": "Sentiment",
+      "freshness": "Freshness"
+    },
+    "howScoreWorks": "How Score Works",
+    "scoreExplanation": "The validation score (0-100) is calculated based on multiple demand signals: upvotes indicate agreement, comments show discussion depth, repetition across subreddits confirms broad interest, sentiment reflects urgency and willingness to pay, and freshness ensures the idea is still relevant.",
+    "notFound": {
+      "title": "Idea Not Found",
+      "description": "The idea you're looking for doesn't exist or has been removed.",
+      "backToIdeas": "Back to Ideas"
+    }
+  },
+  "pricing": {
+    "title": "Simple, Transparent Pricing",
+    "description": "Start free. Upgrade when you're ready. Cancel anytime.",
+    "perMonth": "/mo",
+    "getStarted": "Start Shipping",
+    "mostPopular": "Most Popular",
+    "plans": [
+      {
+        "name": "Hobbyist",
+        "price": "$0",
+        "description": "Test the waters",
+        "features": [
+          "5 ideas per week",
+          "7-day delayed access",
+          "Basic category filters",
+          "Weekly email digest"
+        ]
+      },
+      {
+        "name": "Builder",
+        "price": "$19",
+        "description": "Ship your first product",
+        "features": [
+          "50 ideas per week",
+          "Real-time access",
+          "All 12+ niche filters",
+          "Bookmark & export",
+          "Priority support"
+        ],
+        "popular": true
+      },
+      {
+        "name": "Founder",
+        "price": "$39",
+        "description": "Scale to multiple products",
+        "features": [
+          "Unlimited ideas",
+          "API access",
+          "Custom Slack/Discord alerts",
+          "Historical archive access",
+          "Dedicated support"
+        ]
+      }
+    ],
+    "faq": {
+      "label": "FAQ",
+      "title": "Frequently Asked Questions",
+      "items": [
+        {
+          "question": "What makes IdeaRadar different from just searching Reddit?",
+          "answer": "We use AI to specifically detect explicit product requests (\"Someone should build...\", \"I wish there was...\") and score them based on engagement, repetition across subreddits, and sentiment intensity. You get validated demand signals, not just random complaints."
+        },
+        {
+          "question": "How is the validation score calculated?",
+          "answer": "Each idea is scored 0-100 based on: Upvotes (30pts), Comments (25pts), Repetition across subreddits (25pts), Sentiment intensity (15pts), and Freshness (5pts). A score above 80 indicates strong validated demand."
+        },
+        {
+          "question": "What's included in the free tier?",
+          "answer": "Hobbyist users get 5 ideas per week with a 7-day delay. You can browse basic categories and receive weekly email digests. Upgrade to Builder ($19/mo) for 50 real-time ideas or Founder ($39/mo) for unlimited access."
+        },
+        {
+          "question": "Can I filter ideas by my niche?",
+          "answer": "Yes! We categorize ideas into 12+ niches including SaaS, Developer Tools, E-commerce, Health, Finance, and more. Builder and Founder users can set up custom alerts for specific niches."
+        },
+        {
+          "question": "How often is the database updated?",
+          "answer": "We scan 1,000+ subreddits continuously. Hobbyist users see ideas with a 7-day delay, while paid users get real-time access to new ideas as they're discovered and scored."
+        }
+      ]
+    },
+    "cta": {
+      "title": "Stop Scrolling. Start Shipping.",
+      "description": "Every day you wait, someone else might build the idea you could have found first. Join 500+ indie makers who get validated ideas delivered weekly.",
+      "button": "Find Your First $10K Idea"
+    },
+    "footer": {
+      "terms": "Terms",
+      "privacy": "Privacy",
+      "support": "Support",
+      "copyright": "© {year} IdeaRadar. All rights reserved."
+    }
+  },
+  "onboarding": {
+    "step": "Step",
+    "of": "of",
+    "back": "Back",
+    "next": "Next",
+    "complete": "Start Shipping",
+    "niche": {
+      "title": "What's Your Vibe?",
+      "description": "Select up to 3 niches to personalize your idea feed",
+      "selected": "selected"
+    },
+    "revenue": {
+      "title": "What's your target monthly revenue?",
+      "description": "This helps us tailor ideas to your monetization goals"
+    },
+    "scale": {
+      "title": "What scale of product do you want to build?",
+      "description": "Choose the size that matches your shipping speed"
+    }
+  },
+  "reports": {
+    "title": "My Analysis Reports",
+    "description": "AI-powered analysis reports for your curated ideas",
+    "backToIdeas": "Back to Ideas",
+    "reportsAvailable": "reports available",
+    "feasibility": "Feasibility",
+    "viewReport": "View Report",
+    "empty": {
+      "title": "No reports yet",
+      "description": "Your analysis reports will appear here when they're ready"
+    }
+  },
+  "analysis": {
+    "title": "Analysis Report",
+    "analyzedOn": "Analyzed on",
+    "tabs": {
+      "concept": "The Vibe",
+      "competitors": "Competitors",
+      "seo": "SEO",
+      "monetization": "Monetization",
+      "marketing": "Marketing",
+      "feasibility": "Can You Solo This?"
+    },
+    "concept": {
+      "productNames": "Suggested Product Names",
+      "coreValue": "Core Value Proposition",
+      "mvpFeatures": "MVP Features",
+      "targetUsers": "Target Users",
+      "differentiation": "Key Differentiators",
+      "domains": "Suggested Domains",
+      "domain": "Domain",
+      "status": "Status",
+      "price": "Price",
+      "available": "Available",
+      "taken": "Taken"
+    },
+    "competitors": {
+      "title": "Competitors",
+      "pricing": "Pricing",
+      "strengths": "Strengths",
+      "weaknesses": "Weaknesses",
+      "visitSite": "Visit Site",
+      "marketGaps": "Market Gaps",
+      "opportunities": "Opportunities"
+    },
+    "seo": {
+      "primaryKeywords": "Primary Keywords",
+      "secondaryKeywords": "Secondary Keywords",
+      "keyword": "Keyword",
+      "volume": "Volume",
+      "difficulty": "Difficulty",
+      "trafficPotential": "Traffic Potential",
+      "timeline": "Ranking Timeline"
+    },
+    "monetization": {
+      "recommendedModel": "Recommended Business Model",
+      "pricingTiers": "Suggested Pricing Tiers",
+      "projectedMRR": "Projected MRR",
+      "month3": "3 Months",
+      "month6": "6 Months",
+      "month12": "12 Months"
+    },
+    "marketing": {
+      "launchChannels": "Launch Channels",
+      "expectedTraffic": "Expected Traffic",
+      "priority": {
+        "high": "High",
+        "medium": "Medium",
+        "low": "Low"
+      },
+      "targetCommunities": "Target Communities",
+      "contentStrategy": "Content Strategy",
+      "blog": "Blog",
+      "social": "Social Media"
+    },
+    "feasibility": {
+      "categoryScores": "Category Scores",
+      "categories": {
+        "marketDemand": "Market Demand",
+        "competition": "Competition",
+        "technicalFeasibility": "Technical Feasibility",
+        "monetizationPotential": "Monetization Potential"
+      },
+      "verdict": {
+        "PASS": "SHIP IT",
+        "CONDITIONAL": "MAYBE",
+        "FAIL": "SKIP"
+      },
+      "summary": "Summary",
+      "risks": "Risks",
+      "riskLevel": {
+        "high": "High",
+        "medium": "Medium",
+        "low": "Low"
+      },
+      "recommendations": "Recommendations"
+    }
   }
 }

@@ -1,10 +1,12 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { useTranslations } from 'next-intl';
 import { FloatingNavbar } from '@/components/shared/floating-navbar';
-import { useUIStore } from '@/core/stores';
+import { useUIStore, useAuthStore } from '@/core/stores';
+import { ROUTES } from '@/core/routes';
 import styles from './landing-page.module.css';
 
 interface Example {
@@ -18,7 +20,6 @@ interface Example {
 
 interface Category {
   name: string;
-  count: number;
 }
 
 interface FaqItem {
@@ -41,11 +42,41 @@ interface PricingPlan {
   popular?: boolean;
 }
 
+interface VibeCoderFeature {
+  title: string;
+  description: string;
+}
+
+interface LLMComparison {
+  name: string;
+  manualCost: number;
+  ourCost: number;
+}
+
+interface PipelineStep {
+  title: string;
+  description: string;
+}
+
 export function LandingPage() {
   const t = useTranslations('landing');
+  const router = useRouter();
   const openLoginModal = useUIStore((state) => state.openLoginModal);
+  const isAuthenticated = useAuthStore((state) => state.isAuthenticated);
   const [email, setEmail] = useState('');
   const [openFaq, setOpenFaq] = useState<number | null>(null);
+  const [mounted, setMounted] = useState(false);
+
+  // Redirect logged-in users to ideas page
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  useEffect(() => {
+    if (mounted && isAuthenticated) {
+      router.replace(ROUTES.IDEAS);
+    }
+  }, [mounted, isAuthenticated, router]);
 
   // Get data from translations
   const liveExamples = t.raw('liveExamples.examples') as Example[];
@@ -56,6 +87,9 @@ export function LandingPage() {
   const scoreFactors = t.raw('howScore.factors') as Factor[];
   const pricingPlans = t.raw('pricing.plans') as PricingPlan[];
   const digestFeatures = t.raw('digest.features') as string[];
+  const vibeCoderFeatures = t.raw('vibeCoders.features') as VibeCoderFeature[];
+  const llmComparisons = t.raw('tokenComparison.llms') as LLMComparison[];
+  const pipelineSteps = t.raw('pipeline.steps') as PipelineStep[];
 
   const handleEmailSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -125,7 +159,7 @@ export function LandingPage() {
       </section>
 
       {/* Live Examples Section */}
-      <section className={styles.liveExamples}>
+      <section id="features" className={styles.liveExamples}>
         <div className={styles.sectionContainer}>
           <div className={styles.sectionHeader}>
             <span className={styles.sectionLabel}>{t('liveExamples.label')}</span>
@@ -142,7 +176,7 @@ export function LandingPage() {
                   <span className={styles.exampleSubreddit}>{example.subreddit}</span>
                   <span className={styles.exampleTime}>{example.timeAgo}</span>
                 </div>
-                <p className={styles.exampleQuote}>"{example.quote}"</p>
+                <p className={styles.exampleQuote}>{`"${example.quote}"`}</p>
                 <div className={styles.exampleFooter}>
                   <div className={styles.exampleStats}>
                     <span>{example.upvotes} {t('liveExamples.upvotes')}</span>
@@ -153,6 +187,169 @@ export function LandingPage() {
                     <span className={styles.scoreLabel}>/ 100</span>
                   </div>
                 </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Vibe Coders Section */}
+      <section className={styles.vibeCoders}>
+        <div className={styles.sectionContainer}>
+          <div className={styles.sectionHeader}>
+            <span className={styles.sectionLabel}>{t('vibeCoders.label')}</span>
+            <h2 className={styles.sectionTitle}>{t('vibeCoders.title')}</h2>
+            <p className={styles.sectionDescription}>
+              {t('vibeCoders.description')}
+            </p>
+          </div>
+
+          <div className={styles.vibeCodersGrid}>
+            {vibeCoderFeatures.map((feature, index) => (
+              <div key={index} className={styles.vibeCoderCard}>
+                <h3 className={styles.vibeCoderTitle}>{feature.title}</h3>
+                <p className={styles.vibeCoderDesc}>{feature.description}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Token Comparison Section */}
+      <section className={styles.tokenComparison}>
+        <div className={styles.sectionContainer}>
+          <div className={styles.sectionHeader}>
+            <span className={styles.sectionLabel}>{t('tokenComparison.label')}</span>
+            <h2 className={styles.sectionTitle}>{t('tokenComparison.title')}</h2>
+            <p className={styles.sectionDescription}>
+              {t('tokenComparison.description')}
+            </p>
+          </div>
+
+          <div className={styles.tokenChartWrapper}>
+            {/* Legend */}
+            <div className={styles.tokenChartLegend}>
+              <div className={styles.legendItem}>
+                <span className={`${styles.legendLine} ${styles.legendLineManual}`} />
+                <span>{t('tokenComparison.manual')}</span>
+              </div>
+              <div className={styles.legendItem}>
+                <span className={`${styles.legendLine} ${styles.legendLineOurs}`} />
+                <span>{t('tokenComparison.withUs')}</span>
+              </div>
+            </div>
+
+            {/* Line Chart */}
+            <div className={styles.lineChartContainer}>
+              <svg className={styles.chartSvg} viewBox="0 0 600 300">
+                {/* Grid lines */}
+                <line x1="60" y1="40" x2="580" y2="40" className={styles.gridLine} />
+                <line x1="60" y1="106" x2="580" y2="106" className={styles.gridLine} />
+                <line x1="60" y1="172" x2="580" y2="172" className={styles.gridLine} />
+                <line x1="60" y1="238" x2="580" y2="238" className={styles.gridLine} />
+
+                {/* Y-axis labels */}
+                <text x="50" y="44" className={styles.axisLabel} textAnchor="end">$1.50</text>
+                <text x="50" y="110" className={styles.axisLabel} textAnchor="end">$1.00</text>
+                <text x="50" y="176" className={styles.axisLabel} textAnchor="end">$0.50</text>
+                <text x="50" y="242" className={styles.axisLabel} textAnchor="end">$0</text>
+
+                {/* X-axis labels */}
+                {llmComparisons.map((llm, i) => {
+                  const x = 60 + (i / (llmComparisons.length - 1)) * 520;
+                  return (
+                    <text key={llm.name} x={x} y="270" className={styles.axisLabel} textAnchor="middle">
+                      {llm.name}
+                    </text>
+                  );
+                })}
+
+                {/* Area fill for manual (subtle) */}
+                <polygon
+                  className={styles.areaManual}
+                  points={`60,238 ${llmComparisons.map((llm, i) => {
+                    const x = 60 + (i / (llmComparisons.length - 1)) * 520;
+                    const y = 238 - (llm.manualCost / 1.5) * 198;
+                    return `${x},${y}`;
+                  }).join(' ')} 580,238`}
+                />
+
+                {/* Manual cost line */}
+                <polyline
+                  className={styles.lineManual}
+                  points={llmComparisons.map((llm, i) => {
+                    const x = 60 + (i / (llmComparisons.length - 1)) * 520;
+                    const y = 238 - (llm.manualCost / 1.5) * 198;
+                    return `${x},${y}`;
+                  }).join(' ')}
+                  fill="none"
+                />
+
+                {/* IdeaRadar cost line */}
+                <polyline
+                  className={styles.lineOurs}
+                  points={llmComparisons.map((llm, i) => {
+                    const x = 60 + (i / (llmComparisons.length - 1)) * 520;
+                    const y = 238 - (llm.ourCost / 1.5) * 198;
+                    return `${x},${y}`;
+                  }).join(' ')}
+                  fill="none"
+                />
+
+                {/* Data points - Manual */}
+                {llmComparisons.map((llm, i) => {
+                  const x = 60 + (i / (llmComparisons.length - 1)) * 520;
+                  const y = 238 - (llm.manualCost / 1.5) * 198;
+                  return (
+                    <g key={`manual-${i}`}>
+                      <circle cx={x} cy={y} r="8" className={styles.dotManual} />
+                      <text x={x} y={y - 16} className={styles.valueLabel} textAnchor="middle">
+                        ${llm.manualCost.toFixed(2)}
+                      </text>
+                    </g>
+                  );
+                })}
+
+                {/* Data points - Ours */}
+                {llmComparisons.map((llm, i) => {
+                  const x = 60 + (i / (llmComparisons.length - 1)) * 520;
+                  const y = 238 - (llm.ourCost / 1.5) * 198;
+                  return (
+                    <circle key={`ours-${i}`} cx={x} cy={y} r="8" className={styles.dotOurs} />
+                  );
+                })}
+
+                {/* IdeaRadar label on first point */}
+                <text x="90" y="230" className={styles.oursLabel}>$0.04</text>
+              </svg>
+            </div>
+
+            {/* Savings callout */}
+            <div className={styles.savingsCallout}>
+              <div className={styles.savingsNumber}>{t('tokenComparison.savings.value')}</div>
+              <div className={styles.savingsText}>{t('tokenComparison.savings.label')}</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Pipeline Section */}
+      <section className={styles.pipeline}>
+        <div className={styles.sectionContainer}>
+          <div className={styles.sectionHeader}>
+            <span className={styles.sectionLabel}>{t('pipeline.label')}</span>
+            <h2 className={styles.sectionTitle}>{t('pipeline.title')}</h2>
+          </div>
+
+          <div className={styles.pipelineTimeline}>
+            {pipelineSteps.map((step, index) => (
+              <div key={step.title} className={styles.pipelineStep}>
+                <div className={styles.pipelineDot} />
+                <h3 className={styles.pipelineTitle}>{step.title}</h3>
+                <p className={styles.pipelineDesc}>{step.description}</p>
+                {index < pipelineSteps.length - 1 && (
+                  <div className={styles.pipelineLine} />
+                )}
               </div>
             ))}
           </div>
@@ -232,21 +429,21 @@ export function LandingPage() {
                   <div className={styles.emailIdea}>
                     <div className={styles.emailIdeaScore}>94</div>
                     <div className={styles.emailIdeaContent}>
-                      <p>"{liveExamples[0]?.quote?.substring(0, 60)}..."</p>
+                      <p>{`"${liveExamples[0]?.quote?.substring(0, 60)}..."`}</p>
                       <span>{liveExamples[0]?.subreddit} - {liveExamples[0]?.upvotes} {t('liveExamples.upvotes')}</span>
                     </div>
                   </div>
                   <div className={styles.emailIdea}>
                     <div className={styles.emailIdeaScoreMed}>87</div>
                     <div className={styles.emailIdeaContent}>
-                      <p>"{liveExamples[1]?.quote?.substring(0, 50)}..."</p>
+                      <p>{`"${liveExamples[1]?.quote?.substring(0, 50)}..."`}</p>
                       <span>{liveExamples[1]?.subreddit} - {liveExamples[1]?.upvotes} {t('liveExamples.upvotes')}</span>
                     </div>
                   </div>
                   <div className={styles.emailIdea}>
                     <div className={styles.emailIdeaScore}>91</div>
                     <div className={styles.emailIdeaContent}>
-                      <p>"{liveExamples[2]?.quote?.substring(0, 50)}..."</p>
+                      <p>{`"${liveExamples[2]?.quote?.substring(0, 50)}..."`}</p>
                       <span>{liveExamples[2]?.subreddit} - {liveExamples[2]?.upvotes} {t('liveExamples.upvotes')}</span>
                     </div>
                   </div>
@@ -273,7 +470,6 @@ export function LandingPage() {
             {categories.map((category) => (
               <div key={category.name} className={styles.categoryCard}>
                 <span className={styles.categoryName}>{category.name}</span>
-                <span className={styles.categoryCount}>{category.count} {t('categories.ideas')}</span>
               </div>
             ))}
           </div>
@@ -281,7 +477,7 @@ export function LandingPage() {
       </section>
 
       {/* How Score Works */}
-      <section className={styles.howScore}>
+      <section id="how-it-works" className={styles.howScore}>
         <div className={styles.sectionContainer}>
           <div className={styles.sectionHeader}>
             <span className={styles.sectionLabel}>{t('howScore.label')}</span>

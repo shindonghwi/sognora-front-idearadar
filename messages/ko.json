@@ -1,28 +1,28 @@
 {
   "common": {
     "appName": "IdeaRadar",
-    "tagline": "매일 Reddit에서 검증된 스타트업 아이디어를 찾아드립니다",
+    "tagline": "30일 안에 수익 나는 아이디어를 찾아드립니다",
     "loading": "로딩 중...",
     "error": "오류가 발생했습니다",
     "retry": "다시 시도"
   },
   "landing": {
     "hero": {
-      "tagline": "추측하지 마세요. 사람들이 원하는 것을 만드세요.",
-      "title": "Reddit에서",
-      "titleHighlight": "간절히",
-      "titleEnd": "만들어달라는 아이디어를 발굴하세요",
-      "description": "매일 1,000개 이상의 서브레딧에서 \"누가 이런 거 만들어줬으면...\", \"이런 앱 없나?\" 같은 글을 찾아 실제 수요 기반으로 0-100점을 매깁니다.",
+      "tagline": "추측하지 마세요. Reddit이 간절히 원하는 걸 만드세요.",
+      "title": "30일 안에",
+      "titleHighlight": "수익",
+      "titleEnd": "나는 아이디어를 찾으세요",
+      "description": "매일 1,000개 이상의 서브레딧에서 \"누가 이런 거 만들어줬으면...\", \"이런 앱 없나?\" 같은 글을 찾아 — 빠르게 출시하려는 인디해커, 바이브코더, 솔로 파운더에게 딱입니다.",
       "stats": {
-        "timeSaved": "6시간+",
-        "timeSavedLabel": "주간 절약 시간",
-        "subreddits": "1,000+",
-        "subredditsLabel": "스캔되는 서브레딧",
-        "ideas": "10,000+",
-        "ideasLabel": "검증된 아이디어"
+        "timeSaved": "₩11억",
+        "timeSavedLabel": "발굴된 잠재 MRR",
+        "subreddits": "127개",
+        "subredditsLabel": "사용자가 출시한 아이디어",
+        "ideas": "14일",
+        "ideasLabel": "평균 MVP 완성 시간"
       },
       "emailPlaceholder": "이메일을 입력하세요",
-      "emailButton": "무료 아이디어 받기",
+      "emailButton": "₩1,000만 아이디어 찾기",
       "emailHint": "무료: 주 5개 아이디어. 신용카드 불필요."
     },
     "liveExamples": {
@@ -146,13 +146,13 @@
       "title": "간단하고 투명한 가격",
       "description": "무료로 시작하세요. 준비되면 업그레이드. 언제든 취소 가능.",
       "perMonth": "/월",
-      "getStarted": "시작하기",
+      "getStarted": "지금 시작하기",
       "mostPopular": "가장 인기",
       "plans": [
         {
-          "name": "무료",
+          "name": "취미",
           "price": "₩0",
-          "description": "시작 전 체험",
+          "description": "일단 써보기",
           "features": [
             "주 5개 아이디어",
             "7일 지연 접근",
@@ -161,9 +161,9 @@
           ]
         },
         {
-          "name": "Hunter",
+          "name": "빌더",
           "price": "₩25,000",
-          "description": "진지한 빌더를 위해",
+          "description": "첫 제품을 출시하세요",
           "features": [
             "주 50개 아이디어",
             "실시간 접근",
@@ -174,9 +174,9 @@
           "popular": true
         },
         {
-          "name": "Pro",
+          "name": "파운더",
           "price": "₩52,000",
-          "description": "파워 유저를 위해",
+          "description": "여러 제품으로 확장하세요",
           "features": [
             "무제한 아이디어",
             "API 접근",
@@ -201,22 +201,22 @@
         },
         {
           "question": "무료 티어에는 무엇이 포함되나요?",
-          "answer": "무료 사용자는 7일 지연으로 주 5개 아이디어를 받습니다. 기본 카테고리를 탐색하고 주간 이메일 다이제스트를 받을 수 있습니다. Hunter(월 ₩25,000)로 업그레이드하면 실시간 아이디어 50개, Pro(월 ₩52,000)로 업그레이드하면 무제한 접근이 가능합니다."
+          "answer": "취미 사용자는 7일 지연으로 주 5개 아이디어를 받습니다. 기본 카테고리를 탐색하고 주간 이메일 다이제스트를 받을 수 있습니다. 빌더(월 ₩25,000)로 업그레이드하면 실시간 아이디어 50개, 파운더(월 ₩52,000)로 업그레이드하면 무제한 접근이 가능합니다."
         },
         {
           "question": "내 니치별로 아이디어를 필터링할 수 있나요?",
-          "answer": "네! SaaS, 개발자 도구, 이커머스, 헬스, 금융 등 12개 이상의 니치로 아이디어를 분류합니다. Hunter와 Pro 사용자는 특정 니치에 대한 맞춤 알림을 설정할 수 있습니다."
+          "answer": "네! SaaS, 개발자 도구, 이커머스, 헬스, 금융 등 12개 이상의 니치로 아이디어를 분류합니다. 빌더와 파운더 사용자는 특정 니치에 대한 맞춤 알림을 설정할 수 있습니다."
         },
         {
           "question": "데이터베이스는 얼마나 자주 업데이트되나요?",
-          "answer": "1,000개 이상의 서브레딧을 지속적으로 스캔합니다. 무료 사용자는 7일 지연된 아이디어를 보고, 유료 사용자는 새로운 아이디어가 발견되고 점수가 매겨지는 대로 실시간 접근이 가능합니다."
+          "answer": "1,000개 이상의 서브레딧을 지속적으로 스캔합니다. 취미 사용자는 7일 지연된 아이디어를 보고, 유료 사용자는 새로운 아이디어가 발견되고 점수가 매겨지는 대로 실시간 접근이 가능합니다."
         }
       ]
     },
     "cta": {
-      "title": "스크롤 그만. 빌딩 시작.",
-      "description": "당신이 기다리는 매일, 다른 누군가가 당신이 먼저 찾을 수 있었던 아이디어를 만들 수 있습니다. 매주 검증된 아이디어를 받는 500명 이상의 빌더와 함께하세요.",
-      "button": "첫 5개 아이디어 무료로 받기"
+      "title": "스크롤 그만. 출시 시작.",
+      "description": "당신이 기다리는 매일, 다른 누군가가 당신이 먼저 찾을 수 있었던 아이디어를 만들 수 있습니다. 매주 검증된 아이디어를 받는 500명 이상의 인디 메이커와 함께하세요.",
+      "button": "₩1,000만 아이디어 찾기"
     },
     "footer": {
       "terms": "이용약관",
@@ -225,10 +225,318 @@
       "copyright": "© {year} IdeaRadar. All rights reserved."
     }
   },
+  "auth": {
+    "login": {
+      "title": "IdeaRadar에 오신 것을 환영합니다",
+      "subtitle": "로그인하고 검증된 스타트업 아이디어를 발견하세요",
+      "google": "Google로 계속하기",
+      "terms": "계속하면 서비스 약관 및 개인정보처리방침에 동의하는 것입니다"
+    }
+  },
   "nav": {
     "features": "기능",
     "howItWorks": "작동 방식",
     "pricing": "가격",
-    "getStarted": "시작하기"
+    "getStarted": "지금 시작하기",
+    "myIdeas": "내 아이디어",
+    "myReports": "내 보고서",
+    "settings": "설정",
+    "logout": "로그아웃"
+  },
+  "ideas": {
+    "title": "내 아이디어",
+    "description": "Reddit에서 검증된 스타트업 아이디어 탐색",
+    "upgrade": "업그레이드",
+    "settings": "설정",
+    "tabs": {
+      "all": "전체 아이디어",
+      "bookmarked": "북마크"
+    },
+    "search": {
+      "placeholder": "아이디어 검색..."
+    },
+    "filter": {
+      "allCategories": "전체 카테고리"
+    },
+    "sort": {
+      "score": "점수순",
+      "recent": "최신순",
+      "upvotes": "추천순"
+    },
+    "empty": {
+      "title": "아이디어가 없습니다",
+      "description": "필터를 조정하거나 나중에 다시 확인해주세요."
+    }
+  },
+  "settings": {
+    "title": "설정",
+    "backToIdeas": "목록으로",
+    "subscription": {
+      "title": "구독",
+      "ideasUsage": "이번 주 아이디어",
+      "reportsUsage": "이번 주 보고서",
+      "resetNote": "사용량은 매주 월요일 자정(UTC)에 초기화됩니다",
+      "upgrade": "플랜 업그레이드",
+      "manageBilling": "결제 관리"
+    },
+    "preferences": {
+      "title": "내 선호도",
+      "edit": "수정",
+      "interests": "관심 분야",
+      "targetRevenue": "목표 수익",
+      "serviceScale": "서비스 규모"
+    },
+    "notifications": {
+      "title": "이메일 알림",
+      "digest": "주간 다이제스트",
+      "digestDescription": "매주 월요일 아침 상위 20개 아이디어를 받습니다",
+      "highScore": "고점수 알림",
+      "highScoreDescription": "90점 이상 아이디어가 발견되면 알림을 받습니다",
+      "newReport": "새 분석 보고서",
+      "newReportDescription": "새 분석 보고서가 준비되면 알림을 받습니다",
+      "marketing": "제품 업데이트",
+      "marketingDescription": "새로운 기능 및 개선 사항 소식"
+    },
+    "categories": {
+      "title": "관심사",
+      "description": "아이디어 피드를 개인화할 카테고리를 선택하세요"
+    },
+    "account": {
+      "title": "계정",
+      "email": "이메일",
+      "joined": "가입일"
+    },
+    "danger": {
+      "title": "위험 영역",
+      "description": "계정과 모든 관련 데이터를 영구적으로 삭제합니다. 이 작업은 되돌릴 수 없습니다.",
+      "deleteAccount": "계정 삭제"
+    }
+  },
+  "ideaDetail": {
+    "back": "목록으로",
+    "engagement": "참여도",
+    "upvotes": "추천수",
+    "comments": "댓글수",
+    "viewOnReddit": "Reddit에서 보기",
+    "bookmark": "북마크",
+    "bookmarked": "북마크됨",
+    "share": "공유",
+    "copied": "복사됨!",
+    "validationScore": "검증 점수",
+    "breakdown": "점수 상세",
+    "factors": {
+      "upvotes": "추천수",
+      "comments": "댓글",
+      "repetition": "반복성",
+      "sentiment": "감성",
+      "freshness": "최신성"
+    },
+    "howScoreWorks": "점수 계산 방식",
+    "scoreExplanation": "검증 점수(0-100)는 여러 수요 신호를 기반으로 계산됩니다: 추천수는 동의 정도, 댓글은 토론 깊이, 서브레딧 간 반복은 폭넓은 관심 확인, 감성은 긴급성과 지불 의향, 최신성은 아이디어의 현재 관련성을 나타냅니다.",
+    "notFound": {
+      "title": "아이디어를 찾을 수 없음",
+      "description": "찾으시는 아이디어가 존재하지 않거나 삭제되었습니다.",
+      "backToIdeas": "목록으로 돌아가기"
+    }
+  },
+  "pricing": {
+    "title": "간단하고 투명한 가격",
+    "description": "무료로 시작하세요. 준비되면 업그레이드. 언제든 취소 가능.",
+    "perMonth": "/월",
+    "getStarted": "지금 시작하기",
+    "mostPopular": "가장 인기",
+    "plans": [
+      {
+        "name": "취미",
+        "price": "₩0",
+        "description": "일단 써보기",
+        "features": [
+          "주 5개 아이디어",
+          "7일 지연 접근",
+          "기본 카테고리 필터",
+          "주간 이메일 다이제스트"
+        ]
+      },
+      {
+        "name": "빌더",
+        "price": "₩25,000",
+        "description": "첫 제품을 출시하세요",
+        "features": [
+          "주 50개 아이디어",
+          "실시간 접근",
+          "12개 이상 니치 필터",
+          "북마크 및 내보내기",
+          "우선 지원"
+        ],
+        "popular": true
+      },
+      {
+        "name": "파운더",
+        "price": "₩52,000",
+        "description": "여러 제품으로 확장하세요",
+        "features": [
+          "무제한 아이디어",
+          "API 접근",
+          "맞춤 Slack/Discord 알림",
+          "히스토리 아카이브 접근",
+          "전담 지원"
+        ]
+      }
+    ],
+    "faq": {
+      "label": "FAQ",
+      "title": "자주 묻는 질문",
+      "items": [
+        {
+          "question": "IdeaRadar가 Reddit 검색과 다른 점은 무엇인가요?",
+          "answer": "AI를 사용하여 명시적인 제품 요청(\"누군가 이런 걸 만들어줬으면...\", \"이런 게 있었으면...\")을 감지하고 참여도, 서브레딧 간 반복, 감성 강도를 기반으로 점수를 매깁니다. 무작위 불만이 아닌 검증된 수요 신호를 얻게 됩니다."
+        },
+        {
+          "question": "검증 점수는 어떻게 계산되나요?",
+          "answer": "각 아이디어는 추천수(30점), 댓글(25점), 서브레딧 간 반복(25점), 감성 강도(15점), 최신성(5점)을 기준으로 0-100점으로 평가됩니다. 80점 이상은 강력한 검증된 수요를 나타냅니다."
+        },
+        {
+          "question": "무료 티어에는 무엇이 포함되나요?",
+          "answer": "취미 사용자는 7일 지연으로 주 5개 아이디어를 받습니다. 기본 카테고리를 탐색하고 주간 이메일 다이제스트를 받을 수 있습니다. 빌더(월 ₩25,000)로 업그레이드하면 실시간 아이디어 50개, 파운더(월 ₩52,000)로 업그레이드하면 무제한 접근이 가능합니다."
+        },
+        {
+          "question": "내 니치별로 아이디어를 필터링할 수 있나요?",
+          "answer": "네! SaaS, 개발자 도구, 이커머스, 헬스, 금융 등 12개 이상의 니치로 아이디어를 분류합니다. 빌더와 파운더 사용자는 특정 니치에 대한 맞춤 알림을 설정할 수 있습니다."
+        },
+        {
+          "question": "데이터베이스는 얼마나 자주 업데이트되나요?",
+          "answer": "1,000개 이상의 서브레딧을 지속적으로 스캔합니다. 취미 사용자는 7일 지연된 아이디어를 보고, 유료 사용자는 새로운 아이디어가 발견되고 점수가 매겨지는 대로 실시간 접근이 가능합니다."
+        }
+      ]
+    },
+    "cta": {
+      "title": "스크롤 그만. 출시 시작.",
+      "description": "당신이 기다리는 매일, 다른 누군가가 당신이 먼저 찾을 수 있었던 아이디어를 만들 수 있습니다. 매주 검증된 아이디어를 받는 500명 이상의 인디 메이커와 함께하세요.",
+      "button": "₩1,000만 아이디어 찾기"
+    },
+    "footer": {
+      "terms": "이용약관",
+      "privacy": "개인정보처리방침",
+      "support": "고객지원",
+      "copyright": "© {year} IdeaRadar. All rights reserved."
+    }
+  },
+  "onboarding": {
+    "step": "단계",
+    "of": "/",
+    "back": "이전",
+    "next": "다음",
+    "complete": "지금 시작하기",
+    "niche": {
+      "title": "어떤 분야가 끌리세요?",
+      "description": "최대 3개의 니치를 선택하여 아이디어 피드를 개인화하세요",
+      "selected": "선택됨"
+    },
+    "revenue": {
+      "title": "목표 월 수익은 어느 정도인가요?",
+      "description": "수익화 목표에 맞게 아이디어를 맞춤화하는 데 도움이 됩니다"
+    },
+    "scale": {
+      "title": "어떤 규모의 제품을 만들고 싶으신가요?",
+      "description": "출시 속도에 맞는 규모를 선택하세요"
+    }
+  },
+  "reports": {
+    "title": "내 분석 보고서",
+    "description": "큐레이션된 아이디어에 대한 AI 기반 분석 보고서",
+    "backToIdeas": "목록으로",
+    "reportsAvailable": "개 보고서",
+    "feasibility": "실현 가능성",
+    "viewReport": "보고서 보기",
+    "empty": {
+      "title": "아직 보고서가 없습니다",
+      "description": "분석 보고서가 준비되면 여기에 표시됩니다"
+    }
+  },
+  "analysis": {
+    "title": "분석 보고서",
+    "analyzedOn": "분석일",
+    "tabs": {
+      "concept": "컨셉",
+      "competitors": "경쟁사",
+      "seo": "SEO",
+      "monetization": "수익화",
+      "marketing": "마케팅",
+      "feasibility": "혼자 할 수 있을까?"
+    },
+    "concept": {
+      "productNames": "추천 제품명",
+      "coreValue": "핵심 가치 제안",
+      "mvpFeatures": "MVP 기능",
+      "targetUsers": "타겟 사용자",
+      "differentiation": "핵심 차별화 요소",
+      "domains": "추천 도메인",
+      "domain": "도메인",
+      "status": "상태",
+      "price": "가격",
+      "available": "사용 가능",
+      "taken": "사용 중"
+    },
+    "competitors": {
+      "title": "경쟁사",
+      "pricing": "가격",
+      "strengths": "강점",
+      "weaknesses": "약점",
+      "visitSite": "사이트 방문",
+      "marketGaps": "시장 기회",
+      "opportunities": "기회 요소"
+    },
+    "seo": {
+      "primaryKeywords": "주요 키워드",
+      "secondaryKeywords": "보조 키워드",
+      "keyword": "키워드",
+      "volume": "검색량",
+      "difficulty": "난이도",
+      "trafficPotential": "트래픽 잠재력",
+      "timeline": "순위 진입 예상 기간"
+    },
+    "monetization": {
+      "recommendedModel": "추천 비즈니스 모델",
+      "pricingTiers": "추천 가격 티어",
+      "projectedMRR": "예상 MRR",
+      "month3": "3개월",
+      "month6": "6개월",
+      "month12": "12개월"
+    },
+    "marketing": {
+      "launchChannels": "런칭 채널",
+      "expectedTraffic": "예상 트래픽",
+      "priority": {
+        "high": "높음",
+        "medium": "중간",
+        "low": "낮음"
+      },
+      "targetCommunities": "타겟 커뮤니티",
+      "contentStrategy": "콘텐츠 전략",
+      "blog": "블로그",
+      "social": "소셜 미디어"
+    },
+    "feasibility": {
+      "categoryScores": "카테고리별 점수",
+      "categories": {
+        "marketDemand": "시장 수요",
+        "competition": "경쟁 강도",
+        "technicalFeasibility": "기술적 실현 가능성",
+        "monetizationPotential": "수익화 잠재력"
+      },
+      "verdict": {
+        "PASS": "출시하세요",
+        "CONDITIONAL": "고려해보세요",
+        "FAIL": "스킵"
+      },
+      "summary": "요약",
+      "risks": "리스크",
+      "riskLevel": {
+        "high": "높음",
+        "medium": "중간",
+        "low": "낮음"
+      },
+      "recommendations": "권장 사항"
+    }
   }
 }

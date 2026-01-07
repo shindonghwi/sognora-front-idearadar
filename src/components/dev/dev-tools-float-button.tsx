@@ -75,7 +75,11 @@ export function DevToolsFloatButton() {
       logout();
       setCookieToken(null);
       // Redirect to home if on protected page
-      if (window.location.pathname.includes('/my/')) {
+      if (window.location.pathname.includes('/my/') ||
+          window.location.pathname.includes('/ideas') ||
+          window.location.pathname.includes('/reports') ||
+          window.location.pathname.includes('/onboarding') ||
+          window.location.pathname.includes('/account')) {
         window.location.href = '/';
       }
     } else {
@@ -85,6 +89,13 @@ export function DevToolsFloatButton() {
       login(ProfileStatus.ProfileStatusActive);
       setProfile(DEV_PROFILE);
       setCookieToken(DEV_ACCESS_TOKEN);
+
+      // Redirect to returnUrl if exists
+      const urlParams = new URLSearchParams(window.location.search);
+      const returnUrl = urlParams.get('returnUrl');
+      if (returnUrl) {
+        window.location.href = returnUrl;
+      }
     }
   }, [isAuthenticated, login, logout, setProfile]);
 

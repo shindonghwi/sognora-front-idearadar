@@ -1,0 +1,154 @@
+/* Reports Page Styles - v4 Premium Redesign */
+
+.page {
+  min-height: 100vh;
+  background: var(--neutral-50, #FAFAFA);
+}
+
+/* Header */
+.header {
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--neutral-200, #E4E4E7);
+}
+
+.headerContent {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 16px 32px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.backLink {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--neutral-600, #52525B);
+  text-decoration: none;
+  transition: color var(--transition-fast, 0.15s ease);
+}
+
+.backLink:hover {
+  color: var(--primary-500, #F97316);
+}
+
+.backIcon {
+  font-size: 18px;
+}
+
+.logo {
+  font-family: 'Manrope', sans-serif;
+  font-size: 22px;
+  font-weight: 800;
+  background: linear-gradient(135deg, #F97316 0%, #F59E0B 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-decoration: none;
+  letter-spacing: -0.01em;
+}
+
+/* Main Content */
+.main {
+  padding: 48px 0 80px;
+}
+
+.container {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 0 32px;
+}
+
+/* Page Header */
+.pageHeader {
+  margin-bottom: 40px;
+}
+
+.pageTitle {
+  font-family: 'Manrope', sans-serif;
+  font-size: 32px;
+  font-weight: 700;
+  color: var(--neutral-900, #18181B);
+  margin: 0 0 10px;
+  letter-spacing: -0.02em;
+}
+
+.pageDescription {
+  font-size: 16px;
+  color: var(--neutral-600, #52525B);
+  margin: 0;
+  line-height: 1.6;
+}
+
+/* Reports List */
+.reportsList {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.listHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.reportCount {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--neutral-500, #71717A);
+}
+
+.reportsGrid {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* Empty State */
+.emptyState {
+  text-align: center;
+  padding: 100px 32px;
+  background: #FFFFFF;
+  border-radius: var(--radius-xl, 16px);
+  border: 1px dashed var(--neutral-300, #D4D4D8);
+}
+
+.emptyTitle {
+  font-family: 'Manrope', sans-serif;
+  font-size: 22px;
+  font-weight: 600;
+  color: var(--neutral-900, #18181B);
+  margin: 0 0 10px;
+}
+
+.emptyDescription {
+  font-size: 15px;
+  color: var(--neutral-500, #71717A);
+  margin: 0;
+  line-height: 1.6;
+}
+
+/* Responsive */
+@media (max-width: 640px) {
+  .headerContent {
+    padding: 14px 20px;
+  }
+
+  .container {
+    padding: 0 20px;
+  }
+
+  .pageTitle {
+    font-size: 26px;
+  }
+
+  .main {
+    padding: 32px 0 60px;
+  }
+}

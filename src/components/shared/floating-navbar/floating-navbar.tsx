@@ -1,16 +1,22 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import { useTranslations } from 'next-intl';
 import { Button } from '@sognora/ui';
-import { useUIStore } from '@/core/stores';
+import { useUIStore, useAuthStore } from '@/core/stores';
+import { clearTokens, clearAccountStatus } from '@/core/utils/token';
+import { ROUTES } from '@/core/routes';
 import styles from './floating-navbar.module.css';
 
 export function FloatingNavbar() {
   const t = useTranslations('nav');
   const [scrolled, setScrolled] = useState(false);
+  const [mounted, setMounted] = useState(false);
+  const [dropdownOpen, setDropdownOpen] = useState(false);
+  const dropdownRef = useRef<HTMLDivElement>(null);
   const openLoginModal = useUIStore((state) => state.openLoginModal);
+  const { isAuthenticated, profile, logout } = useAuthStore();
 
   const navItems = [
     { label: t('features'), href: '#features' },
@@ -19,12 +25,35 @@ export function FloatingNavbar() {
   ];
 
   useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 20);
     };
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  // Close dropdown when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (e: MouseEvent) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(e.target as Node)) {
+        setDropdownOpen(false);
+      }
+    };
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
+
+  const handleLogout = () => {
+    clearTokens();
+    clearAccountStatus();
+    logout();
+    setDropdownOpen(false);
+    window.location.href = '/';
+  };
 
   const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
     if (href.startsWith('#')) {
@@ -58,14 +87,58 @@ export function FloatingNavbar() {
           ))}
         </div>
 
-        {/* CTA Button */}
-        <Button
-          type="primary"
-          size="sm"
-          onClick={() => openLoginModal()}
-        >
-          {t('getStarted')}
-        </Button>
+        {/* CTA Button / User Menu */}
+        {mounted && isAuthenticated ? (
+          <div className={styles.userMenu} ref={dropdownRef}>
+            <button
+              className={styles.userButton}
+              onClick={() => setDropdownOpen(!dropdownOpen)}
+            >
+              <span className={styles.userAvatar}>
+                {profile?.email?.charAt(0).toUpperCase() || 'U'}
+              </span>
+              <span className={styles.userEmail}>{profile?.email || 'User'}</span>
+              <span className={styles.chevron}>{dropdownOpen ? '▲' : '▼'}</span>
+            </button>
+            {dropdownOpen && (
+              <div className={styles.dropdown}>
+                <Link
+                  href={ROUTES.IDEAS}
+                  className={styles.dropdownItem}
+                  onClick={() => setDropdownOpen(false)}
+                >
+                  {t('myIdeas')}
+                </Link>
+                <Link
+                  href={ROUTES.REPORTS}
+                  className={styles.dropdownItem}
+                  onClick={() => setDropdownOpen(false)}
+                >
+                  {t('myReports')}
+                </Link>
+                <Link
+                  href={ROUTES.ACCOUNT_SETTINGS}
+                  className={styles.dropdownItem}
+                  onClick={() => setDropdownOpen(false)}
+                >
+                  {t('settings')}
+                </Link>
+                <div className={styles.dropdownDivider} />
+                <button className={styles.dropdownItem} onClick={handleLogout}>
+                  {t('logout')}
+                </button>
+              </div>
+            )}
+          </div>
+        ) : (
+          <Button
+            type="primary"
+            size="sm"
+            onClick={() => openLoginModal()}
+          >
+            {t('getStarted')}
+          </Button>
+        )}
       </div>
     </nav>
   );

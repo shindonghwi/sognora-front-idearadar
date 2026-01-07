@@ -12,6 +12,12 @@
 export const ROUTES = {
   // Public routes
   HOME: '/',
+  PRICING: '/pricing',
+
+  // Protected routes - Ideas
+  IDEAS: '/ideas',
+  REPORTS: '/reports',
+  ONBOARDING: '/onboarding',
 
   // Protected routes (account/* 페이지)
   ACCOUNT_PROFILE: '/account/profile',
@@ -36,7 +42,7 @@ export type Route = (typeof ROUTES)[keyof typeof ROUTES];
  * 동적 라우트 생성 함수
  */
 export const DYNAMIC_ROUTES = {
-  // my 페이지는 탭이 아닌 별도 페이지로 분리됨
+  IDEA_DETAIL: (id: string) => `/ideas/${id}` as const,
 };
 
 /**
@@ -46,6 +52,9 @@ export const ROUTE_CONFIG = {
   /** 인증이 필요한 경로 */
   protected: [
     '/account',
+    ROUTES.IDEAS,
+    ROUTES.REPORTS,
+    ROUTES.ONBOARDING,
     ROUTES.MY_PROFILE,
     ROUTES.MY_PURCHASES,
     ROUTES.LIBRARY,
@@ -55,6 +64,7 @@ export const ROUTE_CONFIG = {
   /** 인증 없이 접근 가능한 경로 */
   public: [
     ROUTES.HOME,
+    ROUTES.PRICING,
   ] as const,
 } as const;
 
